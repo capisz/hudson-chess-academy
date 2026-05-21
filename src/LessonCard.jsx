@@ -1,4 +1,6 @@
 export default function LessonCard({ lesson }) {
+  const bookingUrl = lesson.koalendarUrl;
+
   return (
     <div style={{ border: "1px solid #e5e5e5", borderRadius: 14, padding: 16 }}>
       <h3 style={{ margin: 0 }}>{lesson.title}</h3>
@@ -12,7 +14,7 @@ export default function LessonCard({ lesson }) {
       </ul>
 
       <a
-        href={lesson.calendlyUrl}
+        href={bookingUrl}
         target="_blank"
         rel="noreferrer"
         style={{

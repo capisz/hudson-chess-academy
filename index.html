@@ -2,12 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hudson-chess</title>
+    <link rel="icon" type="image/png" href="/horizon-logo.png" />
+    <meta
+      name="description"
+      content="Horizon Chess Academy offers private online and in-person chess lessons with Coach Chris for beginners, tournament players, game review, and practical training plans."
+    />
+    <meta
+      name="keywords"
+      content="Horizon chess lessons, online chess coach, in-person chess coaching, beginner chess lessons, tournament chess training, Coach Chris chess"
+    />
+    <meta property="og:title" content="Horizon Chess Academy | Private Chess Coaching" />
+    <meta
+      property="og:description"
+      content="Private chess coaching for students who want clearer fundamentals, stronger game review, and steady tournament-ready progress."
+    />
+    <meta property="og:type" content="website" />
+    <title>Horizon Chess Academy | Private Online & In-Person Chess Lessons</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "Horizon Chess Academy",
+        "description": "Private online and in-person chess coaching with Coach Chris for beginners and tournament players.",
+        "email": "horizonchess@yahoo.com",
+        "sport": "Chess",
+        "areaServed": "Online and in-person"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.__koalendarLoaded = false;
+      window.Koalendar =
+        window.Koalendar ||
+        function () {
+          (Koalendar.props = Koalendar.props || []).push(arguments);
+        };
+    </script>
+    <script
+      async
+      src="https://koalendar.com/assets/widget.js"
+      onload="window.__koalendarLoaded=true"
+      onerror="window.__koalendarLoaded=false"
+    ></script>
+    <script>
+      Koalendar("init");
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

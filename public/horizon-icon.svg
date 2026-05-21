@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Horizon Chess logo">
+  <rect width="120" height="120" rx="18" fill="#fffaf2"/>
+  <circle cx="60" cy="43" r="34" fill="#d7a15d"/>
+  <path d="M16 90a44 44 0 0 1 88 0v8H16v-8Z" fill="#2f7d83"/>
+  <path d="M28 18c2.3-3.5 7.1-4.4 10.5-2l17.8 12.4 9.2-17.3c2.5-4.7 9.2-4.7 11.7 0l9.2 17.3L104.2 16c3.4-2.4 8.2-1.5 10.5 2 1.3 2 1.6 4.4.8 6.6L104.8 55H15.2L4.5 24.6c-.8-2.2-.5-4.6.8-6.6 2.3-3.5 7.1-4.4 10.5-2l17.8 12.4L28 18Z" fill="#f3b78f"/>
+  <rect x="14" y="45" width="92" height="13" rx="6.5" fill="#c97845"/>
+  <path d="M35 56h50c-3.5 23.2 3.9 32.8 16 38H19c12.1-5.2 19.5-14.8 16-38Z" fill="#f3b78f"/>
+  <path d="M22 88h76c8.8 0 16 7.2 16 16v5H6v-5c0-8.8 7.2-16 16-16Z" fill="#c97845"/>
+  <rect x="2" y="102" width="116" height="12" rx="6" fill="#f3b78f"/>
+</svg>
