@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 
@@ -763,6 +763,261 @@ const BLOG_POSTS = [
           "They put themselves in positions where their skill can show.",
           "That is the real connection between Pokemon and chess. Both games reward the player who treats every game as information, every mistake as a lesson, and every tournament as another chance to sharpen their thinking."
       ]
+  },
+{
+    "slug": "clearance-sacrifices-piece-activity",
+    "category": "Chess improvement",
+    "tags": [],
+    "title": "Get Out of Your Own Way: Clearance Sacrifices and the Hidden Value of Activity",
+    "metaTitle": "Clearance Sacrifices and Piece Activity in Chess",
+    "metaDescription": "Learn how clearance sacrifices open lines, free squares, and improve piece activity so chess students evaluate more than material.",
+    "excerpt": "Clearance sacrifices teach students when opening a line or freeing a square can matter more than keeping every pawn.",
+    "author": "Coach Chris",
+    "publishedDate": "2026-05-22",
+    "updatedDate": "2026-05-22",
+    "canonicalPath": "#/blog/clearance-sacrifices-piece-activity",
+    "featuredImage": "https://i.ytimg.com/vi/FeTUa8GvTU8/hqdefault.jpg",
+    "imageAlt": "Sunil Weeramantry chess lecture thumbnail for an article on clearance sacrifices and piece activity.",
+    "audience": "Beginner and intermediate chess students, parents, and players learning to value piece activity beyond material counts.",
+    "sourceNote": "Source draft: clearance_sacrifices_blog_post.pdf. Source video: Sunil Weeramantry lecture at the Parker Chess Club March 2026, Chess Videos by John Brezina, YouTube.",
+    "source": "Clearance sacrifices PDF draft and Sunil Weeramantry lecture",
+    "videoId": "FeTUa8GvTU8",
+    "videoTitle": "Sunil Weeramantry lecture at the Parker Chess Club March 2026",
+    "videoUrl": "https://www.youtube.com/watch?v=FeTUa8GvTU8&t=28s",
+    "summaryIntro": "Coach Chris takeaway: a clearance sacrifice is not about looking flashy. It is about opening the road or square a stronger piece needs.",
+    "sectionHeadings": [
+      {
+        "beforeParagraph": 0,
+        "title": "Get Out of Your Own Way",
+        "note": "Start with why material values do not tell the whole story."
+      },
+      {
+        "beforeParagraph": 6,
+        "title": "Ask Better Questions Than What Can I Take?",
+        "note": "Use piece activity questions before chasing captures."
+      },
+      {
+        "beforeParagraph": 12,
+        "title": "Pieces Have Jobs",
+        "note": "Match each piece to the lines or squares it needs."
+      },
+      {
+        "beforeParagraph": 16,
+        "title": "Line Clearance Opens the Road",
+        "note": "See why bishops and rooks need open lanes."
+      },
+      {
+        "beforeParagraph": 20,
+        "title": "Square Clearance Gives Knights a Home",
+        "note": "Connect clearance to knight outposts and useful landing squares."
+      },
+      {
+        "beforeParagraph": 24,
+        "title": "Do Not Capture Every Weakness Immediately",
+        "note": "Keep pressure when the threat is stronger than the quick capture."
+      },
+      {
+        "beforeParagraph": 30,
+        "title": "A Better Way to Evaluate Positions",
+        "note": "Balance material with activity, roads, squares, and pressure."
+      },
+      {
+        "beforeParagraph": 33,
+        "title": "The Real Lesson of Clearance Sacrifices",
+        "note": "Close with the practical question students can take to their games."
+      }
+    ],
+    "relatedSlugs": [
+      "how-to-calculate-better-in-chess",
+      "pokemon-tcg-and-chess"
+    ],
+    "body": [
+      "One of the biggest jumps a chess player can make is learning that chess is not just about counting points. Most beginners are taught a simple value system: pawns are worth 1, knights and bishops are worth 3, rooks are worth 5, and queens are worth 9. That system is useful because it helps students avoid giving away material for no reason. But if a player relies on it too much, they start to misunderstand the game.",
+      "Chess is not accounting. A piece is not valuable because a chart says it is valuable. A piece is valuable because of what it can actually do.",
+      "A bishop trapped behind its own pawns is not really acting like a full bishop. A rook with no open file is not really acting like a full rook. A knight with no useful square is not really acting like a dangerous knight. A queen with no way into the attack may look powerful, but it is only powerful in theory.",
+      "This is where one of the most important attacking and positional ideas in chess comes in: the clearance sacrifice.",
+      "A clearance sacrifice happens when you give up material to clear a line, square, or pathway for another piece. The sacrifice is not random. The goal is not to be flashy. The goal is to remove whatever is blocking your position from working properly.",
+      "In simple terms: sometimes the best move is to get out of your own way.",
+      "Newer players often look at a position and immediately ask, \"What can I capture?\"",
+      "That is not a bad question, but it is not enough. If all you do is hunt for captures, you will miss the deeper purpose of the position.",
+      "Stronger players ask better questions: which of my pieces is not participating, what line or square does it want, what is blocking it, can I remove the blocker, and what new threat appears after the blocker is gone?",
+      "Those questions lead to better chess because they force you to think about piece activity, not just material.",
+      "A player who only counts points may see a pawn sacrifice and think, \"I am losing a pawn.\" A stronger player may see the same sacrifice and think, \"I am giving up a pawn, but now my bishop becomes alive, my rook enters the game, or my knight reaches a permanent outpost.\"",
+      "The move is not about losing material. It is about gaining function.",
+      "Every piece has a job.",
+      "A bishop wants diagonals. A rook wants open files. A queen wants entry points. A knight wants strong squares. If your own pawn or piece prevents one of your pieces from doing its job, that pawn or piece may need to move, advance, or even be sacrificed.",
+      "This is one of the clearest ways to explain clearance sacrifices to students: long-range pieces need roads. A bishop needs a diagonal. A rook needs a file. A queen needs access. If the road is blocked, the piece cannot travel. Sometimes you have to sacrifice something to open the road.",
+      "Knights are different. Knights do not need roads. They jump. But knights still need landing squares. A knight without a useful square can look active for one move, but if it can be chased away, it is not really secure. For knights, clearance is usually about clearing a square, not a line.",
+      "Imagine you have a bishop aimed toward the enemy king, but one of your own pawns blocks the diagonal. A beginner may think, \"That bishop is defended, so it is fine.\" But a stronger player asks, \"What is the bishop actually doing?\"",
+      "If the bishop is stuck behind a pawn, it may not be doing enough. If moving or sacrificing that pawn opens the bishop toward the king, then the pawn may be less important than the diagonal it is blocking.",
+      "The same idea applies to rooks. A rook on a closed file can look strong, but if the file never opens, the rook is only staring at its own pawn. Sometimes a pawn break or sacrifice is necessary to open the file and give the rook a way into the position.",
+      "This is why strong chess players care so much about pawn breaks. A pawn break is not just pushing a pawn. It is often the move that changes which pieces are active and which pieces are passive.",
+      "For knights, the question is slightly different. A knight does not need an open diagonal or file. A knight needs a square, and not just any square. It needs a square where it creates threats and cannot easily be chased away.",
+      "One of the strongest knight concepts is the outpost. An outpost is a square protected by your pawn and difficult or impossible for your opponent to attack with a pawn. A knight on an outpost can become more powerful than a rook in some positions because it controls key squares, attacks weaknesses, and interferes with the opponent's coordination.",
+      "Sometimes you sacrifice a pawn not because the pawn itself is unimportant, but because moving it clears a square for your knight.",
+      "That is a more advanced way to understand material. You are not simply giving up one point. You are investing one point to create a long-term piece advantage.",
+      "Another important lesson connected to clearance is patience.",
+      "Many students see a weak pawn and immediately want to take it. But sometimes the weakness is more useful while it remains on the board.",
+      "As long as the weakness exists, your opponent may have to defend it. Their pieces become tied down. Their position becomes awkward. If you capture too early, the weakness disappears, and your opponent may become more active.",
+      "This connects to an old chess idea: the threat is often stronger than the execution.",
+      "If you threaten to win a pawn, attack the king, invade with a rook, or jump into an outpost, your opponent has to respond. The pressure itself may be more valuable than the immediate capture.",
+      "That is a very important lesson for improving players. Do not rush to cash in. First ask whether keeping the tension creates even stronger problems for your opponent.",
+      "Instead of only asking, \"Who is ahead in material?\" ask whose pieces are more active, which pieces are blocked, which player controls the open files, which bishops have useful diagonals, which knights have permanent squares, and which weaknesses are tying pieces down.",
+      "This is how chess starts to become more than tactics. Tactics still matter, of course. But tactics usually come from better piece activity. If your pieces are stuck, your tactics disappear. If your pieces are coordinated, tactical chances appear naturally.",
+      "A clearance sacrifice is one of the clearest examples of this relationship. You give something up, but in return your pieces start working together.",
+      "The real lesson of clearance sacrifices is not \"sacrifice pawns whenever you feel like it.\" That would be bad chess.",
+      "The lesson is this: do not let your own pieces block your plan.",
+      "If your bishop needs a diagonal, look for a way to open it. If your rook needs a file, look for a pawn break. If your queen needs an entry square, look for the obstruction. If your knight needs an outpost, ask whether a pawn move can create the route.",
+      "Strong chess players do not sacrifice because they want to look brilliant. They sacrifice because the position demands activity.",
+      "The next time you look at a chess position, do not only ask, \"What can I take?\" Ask a stronger question: \"What piece of mine is not doing its job, and what is stopping it?\"",
+      "That question can change the way you play chess. Sometimes the winning move is not about adding more force. Sometimes the winning move is simply getting out of your own way."
+    ]
+  },
+{
+    "slug": "napoleon-chess-best-move",
+    "category": "Chess stories",
+    "tags": [],
+    "title": "Napoleon, Chess, and the Best Move He Never Found",
+    "metaTitle": "Napoleon, Chess, and the Best Move He Never Found",
+    "metaDescription": "Napoleon was one of history's most famous military strategists, but he was only a mediocre chess player. His hidden chess set legend offers a lesson about strategy and awareness.",
+    "excerpt": "Napoleon's chess stories turn into a practical lesson about assumptions, hidden resources, and searching for the best move.",
+    "author": "Coach Chris",
+    "publishedDate": "2026-05-22",
+    "updatedDate": "2026-05-22",
+    "canonicalPath": "#/blog/napoleon-chess-best-move",
+    "featuredImage": "https://i.ytimg.com/vi/tYZw5PSV6yA/hqdefault.jpg",
+    "imageAlt": "Penguin Supreme video thumbnail for the mystery of Napoleon's chess set and the best move he never found.",
+    "audience": "Chess students, parents, history-minded players, and improving competitors learning to search for hidden resources.",
+    "sourceNote": "Source draft: napoleon_chess_best_move_blog_post.pdf. Source video: The Mystery of Napoleon's Chess Set That Could've Freed Him, Penguin Supreme, YouTube.",
+    "source": "Napoleon chess PDF draft and Penguin Supreme video",
+    "videoId": "tYZw5PSV6yA",
+    "videoTitle": "The Mystery of Napoleon's Chess Set That Could've Freed Him",
+    "videoUrl": "https://www.youtube.com/watch?v=tYZw5PSV6yA",
+    "summaryIntro": "Coach Chris takeaway: the best chess move is not always the move that looks loudest. Better players learn to question assumptions and search the whole position.",
+    "sectionHeadings": [
+      {
+        "beforeParagraph": 0,
+        "title": "Napoleon, Chess, and the Best Move He Never Found",
+        "note": "Start with the contrast between battlefield reputation and chess discipline."
+      },
+      {
+        "beforeParagraph": 6,
+        "title": "Napoleon the Chess Player",
+        "note": "Use Napoleon's chess reputation to discuss threats, development, and impatience."
+      },
+      {
+        "beforeParagraph": 15,
+        "title": "The Turk and the Illusion of Control",
+        "note": "Connect chess assumptions to hidden tactics and incomplete evaluation."
+      },
+      {
+        "beforeParagraph": 24,
+        "title": "Exile, Surveillance, and a Chessboard",
+        "note": "Introduce the St. Helena legend without overstating its historical certainty."
+      },
+      {
+        "beforeParagraph": 35,
+        "title": "The Best Move You Never See",
+        "note": "Show how resources can stay invisible when a player searches too narrowly."
+      },
+      {
+        "beforeParagraph": 45,
+        "title": "Reputation Does Not Make the Move",
+        "note": "The board rewards calculation, patience, and correction rather than status."
+      },
+      {
+        "beforeParagraph": 52,
+        "title": "Chess as a Mirror",
+        "note": "Connect chess decisions to risk, pride, timing, and overextension."
+      },
+      {
+        "beforeParagraph": 57,
+        "title": "The Lesson for Students",
+        "note": "Give students questions that widen the search for candidate moves."
+      },
+      {
+        "beforeParagraph": 64,
+        "title": "Conclusion: The Move Inside the Piece",
+        "note": "Close on the hidden resource a student still has to notice."
+      }
+    ],
+    "relatedSlugs": [
+      "how-to-calculate-better-in-chess",
+      "clearance-sacrifices-piece-activity",
+      "chess-lessons-for-life-rasheme-ellington"
+    ],
+    "body": [
+      "Napoleon Bonaparte built his life around strategy.",
+      "He rose from a Corsican-born artillery officer to the ruler of France. He won battles, reshaped governments, forced Europe into coalition after coalition, and became one of the most studied military figures in history. His name is still tied to ambition, calculation, risk, and command.",
+      "That is why his relationship with chess is so interesting.",
+      "You would think that someone known for military genius would naturally excel at the game of kings. Chess is filled with language that sounds military: attack, defense, sacrifice, initiative, outposts, ranks, files, strategy, tactics, coordination, and king safety.",
+      "But by most accounts, Napoleon was not a particularly strong chess player.",
+      "That contrast is what makes the story powerful. Napoleon understood strategy on the battlefield, but chess requires a different kind of discipline. It does not reward reputation. Once the pieces are set up, every player has to answer the same question: what is the best move?",
+      "Napoleon played chess throughout his life. He was connected to the chess culture of his time, including the famous Cafe de la Regence in Paris, and he played during military campaigns and exile.",
+      "His chess style, at least from the games and stories usually associated with him, was not the careful, patient style we might expect from a master strategist. One opening line connected with him is 1. e4 e5 2. Qf3, later known as the Napoleon Opening.",
+      "The idea is simple: bring the queen out early and aim pressure toward the weak f7 square.",
+      "The problem is also simple. Bringing the queen out too early often violates an opening principle. Instead of developing pieces, controlling the center, and getting the king safe, White moves the queen before the rest of the army is ready. A good opponent can gain time by attacking the queen and developing naturally.",
+      "That is a useful lesson for students. A move can have a threat and still be strategically flawed.",
+      "Beginners often fall in love with immediate threats. They see the queen as the strongest piece, so they want to use it right away. But chess is not only about using your strongest piece. It is about using your pieces together.",
+      "A queen that comes out too early can become a target. A knight that develops with tempo against the queen becomes useful. A bishop that enters the game while the queen runs around becomes active. The player who chases the queen may gain time, development, and control.",
+      "Napoleon's name being attached to this opening is almost poetic. It suggests ambition, directness, and pressure, but also impatience.",
+      "In chess, impatience often turns initiative into vulnerability.",
+      "One of the better-known chess stories involving Napoleon is his game against the Turk, a famous chess-playing automaton.",
+      "The Turk was presented as a machine that could play chess, but it was eventually revealed to be an illusion controlled by a hidden human player.",
+      "The story works on two levels.",
+      "On the surface, Napoleon lost to what appeared to be a machine. But the deeper point is that he was playing against something he did not fully understand. The opponent was not what it appeared to be.",
+      "That happens constantly in chess.",
+      "A position may look safe, but there may be a hidden tactic. A capture may look free, but it may open a file. An attack may look dangerous, but it may be bluffing. A quiet move may look harmless, but it may contain the real threat.",
+      "Chess punishes assumptions. You cannot evaluate a position based only on appearance. You have to investigate what is actually happening.",
+      "That is where many students struggle. They make a move because it looks good or because it creates a one-move threat. But good chess asks deeper questions: what is my opponent threatening, what changed after the last move, what is undefended, and what hidden resource might I be missing?",
+      "The Turk is a perfect symbol for that idea. The board tells one story. The truth underneath tells another.",
+      "After Napoleon's defeat at Waterloo in 1815, he was sent to St. Helena, a remote island thousands of miles away from France. Napoleon had already escaped one exile, returned to France, and taken power again during the Hundred Days. This time, his captors wanted distance, isolation, and control.",
+      "On St. Helena, his life was heavily monitored. His mail was opened. His movement was restricted. His residence at Longwood House was watched. Communication with the outside world became difficult, and his circle grew smaller over time.",
+      "In that environment, chess becomes more than a game. It becomes one of the few normal activities available to a man whose real political board had been taken away.",
+      "This is where the famous legend begins.",
+      "According to the story, Napoleon's supporters still hoped to help him escape. Because written communication was monitored, they supposedly tried to send him a secret message hidden inside a chess set. The set was made of carved ivory, and one of the pieces allegedly contained a hidden compartment with an escape plan.",
+      "But the person trusted to deliver the message died before reaching Napoleon, so Napoleon never learned that the piece contained anything. He played with the set for years, never realizing that an escape plan was sitting inches away from his hand.",
+      "It is a remarkable image: Napoleon, the great strategist, moving pieces across a board while the real best move was hidden inside one of them.",
+      "The problem is that the story is probably not historically reliable.",
+      "The known record from St. Helena includes diaries, memoirs, surveillance rules, and accounts from people around Napoleon. Those sources mention his confinement, the fear of escape, and chess-related items, but the specific hidden-message chess set story does not appear in the surviving contemporary evidence usually cited around the exile. The story seems to survive more as legend than confirmed fact.",
+      "That does not make it useless. In some ways, it makes it more powerful.",
+      "A legend does not always teach us because it is literally true. Sometimes it teaches because it captures a truth symbolically.",
+      "The hidden chess set story is really a story about missed perception.",
+      "Napoleon did not lose because the move was unavailable. In the legend, the move was right there. The problem was that he did not know where to look.",
+      "That is one of the most important lessons in chess.",
+      "Many players do not lose because the position is hopeless. They lose because they never notice the resource that was available. They miss the defensive move, the quiet move, the zwischenzug, the mating pattern, or the fact that the opponent's threat can be ignored because they have something stronger.",
+      "The best move can sit in front of you and still be invisible.",
+      "Every chess player has experienced this. You analyze after the game, and suddenly the answer looks obvious. Maybe you had a tactic. Maybe you could have won a piece. Maybe you could have forced checkmate. Maybe you could have saved a lost position. During the game, you never considered it.",
+      "Why? Because your mind was looking in the wrong place.",
+      "Maybe you were only looking for checks. Maybe you were only looking for captures. Maybe you were only trying to defend. Maybe you were only focused on your plan. You assumed the position had only one kind of solution.",
+      "This is why chess improvement is not just about learning more patterns. It is about learning how to search.",
+      "Strong players ask better questions. They do not just ask, \"What do I want?\" They ask, \"What does the position want?\"",
+      "Napoleon's chess reputation also offers a useful reminder: being strategic in life does not automatically make someone good at chess.",
+      "Chess is its own discipline. It requires calculation, patience, pattern recognition, humility, and constant correction. A brilliant person can still play bad moves. A confident person can still overlook tactics. A powerful person can still misunderstand a position.",
+      "That is one reason chess is such a valuable teaching tool.",
+      "The board is honest.",
+      "It does not care how smart you think you are. It does not care how much you won yesterday. It does not care whether your last move looked aggressive. If the move is bad, the position will eventually expose it.",
+      "This is especially important for students. Many young players want to win quickly. They want the flashy attack, the early queen move, the immediate checkmate threat. But chess teaches that force without coordination can become weakness.",
+      "A queen brought out too early may become a target. A sacrifice without follow-up may become a blunder. An attack without development may collapse. A plan that ignores the opponent's resources may fail.",
+      "The best players are not the ones who always attack. The best players are the ones who understand when to attack, when to defend, when to improve, when to simplify, and when to wait.",
+      "The story of Napoleon and the hidden chess set works because chess is already a mirror for larger decisions.",
+      "On the board, you have limited information, limited time, and an opponent trying to stop you. You have to make decisions under pressure. You have to balance risk and reward. You have to know when a sacrifice is real and when it is just hope. You have to understand that the strongest-looking move is not always the best move.",
+      "That is why chess keeps producing stories like this. The game is small enough to fit on a table, but large enough to hold human ambition, fear, pride, patience, and failure.",
+      "Napoleon's life was full of massive decisions. Some were brilliant. Some were disastrous. The invasion of Russia, the return from Elba, Waterloo, and the final exile to St. Helena all show themes chess players face in miniature: overextension, timing, coordination, calculation, and the danger of assuming that past success guarantees future success.",
+      "Chess compresses those ideas into sixty-four squares.",
+      "The Napoleon chess legend gives students a simple but powerful takeaway: do not assume the best move is obvious.",
+      "Sometimes the best move is hidden because you are asking the wrong question.",
+      "If you only ask how to attack, you may miss the move that improves your worst piece. If you only ask what you can capture, you may miss the move that creates a stronger threat. If you only ask how to stop your opponent, you may miss the move that gives you counterplay.",
+      "That is the real connection between Napoleon, chess, and the best move he never found. Whether the hidden chess set story is true or not, it captures something every chess player understands: there are moments when the answer is close, but your thinking does not reach it.",
+      "The goal of chess training is to reduce those moments.",
+      "No player sees everything. But good training teaches you to slow down, ask better questions, and search the position more honestly.",
+      "Before you move, ask what changed, what your opponent is threatening, what candidate moves you have, what you would play if you were not afraid or rushing, and what hidden resource the position might contain.",
+      "Those questions are how you find better moves.",
+      "The legend of Napoleon's chess set is powerful because it reverses what we expect.",
+      "Napoleon was the man who moved armies, shaped nations, and forced Europe to respond to him. Yet in this story, he becomes the player who cannot see the move that matters. He moves the pieces, but the real solution remains hidden inside one of them.",
+      "That is chess. The board can look familiar and still contain something you have not seen. The position can seem simple and still hold a resource. The best move can be close enough to touch and still go unplayed.",
+      "For students, that is the lesson worth remembering. Do not just move pieces. Look inside the position. The best move may already be there."
+    ]
   },
 {
     "slug": "how-to-calculate-better-in-chess",
@@ -1933,19 +2188,153 @@ function ProgramEvidenceSection({ className = "" } = {}) {
   );
 }
 
+const BLOG_SORT_OPTIONS = [
+  { value: "newest", label: "Newest first" },
+  { value: "oldest", label: "Oldest first" },
+];
+
+function BlogSortControl({ order, onChange }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const controlRef = useRef(null);
+  const triggerRef = useRef(null);
+  const selectedOption = BLOG_SORT_OPTIONS.find((option) => option.value === order) || BLOG_SORT_OPTIONS[0];
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const closeOnOutsideClick = (event) => {
+      if (!controlRef.current?.contains(event.target)) setIsOpen(false);
+    };
+
+    const closeOnEscape = (event) => {
+      if (event.key !== "Escape") return;
+      setIsOpen(false);
+      triggerRef.current?.focus();
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isOpen]);
+
+  return (
+    <div className="blogOrderControl" ref={controlRef}>
+      <span>Order</span>
+      <div className={isOpen ? "blogOrderPicker isOpen" : "blogOrderPicker"}>
+        <button
+          className="blogOrderTrigger"
+          type="button"
+          ref={triggerRef}
+          aria-label={`Article order: ${selectedOption.label}`}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+        >
+          <b>{selectedOption.label}</b>
+          <i className="blogOrderChevron" aria-hidden="true" />
+        </button>
+        {isOpen && (
+          <div className="blogOrderMenu" role="listbox" aria-label="Article order options">
+            {BLOG_SORT_OPTIONS.map((option) => {
+              const isSelected = option.value === order;
+
+              return (
+                <button
+                  className={isSelected ? "blogOrderOption isSelected" : "blogOrderOption"}
+                  key={option.value}
+                  type="button"
+                  role="option"
+                  aria-selected={isSelected}
+                  onClick={() => {
+                    onChange(option.value);
+                    setIsOpen(false);
+                    triggerRef.current?.focus();
+                  }}
+                >
+                  <span>{option.label}</span>
+                  <i className="blogOrderCheck" aria-hidden="true" />
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function BlogPage({ navigateToPage }) {
+  const [blogQuery, setBlogQuery] = useState("");
+  const [blogOrder, setBlogOrder] = useState("newest");
+  const normalizedQuery = blogQuery.trim().toLowerCase();
+
+  const visiblePosts = useMemo(() => {
+    const sourceOrder = new Map(BLOG_POSTS.map((post, index) => [post.slug, index]));
+    let result = [...BLOG_POSTS];
+
+    if (normalizedQuery) {
+      result = result.filter((post) => {
+        const searchText = [
+          post.title,
+          post.description,
+          post.excerpt,
+          post.category,
+          post.metaTitle,
+          post.metaDescription,
+          ...(post.tags || []),
+          ...(post.sectionHeadings || []).map((section) => section.title),
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+        return searchText.includes(normalizedQuery);
+      });
+    }
+
+    result.sort((left, right) => {
+      const leftDate = new Date(left.publishedDate).getTime();
+      const rightDate = new Date(right.publishedDate).getTime();
+      const dateOrder = leftDate - rightDate;
+
+      if (dateOrder !== 0) return blogOrder === "oldest" ? dateOrder : -dateOrder;
+
+      const sourceIndexOrder = sourceOrder.get(left.slug) - sourceOrder.get(right.slug);
+      return blogOrder === "oldest" ? sourceIndexOrder : -sourceIndexOrder;
+    });
+
+    return result;
+  }, [blogOrder, normalizedQuery]);
+
   return (
     <>
       <section className="articleBand pageArticleBand blogIndexBand">
         <div className="contentWrap">
+          <div className="blogIndexToolbar">
+            <p>
+              <strong>{visiblePosts.length}</strong>{" "}
+              {visiblePosts.length === 1 ? "article" : "articles"}
+            </p>
+            <div className="blogIndexControls">
+              <label className="blogSearchControl">
+                <span>Search articles</span>
+                <input
+                  type="search"
+                  value={blogQuery}
+                  onChange={(event) => setBlogQuery(event.target.value)}
+                  placeholder="Search chess articles"
+                />
+              </label>
+              <BlogSortControl order={blogOrder} onChange={setBlogOrder} />
+            </div>
+          </div>
           <div className="blogPostGrid">
-            {BLOG_POSTS.map((post, index) => (
-              <article
-                className="blogPostCard"
-                key={post.slug}
-                data-reveal
-                style={{ "--reveal-delay": `${index * 80}ms` }}
-              >
+            {visiblePosts.map((post) => (
+              <article className="blogPostCard" key={post.slug}>
                 <a
                   href={`#/blog/${post.slug}`}
                   onClick={(event) => {
@@ -1963,6 +2352,11 @@ function BlogPage({ navigateToPage }) {
               </article>
             ))}
           </div>
+          {visiblePosts.length === 0 && (
+            <p className="blogEmptyState" role="status">
+              No articles matched that search.
+            </p>
+          )}
         </div>
       </section>
       <BookStrip navigateToPage={navigateToPage} />
