@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { AdSenseLoader, BlogAdSlot } from "./AdSense.jsx";
+import CookieConsent from "./CookieConsent.jsx";
+import { openCookieSettings } from "./consent.js";
 import "./App.css";
 
 const BRAND_NAME = "Horizon Chess";
@@ -19,7 +22,27 @@ const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/horizonchess/", icon: "instagram" },
 ];
 
-const ROUTABLE_PAGES = [...PAGES, { key: "book" }];
+const LEGAL_PAGES = [
+  { key: "privacy-policy", label: "Privacy Policy" },
+  { key: "cookie-policy", label: "Cookie Policy" },
+];
+
+const ROUTABLE_PAGES = [...PAGES, { key: "book" }, ...LEGAL_PAGES];
+
+const PAGE_META = {
+  blog: {
+    title: `Horizon Chess Blog | ${BRAND_NAME}`,
+    description: "Chess articles from Horizon Chess on decision-making, resilience, calculation, and practical student improvement.",
+  },
+  "privacy-policy": {
+    title: `Privacy Policy | ${BRAND_NAME}`,
+    description: "Read the Horizon Chess privacy policy, including Vercel Analytics disclosure, cookies, advertising, and contact details.",
+  },
+  "cookie-policy": {
+    title: `Cookie Policy | ${BRAND_NAME}`,
+    description: "Learn how Horizon Chess uses essential storage, analytics technologies, advertising cookies, and cookie preference controls.",
+  },
+};
 
 const SLIDES = [
   "/images/coach-classroom-1.jpg",
@@ -2756,6 +2779,7 @@ function BlogPostPage({ post, navigateToPage }) {
               </div>
             </section>
           )}
+          <BlogAdSlot className="blogArticleAd" />
         </div>
       </article>
       <BookStrip navigateToPage={navigateToPage} />
@@ -2873,6 +2897,181 @@ function CoachChrisPage({ navigateToPage }) {
   );
 }
 
+function PrivacyPolicyPage({ navigateToPage }) {
+  return (
+    <LegalPage title="Privacy Policy" eyebrow="Legal" updated="May 23, 2026">
+      <section>
+        <h2>Who operates this site</h2>
+        <p>
+          This website is operated by Horizon Chess and Coach Chris to share chess lessons,
+          coaching information, booking options, and educational chess articles.
+        </p>
+      </section>
+
+      <section>
+        <h2>Information we collect</h2>
+        <p>
+          If you submit an intake form, booking request, or consultation email form, we may collect
+          the information you choose to provide, such as parent or guardian name, student name,
+          email address, phone number, city, chess experience, lesson goals, and notes.
+        </p>
+        <p>
+          We use this information to respond to lesson inquiries, prepare for coaching, schedule
+          sessions, and communicate with families. Please do not submit sensitive information that is
+          not needed for chess lessons.
+        </p>
+      </section>
+
+      <section>
+        <h2>Vercel Analytics</h2>
+        <p>
+          This site uses Vercel Web Analytics to understand site traffic and improve the website.
+          Vercel Web Analytics is designed to be privacy-friendly: it does not use third-party
+          cookies and stores anonymized analytics data for aggregate reporting.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cookies and similar technologies</h2>
+        <p>
+          Horizon Chess uses essential first-party storage to remember your cookie preferences and
+          keep the site working. Your analytics and advertising preference categories can be managed
+          from the footer Cookie Settings link so future optional services can respect those choices.
+        </p>
+      </section>
+
+      <section>
+        <h2>Google AdSense and advertising cookies</h2>
+        <p>
+          This site is prepared for Google AdSense. If AdSense is enabled in the future, Google and
+          third-party vendors may use cookies or similar technologies to serve ads, measure ad
+          performance, and help prevent fraud. Ads may be personalized based on your visits to this
+          and other websites when allowed by your settings and applicable law.
+        </p>
+      </section>
+
+      <section>
+        <h2>Personalized ads and opt-out choices</h2>
+        <p>
+          You can learn more about how Google uses advertising cookies and manage personalized ad
+          settings through Google&apos;s advertising controls at{" "}
+          <a href="https://adssettings.google.com/" target="_blank" rel="noreferrer">
+            adssettings.google.com
+          </a>{" "}
+          and Google&apos;s advertising policy page at{" "}
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noreferrer">
+            policies.google.com/technologies/ads
+          </a>
+          .
+        </p>
+        <p>
+          If ads are served to visitors in the EEA, UK, or Switzerland, personalized ads should be
+          handled through Google&apos;s AdSense Privacy &amp; messaging tools or another
+          Google-certified Consent Management Platform that integrates with the IAB Transparency and
+          Consent Framework. This custom banner is not a replacement for a certified CMP in those
+          regions.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          For privacy questions or lesson-related data requests, contact Horizon Chess at{" "}
+          <a href={`mailto:${ZELLE_EMAIL}`}>{ZELLE_EMAIL}</a>. You can also visit the{" "}
+          <a
+            href="#/book"
+            onClick={(event) => {
+              event.preventDefault();
+              navigateToPage("book");
+            }}
+          >
+            booking page
+          </a>{" "}
+          to send lesson intake details.
+        </p>
+      </section>
+    </LegalPage>
+  );
+}
+
+function CookiePolicyPage() {
+  return (
+    <LegalPage title="Cookie Policy" eyebrow="Cookie choices" updated="May 23, 2026">
+      <section>
+        <h2>What cookies are</h2>
+        <p>
+          Cookies and similar browser storage technologies let a website remember information on
+          your device. Some storage is needed for a site to work, while other storage may support
+          analytics or advertising.
+        </p>
+      </section>
+
+      <section>
+        <h2>Essential cookies</h2>
+        <p>
+          Essential storage is used to remember your cookie choice and support core website
+          functionality. Essential storage cannot be disabled from the cookie settings panel because
+          it is needed for the site to remember your preference.
+        </p>
+      </section>
+
+      <section>
+        <h2>Analytics technologies</h2>
+        <p>
+          Horizon Chess uses Vercel Web Analytics to understand aggregate site traffic. Vercel Web
+          Analytics does not use third-party cookies and stores anonymized analytics data.
+        </p>
+      </section>
+
+      <section>
+        <h2>Advertising cookies</h2>
+        <p>
+          This site is prepared for Google AdSense. If AdSense is enabled later and advertising
+          consent is accepted, Google and third-party vendors may use cookies or similar technologies
+          to serve and measure ads, including personalized ads where permitted.
+        </p>
+      </section>
+
+      <section>
+        <h2>Manage cookie preferences</h2>
+        <p>
+          You can update your Horizon Chess cookie preferences at any time using the Cookie Settings
+          button below or the Cookie Settings link in the footer.
+        </p>
+        <button className="btnPrimary legalSettingsButton" type="button" onClick={openCookieSettings}>
+          Cookie Settings
+        </button>
+      </section>
+
+      <section>
+        <h2>Browser cookie controls</h2>
+        <p>
+          Your browser also provides controls for deleting or blocking cookies and other site data.
+          These controls are usually inside your browser&apos;s privacy, security, or site settings.
+          Blocking all cookies may affect some website features.
+        </p>
+      </section>
+    </LegalPage>
+  );
+}
+
+function LegalPage({ title, eyebrow, updated, children }) {
+  return (
+    <article className="legalPage">
+      <div className="contentWrap legalWrap">
+        <header className="legalHero" data-reveal>
+          <p className="eyebrow">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p>Last updated {updated}</p>
+        </header>
+        <div className="legalBody" data-reveal style={{ "--reveal-delay": "90ms" }}>
+          {children}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function BookStrip({ navigateToPage }) {
   return (
     <section className="bookStrip">
@@ -2886,6 +3085,54 @@ function BookStrip({ navigateToPage }) {
         </button>
       </div>
     </section>
+  );
+}
+
+function Footer({ navigateToPage }) {
+  return (
+    <footer className="footer">
+      <div className="contentWrap footerInner">
+        <nav className="footerSocials" aria-label="Social links">
+          {SOCIAL_LINKS.map((link) => (
+            <a key={link.label} href={link.href} aria-label={link.label} title={link.label} target="_blank" rel="noreferrer">
+              <SocialIcon type={link.icon} />
+            </a>
+          ))}
+        </nav>
+
+        <nav className="footerLegalLinks" aria-label="Legal and contact links">
+          {LEGAL_PAGES.map((page) => (
+            <a
+              href={`#/${page.key}`}
+              key={page.key}
+              onClick={(event) => {
+                event.preventDefault();
+                navigateToPage(page.key);
+              }}
+            >
+              {page.label}
+            </a>
+          ))}
+          <button type="button" onClick={openCookieSettings}>
+            Cookie Settings
+          </button>
+          <a
+            href="#/book"
+            onClick={(event) => {
+              event.preventDefault();
+              navigateToPage("book");
+            }}
+          >
+            Contact
+          </a>
+        </nav>
+
+        <div className="footerBrand">
+          <span>© {new Date().getFullYear()} {BRAND_NAME}</span>
+          <a href={`mailto:${ZELLE_EMAIL}`}>{ZELLE_EMAIL}</a>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -3284,14 +3531,16 @@ export default function App() {
     const blogPost = currentPage.startsWith("blog/") ? getBlogPostFromRoute(currentPage) : null;
     const canonicalUrl = getCanonicalUrl(currentPage, blogPost);
     const imageUrl = getAbsoluteImageUrl(blogPost?.featuredImage || "/horizon-logo.png");
+    const routeMeta = PAGE_META[currentPage];
     const pageTitle = blogPost
       ? `${blogPost.metaTitle} | ${BRAND_NAME}`
-      : currentPage === "blog"
-        ? `Horizon Chess Blog | ${BRAND_NAME}`
+      : routeMeta?.title
+        ? routeMeta.title
         : `${BRAND_NAME} | Private Online and In-Person Chess Lessons`;
     const pageDescription = blogPost
       ? blogPost.metaDescription
-      : "Horizon Chess offers private chess coaching, school-focused chess education, and lesson paths for beginners, tournament players, and returning students.";
+      : routeMeta?.description ||
+        "Horizon Chess offers private chess coaching, school-focused chess education, and lesson paths for beginners, tournament players, and returning students.";
     const pageType = blogPost ? "article" : "website";
     const managedSelector = '[data-managed-seo="true"]';
 
@@ -3479,25 +3728,15 @@ export default function App() {
         {currentPage === "success-stories" && <SuccessStoriesPage navigateToPage={navigateToPage} />}
         {currentPage === "coach-chris" && <CoachChrisPage navigateToPage={navigateToPage} />}
         {currentPage === "book" && <BookingSection />}
+        {currentPage === "privacy-policy" && <PrivacyPolicyPage navigateToPage={navigateToPage} />}
+        {currentPage === "cookie-policy" && <CookiePolicyPage />}
       </main>
 
-      <footer className="footer">
-        <div className="contentWrap footerInner">
-          <nav className="footerSocials" aria-label="Social links">
-            {SOCIAL_LINKS.map((link) => (
-              <a key={link.label} href={link.href} aria-label={link.label} title={link.label} target="_blank" rel="noreferrer">
-                <SocialIcon type={link.icon} />
-              </a>
-            ))}
-          </nav>
-          <div className="footerBrand">
-            <span>© {new Date().getFullYear()} {BRAND_NAME}</span>
-            <a href={`mailto:${ZELLE_EMAIL}`}>{ZELLE_EMAIL}</a>
-          </div>
-        </div>
-      </footer>
+      <Footer navigateToPage={navigateToPage} />
 
       <ConsultationModal isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} />
+      <CookieConsent />
+      <AdSenseLoader />
       <Analytics />
     </div>
   );

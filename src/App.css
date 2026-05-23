@@ -1214,7 +1214,7 @@ h3{
   justify-content: space-between;
   align-items: end;
   gap: 18px;
-  margin-bottom: clamp(24px, 3vw, 36px);
+  margin-bottom: clamp(18px, 2.4vw, 28px);
 }
 
 .blogIndexToolbar p{
@@ -1371,13 +1371,13 @@ h3{
 
 .blogPostGrid{
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 16px;
   margin-top: 0;
 }
 
 .blogPostCard{
-  min-height: clamp(310px, 28vw, 390px);
+  min-height: clamp(260px, 22vw, 330px);
 }
 
 .blogPostCard a{
@@ -1389,7 +1389,7 @@ h3{
   align-items: flex-start;
   justify-content: space-between;
   overflow: hidden;
-  padding: clamp(18px, 2.4vw, 24px);
+  padding: clamp(16px, 1.8vw, 20px);
   border: 1px solid rgba(32, 51, 49, 0.12);
   border-radius: var(--radius);
   color: var(--ink);
@@ -1420,15 +1420,15 @@ h3{
 }
 
 .blogPostCard a:hover{
-  transform: translateY(-7px) scale(1.01);
+  transform: translateY(-5px) scale(1.006);
   border-color: rgba(215, 161, 93, 0.5);
-  box-shadow: 0 18px 34px rgba(7, 22, 21, 0.26);
+  box-shadow: 0 16px 28px rgba(7, 22, 21, 0.2);
 }
 
 .blogPostThumb{
   width: 100%;
-  height: 156px;
-  margin-bottom: 22px;
+  height: 118px;
+  margin-bottom: 16px;
   border-radius: calc(var(--radius) - 2px);
   object-fit: cover;
   border: 1px solid rgba(32, 51, 49, 0.1);
@@ -1439,16 +1439,24 @@ h3{
   margin: 0;
   color: var(--deep);
   font-family: var(--fontDisplay);
-  font-size: clamp(25px, 3vw, 38px);
-  line-height: 0.98;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1;
   letter-spacing: -0.04em;
 }
 
 .blogPostCard p{
-  margin: 22px 0 28px;
+  margin: 14px 0 20px;
   color: var(--inkSoft);
-  font-size: 15px;
-  line-height: 1.65;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .blogPostCard em{
@@ -1747,6 +1755,30 @@ h3{
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.adSlot{
+  display: grid;
+  gap: 10px;
+  max-width: 1134px;
+  margin-inline: auto;
+  padding: 18px;
+  border: 1px dashed rgba(32, 51, 49, 0.22);
+  border-radius: var(--radius);
+  color: var(--inkSoft);
+  background: rgba(255, 250, 242, 0.58);
+}
+
+.adSlot span{
+  color: var(--inkSoft);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.blogArticleAd{
+  margin-top: 4px;
 }
 
 .blogBackButton{
@@ -3178,6 +3210,92 @@ h3{
   font-size: 13px;
 }
 
+.legalPage{
+  padding: clamp(112px, 13vw, 150px) 0 clamp(64px, 8vw, 104px);
+  background: var(--paper);
+}
+
+.legalWrap{
+  display: grid;
+  gap: clamp(22px, 4vw, 42px);
+}
+
+.legalHero{
+  display: grid;
+  gap: 12px;
+  padding: clamp(30px, 5vw, 58px);
+  border: 1px solid rgba(255, 250, 242, 0.16);
+  border-radius: var(--radius);
+  color: var(--paperAlt);
+  background: var(--deep);
+  box-shadow: 0 22px 46px rgba(30, 58, 55, 0.16);
+}
+
+.legalHero .eyebrow{
+  color: var(--gold);
+}
+
+.legalHero h1{
+  max-width: 860px;
+  color: var(--paperAlt);
+  font-size: clamp(44px, 7vw, 82px);
+}
+
+.legalHero p:not(.eyebrow){
+  margin: 0;
+  color: rgba(255, 250, 242, 0.76);
+  font-weight: 800;
+}
+
+.legalBody{
+  display: grid;
+  gap: 18px;
+  max-width: 890px;
+  margin-inline: auto;
+  padding: clamp(26px, 5vw, 46px);
+  border: 1px solid rgba(32, 51, 49, 0.12);
+  border-radius: var(--radius);
+  background: var(--paperAlt);
+  box-shadow: var(--shadowSoft);
+}
+
+.legalBody section{
+  display: grid;
+  gap: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(32, 51, 49, 0.1);
+}
+
+.legalBody section:last-child{
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.legalBody h2{
+  color: var(--deep);
+  font-size: clamp(28px, 3.4vw, 42px);
+}
+
+.legalBody p{
+  margin: 0;
+  color: var(--inkSoft);
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.legalBody a{
+  color: var(--deep);
+  font-weight: 900;
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 120, 69, 0.45);
+  text-underline-offset: 4px;
+}
+
+.legalSettingsButton{
+  width: fit-content;
+  margin-top: 4px;
+}
+
 .footer{
   color: rgba(255, 250, 242, 0.72);
   background: var(--deep);
@@ -3193,7 +3311,8 @@ h3{
 }
 
 .footerBrand,
-.footerSocials{
+.footerSocials,
+.footerLegalLinks{
   display: flex;
   align-items: center;
   gap: 16px;
@@ -3230,9 +3349,251 @@ h3{
   box-shadow: 0 0 18px rgba(215, 161, 93, 0.24);
 }
 
+.footerLegalLinks{
+  justify-content: center;
+  gap: 10px 14px;
+}
+
+.footerLegalLinks a,
+.footerLegalLinks button,
 .footer a{
   color: var(--gold);
   font-weight: 800;
+}
+
+.footerLegalLinks a,
+.footerLegalLinks button{
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: transparent;
+  font-size: 13px;
+  transition: color 0.16s ease, background 0.16s ease;
+}
+
+.footerLegalLinks a:hover,
+.footerLegalLinks button:hover{
+  color: var(--paperAlt);
+  background: rgba(255, 250, 242, 0.08);
+}
+
+.cookieBanner{
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  left: max(18px, env(safe-area-inset-left));
+  z-index: 260;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  max-width: 1040px;
+  margin-inline: auto;
+  padding: 18px;
+  border: 1px solid rgba(255, 250, 242, 0.2);
+  border-radius: 18px;
+  color: var(--paperAlt);
+  background: rgba(24, 63, 59, 0.96);
+  box-shadow: 0 22px 60px rgba(7, 22, 21, 0.34);
+  backdrop-filter: blur(16px);
+}
+
+.cookieBannerCopy{
+  display: grid;
+  gap: 6px;
+}
+
+.cookieBannerCopy .eyebrow{
+  color: var(--gold);
+}
+
+.cookieBannerCopy h2{
+  color: var(--paperAlt);
+  font-size: clamp(28px, 3vw, 38px);
+}
+
+.cookieBannerCopy p:not(.eyebrow){
+  max-width: 620px;
+  margin: 0;
+  color: rgba(255, 250, 242, 0.78);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.cookieBannerActions,
+.cookieModalActions{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cookieBannerActions .btnPrimary,
+.cookieBannerActions .btnGhost,
+.cookieModalActions .btnPrimary,
+.cookieModalActions .btnGhost{
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.cookieBannerReject,
+.cookieModalActions .btnGhost{
+  color: var(--paperAlt);
+  border-color: rgba(255, 250, 242, 0.26);
+  background: rgba(255, 250, 242, 0.08);
+}
+
+.cookieTextButton{
+  min-height: 44px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 12px;
+  color: var(--gold);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 900;
+  transition: color 0.16s ease, background 0.16s ease;
+}
+
+.cookieTextButton:hover{
+  color: var(--paperAlt);
+  background: rgba(255, 250, 242, 0.08);
+}
+
+.cookieModalOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 310;
+  display: grid;
+  place-items: center;
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    calc(18px + env(safe-area-inset-right))
+    calc(18px + env(safe-area-inset-bottom))
+    calc(18px + env(safe-area-inset-left));
+  background: rgba(12, 35, 33, 0.66);
+  backdrop-filter: blur(10px);
+}
+
+.cookieModal{
+  position: relative;
+  display: grid;
+  gap: 20px;
+  width: min(680px, 100%);
+  max-height: min(86svh, 760px);
+  overflow: auto;
+  padding: clamp(28px, 5vw, 44px);
+  border: 1px solid rgba(255, 250, 242, 0.22);
+  border-radius: 18px;
+  color: var(--paperAlt);
+  background: var(--deep);
+  box-shadow: 0 30px 80px rgba(7, 22, 21, 0.36);
+}
+
+.cookieModalHeader{
+  display: grid;
+  gap: 10px;
+  padding-right: 34px;
+}
+
+.cookieModalHeader .eyebrow{
+  color: var(--gold);
+}
+
+.cookieModalHeader h2{
+  color: var(--paperAlt);
+  font-size: clamp(34px, 6vw, 56px);
+}
+
+.cookieModalHeader p{
+  max-width: 540px;
+  margin: 0;
+  color: rgba(255, 250, 242, 0.76);
+}
+
+.cookiePreferenceList{
+  display: grid;
+  gap: 12px;
+}
+
+.cookieToggle{
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgba(255, 250, 242, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 250, 242, 0.08);
+}
+
+.cookieToggle span{
+  display: grid;
+  gap: 5px;
+}
+
+.cookieToggle strong{
+  color: var(--paperAlt);
+  font-size: 15px;
+}
+
+.cookieToggle small{
+  color: rgba(255, 250, 242, 0.7);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.cookieToggle input{
+  position: absolute;
+  right: 16px;
+  width: 52px;
+  height: 32px;
+  opacity: 0;
+}
+
+.cookieToggle i{
+  position: relative;
+  width: 52px;
+  height: 32px;
+  border: 1px solid rgba(255, 250, 242, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 250, 242, 0.14);
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+
+.cookieToggle i::after{
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--paperAlt);
+  transition: transform 0.16s ease;
+}
+
+.cookieToggle input:checked + i{
+  border-color: rgba(215, 161, 93, 0.7);
+  background: var(--teal);
+}
+
+.cookieToggle input:checked + i::after{
+  transform: translateX(20px);
+}
+
+.cookieToggle input:focus-visible + i{
+  outline: 3px solid rgba(215, 161, 93, 0.28);
+  outline-offset: 3px;
+}
+
+.cookieToggleDisabled{
+  opacity: 0.8;
 }
 
 .consultationOverlay{
@@ -3489,6 +3850,14 @@ h3{
 
   .blogVideoLinks{
     grid-template-columns: 1fr;
+  }
+
+  .cookieBanner{
+    grid-template-columns: 1fr;
+  }
+
+  .cookieBannerActions{
+    justify-content: flex-start;
   }
 
   .bookingChoiceNudge::before{
@@ -3868,6 +4237,7 @@ h3{
   .blogPostBody,
   .blogPostMeta,
   .blogVideoLinks,
+  .adSlot,
   .bookingForm,
   .lessonPanel,
   .bookingHintPanel{
@@ -3968,11 +4338,61 @@ h3{
     font-size: 16px;
   }
 
+  .legalPage{
+    padding-top: 100px;
+  }
+
+  .legalHero,
+  .legalBody,
+  .cookieModal{
+    padding: 22px;
+  }
+
+  .legalHero h1,
+  .cookieModalHeader h2{
+    font-size: clamp(38px, 12vw, 48px);
+  }
+
+  .cookieBanner{
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+    max-height: min(68svh, 520px);
+    overflow: auto;
+    padding: 14px;
+  }
+
+  .cookieBannerActions,
+  .cookieModalActions{
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cookieBannerActions .btnPrimary,
+  .cookieBannerActions .btnGhost,
+  .cookieBannerActions .cookieTextButton,
+  .cookieModalActions .btnPrimary,
+  .cookieModalActions .btnGhost,
+  .cookieModalActions .cookieTextButton,
+  .legalSettingsButton{
+    width: 100%;
+  }
+
+  .cookieToggle{
+    grid-template-columns: 1fr;
+  }
+
+  .cookieToggle input{
+    bottom: 16px;
+  }
+
   .goalChip{
     min-height: 44px;
   }
 
   .footerBrand a,
+  .footerLegalLinks a,
+  .footerLegalLinks button,
   .blogInternalLinks p a{
     display: inline-flex;
     align-items: center;
@@ -3995,6 +4415,10 @@ h3{
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .footerLegalLinks{
+    justify-content: flex-start;
   }
 }
 
