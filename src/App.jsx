@@ -5,9 +5,9 @@ import CookieConsent from "./CookieConsent.jsx";
 import { openCookieSettings } from "./consent.js";
 import "./App.css";
 
-const BRAND_NAME = "Horizon Chess";
-const ZELLE_EMAIL = "horizonchess@yahoo.com";
-const DEFAULT_SUBJECT = "Horizon Chess Academy lesson request";
+const BRAND_NAME = "Hudson Chess";
+const ZELLE_EMAIL = "hudsonchess@yahoo.com";
+const DEFAULT_SUBJECT = "Hudson Chess Academy lesson request";
 const CONSULTATION_STORAGE_KEY = "horizon-consultation-email-captured";
 
 const PAGES = [
@@ -31,8 +31,8 @@ const ROUTABLE_PAGES = [...PAGES, { key: "book" }, ...LEGAL_PAGES];
 
 const PAGE_META = {
   blog: {
-    title: `Horizon Chess Blog | ${BRAND_NAME}`,
-    description: "Chess articles from Horizon Chess on decision-making, resilience, calculation, and practical student improvement.",
+    title: `Hudson Chess Blog | ${BRAND_NAME}`,
+    description: "Chess articles from Hudson Chess on decision-making, resilience, calculation, and practical student improvement.",
   },
   "success-stories": {
     title: "Chess Success Stories | Student Growth Through Chess",
@@ -51,11 +51,11 @@ const PAGE_META = {
   },
   "privacy-policy": {
     title: `Privacy Policy | ${BRAND_NAME}`,
-    description: "Read the Horizon Chess privacy policy, including Vercel Analytics disclosure, cookies, advertising, and contact details.",
+    description: "Read the Hudson Chess privacy policy, including Vercel Analytics disclosure, cookies, advertising, and contact details.",
   },
   "cookie-policy": {
     title: `Cookie Policy | ${BRAND_NAME}`,
-    description: "Learn how Horizon Chess uses essential storage, analytics technologies, advertising cookies, and cookie preference controls.",
+    description: "Learn how Hudson Chess uses essential storage, analytics technologies, advertising cookies, and cookie preference controls.",
   },
 };
 
@@ -1467,7 +1467,7 @@ const BLOG_POSTS = [
     "featuredImage": "https://i.ytimg.com/vi/9Ga9dP3bvN8/hqdefault.jpg",
     "imageAlt": "GothamChess video thumbnail for a lesson on how to calculate better in chess.",
     "audience": "Beginner and intermediate chess students, parents, coaches, and players who want a clearer calculation routine.",
-    "sourceNote": "Source video: How To Calculate In Chess, GothamChess, YouTube. The article uses the video as source inspiration and presents original lesson guidance for Horizon Chess students.",
+    "sourceNote": "Source video: How To Calculate In Chess, GothamChess, YouTube. The article uses the video as source inspiration and presents original lesson guidance for Hudson Chess students.",
     "source": "GothamChess calculation lesson",
     "videoId": "9Ga9dP3bvN8",
     "videoTitle": "How To Calculate In Chess",
@@ -2272,7 +2272,7 @@ function ArticlePreview({ navigateToPage }) {
           <p className="eyebrow">Training articles</p>
           <h2>Latest chess articles for students and parents.</h2>
           <p>
-            Read recent Horizon Chess blog posts on improvement, pressure, parenting, calculation,
+            Read recent Hudson Chess blog posts on improvement, pressure, parenting, calculation,
             and the lessons students can carry beyond the board.
           </p>
         </div>
@@ -2898,7 +2898,7 @@ function BlogPostPage({ post, navigateToPage }) {
                 );
               })}
               <section className="blogInternalLinks" aria-labelledby={`${post.slug}-next-links`}>
-                <h2 id={`${post.slug}-next-links`}>Keep exploring Horizon Chess</h2>
+                <h2 id={`${post.slug}-next-links`}>Keep exploring Hudson Chess</h2>
                 <p>
                   If this topic connects with your student's goals, explore the{" "}
                   <a
@@ -3309,7 +3309,7 @@ function PrivacyPolicyPage({ navigateToPage }) {
       <section>
         <h2>Who operates this site</h2>
         <p>
-          This website is operated by Horizon Chess and Coach Chris to share chess lessons,
+          This website is operated by Hudson Chess and Coach Chris to share chess lessons,
           coaching information, booking options, and educational chess articles.
         </p>
       </section>
@@ -3340,7 +3340,7 @@ function PrivacyPolicyPage({ navigateToPage }) {
       <section>
         <h2>Cookies and similar technologies</h2>
         <p>
-          Horizon Chess uses essential first-party storage to remember your cookie preferences and
+          Hudson Chess uses essential first-party storage to remember your cookie preferences and
           keep the site working. Your analytics and advertising preference categories can be managed
           from the footer Cookie Settings link so future optional services can respect those choices.
         </p>
@@ -3382,7 +3382,7 @@ function PrivacyPolicyPage({ navigateToPage }) {
       <section>
         <h2>Contact</h2>
         <p>
-          For privacy questions or lesson-related data requests, contact Horizon Chess at{" "}
+          For privacy questions or lesson-related data requests, contact Hudson Chess at{" "}
           <a href={`mailto:${ZELLE_EMAIL}`}>{ZELLE_EMAIL}</a>. You can also visit the{" "}
           <a
             href="#/book"
@@ -3424,7 +3424,7 @@ function CookiePolicyPage() {
       <section>
         <h2>Analytics technologies</h2>
         <p>
-          Horizon Chess uses Vercel Web Analytics to understand aggregate site traffic. Vercel Web
+          Hudson Chess uses Vercel Web Analytics to understand aggregate site traffic. Vercel Web
           Analytics does not use third-party cookies and stores anonymized analytics data.
         </p>
       </section>
@@ -3441,7 +3441,7 @@ function CookiePolicyPage() {
       <section>
         <h2>Manage cookie preferences</h2>
         <p>
-          You can update your Horizon Chess cookie preferences at any time using the Cookie Settings
+          You can update your Hudson Chess cookie preferences at any time using the Cookie Settings
           button below or the Cookie Settings link in the footer.
         </p>
         <button className="btnPrimary legalSettingsButton" type="button" onClick={openCookieSettings}>
@@ -3947,7 +3947,7 @@ export default function App() {
     const pageDescription = blogPost
       ? blogPost.metaDescription
       : routeMeta?.description ||
-        "Horizon Chess offers private chess coaching, school-focused chess education, and lesson paths for beginners, tournament players, and returning students.";
+        "Hudson Chess offers private chess coaching, school-focused chess education, and lesson paths for beginners, tournament players, and returning students.";
     const pageKeywords = blogPost?.tags?.length
       ? blogPost.tags.join(", ")
       : routeMeta?.keywords?.join(", ") ||

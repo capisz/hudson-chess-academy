@@ -73,7 +73,7 @@ export default function CookieConsent() {
             <p className="eyebrow">Privacy choices</p>
             <h2>Cookies and ads preferences</h2>
             <p>
-              Horizon Chess uses essential site storage, discloses privacy-friendly Vercel Analytics, and may later use Google AdSense advertising cookies only when enabled.
+              Hudson Chess uses essential site storage, discloses privacy-friendly Vercel Analytics, and may later use Google AdSense advertising cookies only when enabled.
             </p>
           </div>
           <div className="cookieBannerActions">
