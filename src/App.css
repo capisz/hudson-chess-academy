@@ -714,6 +714,12 @@ h3{
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+.articleCard a{
+  display: grid;
+  height: 100%;
+  color: inherit;
+}
+
 .articleCard:hover{
   transform: translateY(-7px) scale(1.01);
   border-color: rgba(215, 161, 93, 0.48);
@@ -745,6 +751,17 @@ h3{
 
 .articleCard li::marker{
   color: var(--clay);
+}
+
+.articleCard em{
+  align-self: end;
+  margin-top: 20px;
+  color: var(--teal);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .articleMoreButton{
@@ -1388,13 +1405,13 @@ h3{
 
 .blogPostGrid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin-top: 0;
 }
 
 .blogPostCard{
-  min-height: clamp(260px, 22vw, 330px);
+  height: 388px;
 }
 
 .blogPostCard a{
@@ -3105,6 +3122,12 @@ h3{
 
 .bookStrip .eyebrow{
   color: var(--gold);
+}
+
+.bookStrip .btnPrimary{
+  color: var(--deep);
+  background: var(--gold);
+  box-shadow: 0 10px 20px rgba(12, 35, 33, 0.2);
 }
 
 .selectedLesson{

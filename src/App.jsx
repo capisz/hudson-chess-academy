@@ -126,37 +126,6 @@ const METHOD_STEPS = [
   },
 ];
 
-const ARTICLES = [
-  {
-    tag: "Beginner chess",
-    title: "How to Build Reliable Chess Fundamentals",
-    summary:
-      "New players improve fastest when they learn to develop pieces, protect the king, control the center, and notice simple tactical threats before looking for flashy moves.",
-    points: ["Opening principles", "Safe king habits", "Basic tactical vision"],
-  },
-  {
-    tag: "Game review",
-    title: "Turning Mistakes Into a Training Plan",
-    summary:
-      "A lost game is useful when the student can name the decision that caused the position to change. Coach Chris uses review to turn frustration into a short list of repeatable habits.",
-    points: ["Blunder checks", "Candidate moves", "Weekly assignments"],
-  },
-  {
-    tag: "Tournament prep",
-    title: "What to Practice Before a Tournament",
-    summary:
-      "Tournament preparation is not just memorizing openings. Students need time controls, endgame confidence, emotional reset routines, and a plan for analyzing games after each round.",
-    points: ["Opening comfort", "Clock management", "Post-game notes"],
-  },
-  {
-    tag: "Chess confidence",
-    title: "Helping Students Think Clearly Under Pressure",
-    summary:
-      "Confidence grows when students know what to do on their turn. A simple thinking process helps players slow down, compare options, and make decisions they can explain.",
-    points: ["Checks and captures", "Threat awareness", "Calm decision making"],
-  },
-];
-
 const BLOG_POSTS = [
   {
     "slug": "tiger-parents-first-student-turned-prodigy",
@@ -1023,7 +992,7 @@ const BLOG_POSTS = [
   },
 {
     "slug": "napoleon-chess-best-move",
-    "category": "Chess stories",
+    "category": "Chess History",
     "tags": [],
     "title": "Napoleon, Chess, and the Best Move He Never Found",
     "metaTitle": "Napoleon, Chess, and the Best Move He Never Found",
@@ -2098,7 +2067,6 @@ function HomePage({ slideIdx, navigateToPage }) {
         </div>
       </section>
 
-      <WhyHorizonPreview />
       <ArticlePreview navigateToPage={navigateToPage} />
       <CoachSection navigateToPage={navigateToPage} />
       <BookingSection />
@@ -2162,35 +2130,46 @@ function ProcessSection() {
 }
 
 function ArticlePreview({ navigateToPage }) {
+  const previewPosts = [...BLOG_POSTS]
+    .sort((left, right) => {
+      const dateOrder = new Date(right.publishedDate).getTime() - new Date(left.publishedDate).getTime();
+      if (dateOrder !== 0) return dateOrder;
+      return BLOG_POSTS.indexOf(left) - BLOG_POSTS.indexOf(right);
+    })
+    .slice(0, 4);
+
   return (
     <section className="articleBand">
       <div className="contentWrap">
         <div className="sectionIntro articleIntro" data-reveal>
           <p className="eyebrow">Training articles</p>
-          <h2>Chess improvement guides for students and parents.</h2>
+          <h2>Latest chess articles for students and parents.</h2>
           <p>
-            These short resources give the page useful search-friendly content and create natural
-            entry points for families looking for beginner chess lessons, game review, and
-            tournament preparation.
+            Read recent Horizon Chess blog posts on improvement, pressure, parenting, calculation,
+            and the lessons students can carry beyond the board.
           </p>
         </div>
 
         <div className="articleGrid">
-          {ARTICLES.map((article, index) => (
+          {previewPosts.map((post, index) => (
             <article
               className="articleCard"
-              key={article.title}
+              key={post.slug}
               data-reveal
               style={{ "--reveal-delay": `${index * 70}ms` }}
             >
-              <div className="articleTag">{article.tag}</div>
-              <h3>{article.title}</h3>
-              <p>{article.summary}</p>
-              <ul>
-                {article.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
+              <a
+                href={`#/blog/${post.slug}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigateToPage(`blog/${post.slug}`);
+                }}
+              >
+                <div className="articleTag">{post.category}</div>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <em>Read article</em>
+              </a>
             </article>
           ))}
         </div>
@@ -2210,7 +2189,7 @@ function CoachSection({ navigateToPage }) {
         <img className="coachProfile" src="/images/coach-profile.jpg" alt="Coach Chris profile" loading="lazy" />
         <div>
           <p className="eyebrow">Meet Coach Chris</p>
-          <h2>Calm instruction, honest feedback, and a step-by-step path.</h2>
+          <h2>A roadmap to follow, the perfect coach to lead you</h2>
           <p>
             Chris brings a patient, practical coaching style designed to help students build
             confidence and keep improving week after week. Every lesson is adapted to the student's
@@ -2234,16 +2213,6 @@ function CoachSection({ navigateToPage }) {
         </figure>
       </div>
 
-      <div className="coachNotes">
-        <p data-reveal>
-          Whether a student is just starting out or preparing for tournaments, the focus stays on
-          clear fundamentals, thoughtful review, and training habits that are realistic to maintain.
-        </p>
-        <p data-reveal style={{ "--reveal-delay": "90ms" }}>
-          Students can expect an encouraging environment, direct feedback, and a lesson plan that
-          turns chess concepts into practical decisions at the board.
-        </p>
-      </div>
     </section>
   );
 }
