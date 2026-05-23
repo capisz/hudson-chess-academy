@@ -2829,7 +2829,7 @@ function CoachChrisPage({ navigateToPage }) {
 
           <p className="eyebrow">Coach Chris</p>
           <div className="coachBioTitleRow">
-            <h2>Coach Chris, National Champion, Making learning to be one, simple, fun and exciting.</h2>
+            <h2>Coach Chris, National Chess Champion, providing the roadmap for everyone.</h2>
             <img className="coachBioTitleProfile" src="/images/coach-profile.jpg" alt="Coach Chris profile" />
           </div>
           <p>
