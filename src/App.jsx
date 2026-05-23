@@ -1019,6 +1019,188 @@ const BLOG_POSTS = [
       "For students, that is the lesson worth remembering. Do not just move pieces. Look inside the position. The best move may already be there."
     ]
   },
+  {
+    "slug": "the-art-of-learning-chess",
+    "category": "Chess improvement",
+    "tags": [],
+    "title": "The Art of Learning Chess: Pressure, Failure, and Better Training",
+    "metaTitle": "The Art of Learning Chess: Pressure, Failure, and Better Training",
+    "metaDescription": "Josh Waitzkin's learning process shows chess students how pressure, honest review, tension, style, and deliberate practice can turn losses into better training.",
+    "excerpt": "Josh Waitzkin's learning process turns chess improvement into a lesson in pressure, honest review, style, and deliberate practice.",
+    "author": "Coach Chris",
+    "publishedDate": "2026-05-22",
+    "updatedDate": "2026-05-22",
+    "canonicalPath": "#/blog/the-art-of-learning-chess",
+    "featuredImage": "https://i.ytimg.com/vi/wAnDWfEIwoE/hqdefault.jpg",
+    "imageAlt": "Andrew Huberman conversation thumbnail with Josh Waitzkin for a Horizon Chess article on the art of learning chess.",
+    "audience": "Chess students, parents, developing competitors, and coaches who want a healthier training process around pressure, losses, and long-term improvement.",
+    "sourceNote": "Source draft: the_art_of_learning_chess_expanded_blog.pdf. Source videos: The Art of Learning & Living Life | Josh Waitzkin from Andrew Huberman and Josh Waitzkin, The Art of Learning from hbkfilms on YouTube.",
+    "source": "Coach Chris PDF draft informed by Josh Waitzkin source videos",
+    "videos": [
+      {
+        "videoId": "wAnDWfEIwoE",
+        "videoTitle": "The Art of Learning & Living Life | Josh Waitzkin",
+        "videoUrl": "https://www.youtube.com/watch?v=wAnDWfEIwoE"
+      },
+      {
+        "videoId": "lj1gxz5puaQ",
+        "videoTitle": "Josh Waitzkin, The Art of Learning",
+        "videoUrl": "https://www.youtube.com/watch?v=lj1gxz5puaQ&t=294s"
+      }
+    ],
+    "summaryIntro": "Coach Chris takeaway: chess improvement is not only about knowing more moves. It is about noticing your habits under pressure and turning honest review into better training.",
+    "sectionHeadings": [
+      {
+        "beforeParagraph": 0,
+        "title": "The Art of Learning Chess",
+        "note": "Start with chess as a mirror for how students think under pressure."
+      },
+      {
+        "beforeParagraph": 5,
+        "title": "Respect the Opponent's Plan",
+        "note": "Shift from one-person chess to reading the other player's ideas."
+      },
+      {
+        "beforeParagraph": 8,
+        "title": "Weakness Becomes a Training Map",
+        "note": "Turn vague struggles into specific chess habits that can be trained."
+      },
+      {
+        "beforeParagraph": 12,
+        "title": "Play Beyond Comfort",
+        "note": "Use challenge to reveal the next layer of improvement."
+      },
+      {
+        "beforeParagraph": 14,
+        "title": "Street-Smart Chess and Classical Fundamentals",
+        "note": "Blend practical fighting skill with disciplined chess foundations."
+      },
+      {
+        "beforeParagraph": 17,
+        "title": "Tension Is a Skill",
+        "note": "Pause before trading just to make the position feel easier."
+      },
+      {
+        "beforeParagraph": 21,
+        "title": "Pressure Changes the Decision",
+        "note": "Use Waitzkin's painful championship loss to discuss identity and emotion."
+      },
+      {
+        "beforeParagraph": 25,
+        "title": "Study the Painful Game",
+        "note": "Find the critical position and the missing concept behind a loss."
+      },
+      {
+        "beforeParagraph": 28,
+        "title": "Defend Without Panic",
+        "note": "Ask whether a threat is real before creating new weaknesses."
+      },
+      {
+        "beforeParagraph": 31,
+        "title": "Refine the Player's Style",
+        "note": "Make a student's natural style more complete instead of erasing it."
+      },
+      {
+        "beforeParagraph": 34,
+        "title": "Process Still Needs Caring",
+        "note": "Help students care about results without being defined by them."
+      },
+      {
+        "beforeParagraph": 36,
+        "title": "Use Engines After Human Analysis",
+        "note": "Let students wrestle with the position before asking for the answer."
+      },
+      {
+        "beforeParagraph": 38,
+        "title": "Notice the In-Between",
+        "note": "Train the transitions that create tactics, weak squares, and endgames."
+      },
+      {
+        "beforeParagraph": 40,
+        "title": "Training Needs Stress and Recovery",
+        "note": "Replace unfocused grind with deliberate sessions and feedback."
+      },
+      {
+        "beforeParagraph": 43,
+        "title": "Review Games for Habits",
+        "note": "Use post-game questions to turn errors into future behavior."
+      },
+      {
+        "beforeParagraph": 46,
+        "title": "What Parents and Coaches Should Protect",
+        "note": "Keep chess serious, supportive, and free of adult-result pressure."
+      },
+      {
+        "beforeParagraph": 48,
+        "title": "A Waitzkin-Inspired Training Blueprint",
+        "note": "Build a practical week from calculation, slow games, review, and reflection."
+      },
+      {
+        "beforeParagraph": 50,
+        "title": "The Board Teaches More Than Moves",
+        "note": "Close with learning habits students can carry beyond chess."
+      }
+    ],
+    "relatedSlugs": [
+      "how-to-calculate-better-in-chess",
+      "emotional-intelligence-in-chess-pressure",
+      "chess-lessons-for-life-rasheme-ellington"
+    ],
+    "body": [
+      "Chess is usually introduced as a game of rules: how the pieces move, how to checkmate, how to castle, how to win material, and how to avoid hanging your queen. Those basics matter, but they are only the surface. Once a student begins playing real games, chess becomes something deeper. It becomes a mirror.",
+      "The board reflects how a player thinks under pressure. It reveals whether a student rushes when nervous, pauses before grabbing material, notices the opponent's plan, and recovers after making a mistake. That is why Josh Waitzkin's story matters for students. His path is not only the story of a talented kid who became strong. It is the story of someone who studied learning itself.",
+      "Waitzkin's early chess life began in Washington Square Park, where practical fighters taught him the tactical and psychological side of the game. He later paired that experience with classical instruction built from endgames and positions of reduced complexity before carrying those ideas into messier positions.",
+      "That combination matters. A student who only studies tactics can become dangerous but fragile. A student who only studies quiet principles can understand the game but lack practical fighting skill. Chess requires calculation and creativity, structure and chaos, discipline and imagination.",
+      "A chess player does not only learn moves. A chess player learns how their own mind behaves when the position becomes uncomfortable.",
+      "One of the first major changes in a chess student's development happens when the opponent stops looking like a prop. Beginners often play as if chess is a one-person activity. They search for their checks, captures, attacks, and ideas, then hope the other side cooperates.",
+      "In a real game, the opponent is building plans too. A pawn move may open a diagonal. A knight move may aim at a fork. A quiet king move in an endgame may begin a winning opposition pattern. Even a move that looks harmless can carry a strategic point.",
+      "The practical checkpoint is simple: before every move, ask what changed. The opponent spent time choosing that move. Try to say their idea in one sentence before deciding on yours.",
+      "Chess is also a relentless truth teller. If a player panics under attack, trades too quickly, hates defending, or depends only on memorized openings, stronger opponents will eventually expose the weakness.",
+      "That feedback can feel uncomfortable, but the board gives it without flattery or insult. It shows the consequence of the move. A weakness is not something to hide from forever; it is often the next training map.",
+      "A player who says, \"I am bad at endgames,\" is still being vague. A player who says, \"I trade into pawn endings without counting king activity and outside passers,\" has found something trainable. The same goes for blunders: moving before checking the opponent's forcing moves is a habit a coach can help rebuild.",
+      "Good improvement turns fuzzy frustration into a specific adjustment. That shift keeps students from treating a loss like a verdict on their talent.",
+      "Players improve fastest when they are stretched. If a student only plays opponents they can beat easily, confidence may feel high while the flaws stay hidden. Comfort protects the ego and slows development.",
+      "That does not mean every game should be a hopeless mismatch. Students need enough success to trust the process and enough serious challenge to see what must improve next. Tournament games, ladder games, and focused practice games make real habits visible.",
+      "Waitzkin's chess education was not one-dimensional. The Washington Square Park side of chess taught traps, rhythm, pressure, deception, confidence, and battle. Classical training taught foundation, simplified positions, and the logic beneath the fight.",
+      "Many students need both sides. A purely tactical student may love attacking but struggle when the position goes quiet. A purely positional student may understand long-term plans but miss immediate tactics. A student who memorizes openings may collapse when the opponent deviates.",
+      "Endgames are especially useful because they reduce noise. With fewer pieces, students can see king activity, opposition, rook activity, passed pawns, tempi, and coordination more clearly. Those principles later reappear inside complicated middlegames.",
+      "Tension is one of the most chess-specific learning skills in the draft. Tension appears when pawns or pieces are in contact but the position has not been resolved. A capture is possible, yet both players still have choices.",
+      "Beginners often dislike tension because it feels unclear. Trading removes uncertainty. Capturing gives the brain relief. But emotional relief and good decision-making are not always the same thing.",
+      "Before releasing tension, students should ask who benefits. Sometimes the capture is correct. Sometimes keeping the threat is stronger. Sometimes letting the opponent decide is the entire point.",
+      "Imagine a center where a pawn capture is available immediately. Taking may win clarity, but it may also free the opponent's cramped pieces or simplify a problem they still needed to solve. Strong players become comfortable with unresolved positions long enough to improve the position first.",
+      "A powerful example in Waitzkin's story is his final-round loss at the under-18 World Championship. At a critical moment his opponent offered a draw, and continuing the fight fit his identity as a player.",
+      "The offer still changed the psychology of the moment. After declining, he chose an overaggressive path and lost. The lesson is not that fighting was automatically wrong. The lesson is that pressure changes how choices feel.",
+      "Student games show the same pattern in smaller forms. A player attacks because defending feels exhausting. A player trades because nervousness wants the position to shrink. A player refuses a draw because pride says they should be winning. The move and the emotion are often tangled together.",
+      "The critical position is not only on the board. It is also inside the player.",
+      "Painful games are hard to study immediately. Waitzkin did not rush back into every painful loss the second it ended, and that human detail matters for coaches and parents.",
+      "The danger is never returning. A painful game that stays ignored is only pain. A painful game that is studied becomes training. The best losses reveal more than a missed move; they reveal a missing concept.",
+      "A useful post-game question is not only, \"What did the engine want?\" It is, \"Where did my understanding first drift away from the truth of the board?\"",
+      "Another lesson is that not every attack should be met with panic-defense. Some attacks become dangerous because the defender creates the targets the attacker needs.",
+      "Before weakening the king, ask whether the threat is real, what exactly is threatened, and whether a calm answer or counter-threat exists. A queen check in a beginner game should not automatically trigger every pawn in front of the king to move.",
+      "That is not passive chess. It is disciplined chess. Courage is sometimes the refusal to overreact.",
+      "Style matters too. Waitzkin describes the difficulty of being pulled away from his natural expression as an attacking player who loved the fight. Studying opposite styles has value, but a student should not lose their connection to the game in the process.",
+      "A tactical player should learn positional chess without being shamed for loving tactics. A quiet player should learn attacking patterns without being forced into fake chaos. A fast player needs discipline. A careful player needs practical courage.",
+      "Good teaching does not say, \"Stop being that kind of player.\" It asks how to make the student's natural style more complete.",
+      "Adults often tell children that winning and losing do not matter. The intention is kind, but competitive students know results matter emotionally. They want to win, and caring gives the process weight.",
+      "The healthier message is that winning matters and learning lasts longer. Parents and coaches can respect the disappointment of a loss while guiding the student toward the review that comes next.",
+      "Modern students also face the temptation to get the answer too fast. Engines are excellent truth-checkers, but opening an engine before human analysis can short-circuit the struggle that builds calculation and judgment.",
+      "A stronger sequence is to review without an engine, identify critical moments, write down the thoughts from the game, check the position afterward, and translate the engine answer into a human lesson.",
+      "Waitzkin connects chess to other disciplines by paying attention to transitions. Beginners memorize fixed patterns: a fork, a weak king, an endgame setup. Stronger performers notice how one position becomes another.",
+      "In chess, that means asking what each move left behind. Which defender moved? Which file opened? Which square weakened? Which exchange created the endgame? Skill lives in that in-between space.",
+      "Training also needs rhythm. More hours are not automatically better hours. A tired student clicking through puzzles by guesswork may be reinforcing shallow habits rather than building depth.",
+      "Focused work, feedback, and recovery belong together. Thirty deliberate minutes of calculation can be worth more than hours of unfocused blitz if the student actually sees candidate moves and the opponent's best defense.",
+      "A high-value session might pair one serious game with two deeply reviewed critical moments. A high-value puzzle session asks the student to calculate a line before touching the solution.",
+      "The best review system reveals thinking habits, not just tactical mistakes. After a serious game, students can describe how they felt, find the position where the game changed, and only then check concrete moves.",
+      "Five review questions keep that process practical: What was my opponent's plan? Where did I feel pressure? What move changed the game? Was the mistake tactical, strategic, emotional, or time-related? What one habit will I train next?",
+      "The final question changes future behavior. \"I need to blunder less\" is not a training goal. \"Before every move, I will check my opponent's checks, captures, and threats\" is trainable.",
+      "Waitzkin's story also carries a warning for adults. High-pressure chess can build growth, but it can also overwhelm young players if adult pride becomes attached to every result.",
+      "A healthy chess culture is serious without being fear-based. It holds students accountable without humiliating them, respects their desire to win, and teaches them to carry losses without letting losses define them.",
+      "A practical training blueprint does not need to be complicated. It can include slow calculation, games long enough to create real decision pressure, engine-free review before computer checking, endgame principles, style work, and one sentence of reflection after a serious game.",
+      "That balance helps students build a learning system instead of chasing random improvement. Calculation, slow games, review, endgames, and reflection each give the next lesson somewhere to land.",
+      "The deeper lesson of Waitzkin's story is that chess is not only about becoming stronger at chess. It is about becoming stronger as a learner when the answer is not obvious.",
+      "A player who loses, studies honestly, identifies the real pattern, and returns to the board with a better habit is practicing the true art of learning. Chess teaches responsibility, patience, self-awareness, tension, respect for the opponent's ideas, and the ability to turn failure into growth."
+    ]
+  },
 {
     "slug": "how-to-calculate-better-in-chess",
     "category": "Chess Improvement / Chess Lessons",
@@ -1485,6 +1667,25 @@ function getRelatedPosts(post) {
     .filter(Boolean);
 }
 
+function getBlogVideos(post) {
+  if (post?.videos?.length) return post.videos;
+  if (!post?.videoId) return [];
+
+  return [
+    {
+      videoId: post.videoId,
+      videoTitle: post.videoTitle,
+      videoUrl: post.videoUrl,
+    },
+  ];
+}
+
+function getVideoThumbnail(video) {
+  if (video?.thumbnail) return video.thumbnail;
+  if (!video?.videoId) return "/horizon-logo.png";
+  return `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`;
+}
+
 function getSectionHeading(post, paragraphIndex) {
   return post.sectionHeadings?.find((section) => section.beforeParagraph === paragraphIndex);
 }
@@ -1621,6 +1822,24 @@ function SocialIcon({ type }) {
 }
 
 function Header({ currentPage, navigateToPage }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isMenuOpen]);
+
+  function navigateAndClose(page) {
+    setIsMenuOpen(false);
+    navigateToPage(page);
+  }
+
   return (
     <header className="siteHeader">
       <div className="headerInner">
@@ -1629,7 +1848,7 @@ function Header({ currentPage, navigateToPage }) {
           href="#/home"
           onClick={(event) => {
             event.preventDefault();
-            navigateToPage("home");
+            navigateAndClose("home");
           }}
         >
           <span className="brandMark" aria-hidden="true">
@@ -1640,7 +1859,20 @@ function Header({ currentPage, navigateToPage }) {
           </span>
         </a>
 
-        <nav className="nav" aria-label="Primary navigation">
+        <button
+          className={isMenuOpen ? "menuToggle menuToggleOpen" : "menuToggle"}
+          type="button"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav id="primary-navigation" className={isMenuOpen ? "nav navOpen" : "nav"} aria-label="Primary navigation">
           {PAGES.map((page) => {
             const isActive = currentPage === page.key || currentPage.startsWith(`${page.key}/`);
 
@@ -1651,7 +1883,7 @@ function Header({ currentPage, navigateToPage }) {
                 className={isActive ? "navLinkActive" : undefined}
                 onClick={(event) => {
                   event.preventDefault();
-                  navigateToPage(page.key);
+                  navigateAndClose(page.key);
                 }}
               >
                 {page.label}
@@ -1665,12 +1897,18 @@ function Header({ currentPage, navigateToPage }) {
           href="#/book"
           onClick={(event) => {
             event.preventDefault();
-            navigateToPage("book");
+            navigateAndClose("book");
           }}
         >
           Book
         </a>
       </div>
+      <button
+        className={isMenuOpen ? "navBackdrop navBackdropOpen" : "navBackdrop"}
+        type="button"
+        aria-label="Close navigation menu"
+        onClick={() => setIsMenuOpen(false)}
+      />
     </header>
   );
 }
@@ -2368,6 +2606,8 @@ function BlogPostPage({ post, navigateToPage }) {
   if (!post) return <BlogPage navigateToPage={navigateToPage} />;
 
   const relatedPosts = getRelatedPosts(post);
+  const blogVideos = getBlogVideos(post);
+  const primaryVideo = blogVideos[0];
 
   return (
     <>
@@ -2392,30 +2632,21 @@ function BlogPostPage({ post, navigateToPage }) {
               </div>
             </div>
             <figure className="blogPostHeroImage">
-              <img src={post.featuredImage} alt={post.imageAlt} />
+              {primaryVideo ? (
+                <a
+                  className="blogPostHeroImageLink"
+                  href={primaryVideo.videoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Watch ${primaryVideo.videoTitle} on YouTube`}
+                >
+                  <img src={post.featuredImage} alt={post.imageAlt} />
+                </a>
+              ) : (
+                <img src={post.featuredImage} alt={post.imageAlt} />
+              )}
             </figure>
           </header>
-
-          {post.videoId && (
-            <section className="blogVideoPanel" data-reveal style={{ "--reveal-delay": "70ms" }}>
-              <div className="blogVideoFrame">
-                <iframe
-                  src={`https://www.youtube.com/embed/${post.videoId}`}
-                  title={post.videoTitle}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              </div>
-              <div className="blogVideoCopy">
-                <span>Source video</span>
-                <h2>{post.videoTitle}</h2>
-                <a href={post.videoUrl} target="_blank" rel="noreferrer">
-                  Watch on YouTube
-                </a>
-              </div>
-            </section>
-          )}
 
           <div className="blogPostReadableGrid">
             <div className="blogPostBody">
@@ -2498,6 +2729,33 @@ function BlogPostPage({ post, navigateToPage }) {
               </div>
             </nav>
           </div>
+
+          {blogVideos.length > 0 && (
+            <section className="blogVideoLinks" data-reveal aria-labelledby={`${post.slug}-video-links`}>
+              <div>
+                <p className="eyebrow">Video companion</p>
+                <h2 id={`${post.slug}-video-links`}>
+                  {blogVideos.length === 1 ? "Watch the video" : "Watch the videos"}
+                </h2>
+              </div>
+              <div className="blogVideoLinkGrid">
+                {blogVideos.map((video) => (
+                  <a className="blogVideoLinkCard" href={video.videoUrl} key={video.videoId} target="_blank" rel="noreferrer">
+                    <img
+                      className="blogVideoLinkThumb"
+                      src={getVideoThumbnail(video)}
+                      alt={`${video.videoTitle} video thumbnail`}
+                      loading="lazy"
+                    />
+                    <span className="blogVideoLinkText">
+                      <span>{video.videoTitle}</span>
+                      <strong>Watch on YouTube</strong>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </article>
       <BookStrip navigateToPage={navigateToPage} />
@@ -3099,6 +3357,7 @@ export default function App() {
     addManagedMeta("property", "article:section", blogPost.category);
     blogPost.tags.forEach((tag) => addManagedMeta("property", "article:tag", tag));
 
+    const blogVideos = getBlogVideos(blogPost);
     const structuredData = existingStructuredData || document.createElement("script");
     structuredData.id = "blog-structured-data";
     structuredData.type = "application/ld+json";
@@ -3130,16 +3389,7 @@ export default function App() {
       articleSection: blogPost.category,
       keywords: blogPost.tags,
       about: blogPost.tags,
-      isBasedOn: blogPost.videoUrl,
-      video: blogPost.videoId
-        ? {
-            "@type": "VideoObject",
-            name: blogPost.videoTitle,
-            description: blogPost.sourceNote,
-            embedUrl: `https://www.youtube.com/embed/${blogPost.videoId}`,
-            url: blogPost.videoUrl,
-          }
-        : undefined,
+      isBasedOn: blogVideos.map((video) => video.videoUrl),
     });
     if (!existingStructuredData) document.head.appendChild(structuredData);
   }, [currentPage]);
