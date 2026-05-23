@@ -162,7 +162,7 @@ const BLOG_POSTS = [
     "slug": "tiger-parents-first-student-turned-prodigy",
     "category": "Coach reflections",
     "tags": [],
-    "title": "Tiger Parents: My First Student Turned Prodigy, and the Lessons They Taught Me About Life",
+    "title": "Tiger Parenting and My First Student Turned 'Prodigy'",
     "metaTitle": "Tiger Parents: My First Student Turned Prodigy, and the Lessons They Taught Me About Life",
     "metaDescription": "Coach Chris reflects on tiger parents, youth chess pressure, his first great student, and why lasting improvement needs structure, love, and joy.",
     "excerpt": "A personal reflection on tiger parents, prodigy culture, youth chess pressure, and what one great student taught Coach Chris about lasting improvement.",
@@ -170,9 +170,21 @@ const BLOG_POSTS = [
     "publishedDate": "2026-05-23",
     "updatedDate": "2026-05-23",
     "canonicalPath": "#/blog/tiger-parents-first-student-turned-prodigy",
-    "featuredImage": "/images/coach-chris-trophy-lesson.jpeg",
-    "imageAlt": "Coach Chris with a young chess student holding a large tournament trophy.",
+    "featuredImage": "/images/tiger-parent-cartoon.avif",
+    "imageAlt": "Illustration of a strict tiger parent watching two young tigers study calculus and piano.",
     "audience": "Parents, chess students, tournament families, coaches, and anyone thinking about pressure, achievement, and healthy improvement.",
+    "videos": [
+      {
+        "videoId": "u1V3Se7li3U",
+        "videoTitle": "Tiger Mums: Strict parents demanding greatness from their kids | 60 Minutes Australia",
+        "videoUrl": "https://www.youtube.com/watch?v=u1V3Se7li3U"
+      },
+      {
+        "videoId": "AWiSpJWK-bo",
+        "videoTitle": "Why Some Kids Hate Chess And What Parents Miss!",
+        "videoUrl": "https://www.youtube.com/watch?v=AWiSpJWK-bo"
+      }
+    ],
     "summaryIntro": "Coach Chris takeaway: structure can create skill, but love for the process is what keeps a student returning to the board when pressure, trophies, and outside approval fade.",
     "sectionHeadings": [
       {
@@ -2749,14 +2761,6 @@ function BlogPostPage({ post, navigateToPage }) {
     <>
       <article className="blogPostArticle">
         <div className="contentWrap blogPostReadableWrap">
-          <button
-            className="articleMoreButton blogBackButton blogArticleBackButton"
-            type="button"
-            onClick={() => navigateToPage("blog")}
-          >
-            Back to blog
-          </button>
-
           <header className="blogPostHeroCard" data-reveal>
             <div className="blogPostHeroCopy">
               <h1>{post.title}</h1>
@@ -2867,13 +2871,8 @@ function BlogPostPage({ post, navigateToPage }) {
           </div>
 
           {blogVideos.length > 0 && (
-            <section className="blogVideoLinks" data-reveal aria-labelledby={`${post.slug}-video-links`}>
-              <div>
-                <p className="eyebrow">Video companion</p>
-                <h2 id={`${post.slug}-video-links`}>
-                  {blogVideos.length === 1 ? "Watch the video" : "Watch the videos"}
-                </h2>
-              </div>
+            <section className="blogVideoLinks" data-reveal aria-label="Video companion">
+              <p className="eyebrow">Video companion</p>
               <div className="blogVideoLinkGrid">
                 {blogVideos.map((video) => (
                   <a className="blogVideoLinkCard" href={video.videoUrl} key={video.videoId} target="_blank" rel="noreferrer">
