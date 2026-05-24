@@ -29,6 +29,10 @@ const LEGAL_PAGES = [
 
 const ROUTABLE_PAGES = [...PAGES, { key: "book" }, ...LEGAL_PAGES];
 
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+}
+
 const PAGE_META = {
   blog: {
     title: `Hudson Chess Blog | ${BRAND_NAME}`,
@@ -140,6 +144,37 @@ const METHOD_STEPS = [
     body: "Students leave with targeted practice and return with games or positions that reveal what should come next.",
   },
 ];
+
+const JOURNEY_CHECKPOINTS = [
+  {
+    number: "01",
+    title: "Mastering the Basics",
+    body: "Learn how the pieces move, how to develop, how to notate your games, and how to start thinking like a real chess player.",
+    className: "stepOne",
+    threshold: 0.18,
+  },
+  {
+    number: "02",
+    title: "Mastering the Fundamentals",
+    body: "Learn when to move, what to move, and how to move with purpose so you can start winning games instead of just playing moves.",
+    className: "stepTwo",
+    threshold: 0.48,
+  },
+  {
+    number: "03",
+    title: "Mastering the Tactics",
+    body: "Learn how to beat players who know as much as you do by outsmarting them with calculation, pattern recognition, and tactical discipline.",
+    className: "stepThree",
+    threshold: 0.76,
+  },
+];
+
+const JOURNEY_DESKTOP_PATH =
+  "M600 45 C520 130 450 210 466 315 C520 550 790 530 736 760 C685 980 390 1010 466 1235 C520 1365 740 1385 880 1450";
+const JOURNEY_DESKTOP_ARROW_PATH = "M466 1235 C520 1365 740 1385 880 1450";
+const JOURNEY_MOBILE_PATH =
+  "M28 38 C20 104 26 158 28 210 C36 335 36 390 28 465 C18 575 20 650 28 710 C42 820 128 880 260 922";
+const JOURNEY_MOBILE_ARROW_PATH = "M28 710 C42 820 128 880 260 922";
 
 const BLOG_POSTS = [
   {
@@ -2194,10 +2229,220 @@ function HomePage({ slideIdx, navigateToPage }) {
         </div>
       </section>
 
-      <ArticlePreview navigateToPage={navigateToPage} />
+      <ChessJourneyRoadmap navigateToPage={navigateToPage} />
       <CoachSection navigateToPage={navigateToPage} />
       <BookingSection />
     </>
+  );
+}
+
+function ChessJourneyRoadmap({ navigateToPage }) {
+  const sectionRef = useRef(null);
+  const stickyRef = useRef(null);
+  const sceneRef = useRef(null);
+  const [roadmapState, setRoadmapState] = useState(() => ({
+    activeIndex: prefersReducedMotion() ? JOURNEY_CHECKPOINTS.length - 1 : -1,
+    visitedCount: prefersReducedMotion() ? JOURNEY_CHECKPOINTS.length : 0,
+    complete: prefersReducedMotion(),
+  }));
+  const isJourneyComplete = roadmapState.complete;
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const sticky = stickyRef.current;
+    const scene = sceneRef.current;
+    if (!section || !sticky || !scene) return undefined;
+
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionQuery.matches) {
+      section.style.setProperty("--journey-progress", "1");
+      section.style.setProperty("--journey-path-offset", "0");
+      section.style.setProperty("--journey-arrow-offset", "0");
+      section.style.setProperty("--journey-scene-y", "0px");
+      return undefined;
+    }
+
+    let frame = 0;
+    const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+
+    const updateProgress = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const totalScrollable = Math.max(section.offsetHeight - viewportHeight, 1);
+      const nextProgress = clamp(-rect.top / totalScrollable);
+      const sceneTravel = Math.max(scene.offsetHeight - sticky.offsetHeight, 0);
+      const sceneY = -sceneTravel * nextProgress;
+      const arrowProgress = nextProgress > 0.84 ? clamp((nextProgress - 0.84) / 0.14) : 0;
+      const nextActiveIndex = JOURNEY_CHECKPOINTS.reduce(
+        (active, checkpoint, index) => (nextProgress >= checkpoint.threshold ? index : active),
+        -1
+      );
+      const nextVisitedCount = JOURNEY_CHECKPOINTS.filter(
+        (checkpoint) => nextProgress >= checkpoint.threshold
+      ).length;
+      const complete = nextProgress >= 0.92;
+
+      section.style.setProperty("--journey-progress", nextProgress.toFixed(4));
+      section.style.setProperty("--journey-path-offset", (1 - nextProgress).toFixed(4));
+      section.style.setProperty("--journey-arrow-offset", (1 - arrowProgress).toFixed(4));
+      section.style.setProperty("--journey-scene-y", `${sceneY.toFixed(2)}px`);
+      section.style.setProperty("--journey-drift-y", `${(nextProgress * -42).toFixed(2)}px`);
+      section.style.setProperty("--journey-drift-alt", `${(nextProgress * 34).toFixed(2)}px`);
+
+      setRoadmapState((current) => {
+        if (
+          current.activeIndex === nextActiveIndex &&
+          current.visitedCount === nextVisitedCount &&
+          current.complete === complete
+        ) {
+          return current;
+        }
+
+        return {
+          activeIndex: nextActiveIndex,
+          visitedCount: nextVisitedCount,
+          complete,
+        };
+      });
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        updateProgress();
+      });
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    document.addEventListener("scroll", requestUpdate, { passive: true, capture: true });
+    document.body?.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      document.removeEventListener("scroll", requestUpdate, { capture: true });
+      document.body?.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <section className="journeyRoadmap" ref={sectionRef} aria-labelledby="journey-roadmap-title">
+      <div className="contentWrap">
+        <div className="sectionIntro journeyIntro" data-reveal>
+          <p className="eyebrow">Your Chess Journey</p>
+          <h2 id="journey-roadmap-title">A road map, from learning the board, to outplaying your opponents.</h2>
+          <p>
+            Improvement feels better when students can see where they are, what comes next, and why
+            each lesson matters.
+          </p>
+        </div>
+      </div>
+
+      <div className="journeySticky" ref={stickyRef}>
+        <div className="contentWrap journeyStickyInner">
+          <div className="journeyScene" ref={sceneRef}>
+            <span className="journeyDrift journeyDriftOne" aria-hidden="true">♞</span>
+            <span className="journeyDrift journeyDriftTwo" aria-hidden="true">♟</span>
+            <JourneyPathSvg
+              className="journeyPathDesktop"
+              markerPrefix="journeyDesktop"
+              path={JOURNEY_DESKTOP_PATH}
+              arrowPath={JOURNEY_DESKTOP_ARROW_PATH}
+              viewBox="0 0 1200 1600"
+              isComplete={isJourneyComplete}
+            />
+            <JourneyPathSvg
+              className="journeyPathMobile"
+              markerPrefix="journeyMobile"
+              path={JOURNEY_MOBILE_PATH}
+              arrowPath={JOURNEY_MOBILE_ARROW_PATH}
+              viewBox="0 0 360 980"
+              isComplete={isJourneyComplete}
+            />
+
+            {JOURNEY_CHECKPOINTS.map((checkpoint, index) => {
+              const isActive = roadmapState.activeIndex === index;
+              const isVisited = roadmapState.visitedCount > index;
+              const classes = [
+                "journeyStep",
+                checkpoint.className,
+                isActive ? "journeyStepActive" : "",
+                isVisited ? "journeyStepVisited" : "",
+              ]
+                .filter(Boolean)
+                .join(" ");
+
+              return (
+                <article className={classes} key={checkpoint.number}>
+                  <span className="journeyMarker" aria-hidden="true">
+                    <span>{checkpoint.number}</span>
+                  </span>
+                  <div className="journeyCard">
+                    <span>{checkpoint.number}</span>
+                    <h3>{checkpoint.title}</h3>
+                    <p>{checkpoint.body}</p>
+                  </div>
+                </article>
+              );
+            })}
+
+            <div className={isJourneyComplete ? "journeyEndCta journeyEndCtaActive" : "journeyEndCta"}>
+              <p>Ready to start your journey?</p>
+              <button className="btnPrimary" type="button" onClick={() => navigateToPage("book")}>
+                Book a Lesson
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function JourneyPathSvg({ className, markerPrefix, path, arrowPath, viewBox, isComplete }) {
+  const activeMarker = `${markerPrefix}-arrow-active`;
+  const mutedMarker = `${markerPrefix}-arrow-muted`;
+
+  return (
+    <svg className={`journeyPathSvg ${className}`} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <marker
+          id={activeMarker}
+          markerWidth="9"
+          markerHeight="9"
+          refX="7.5"
+          refY="4.5"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M1.2 1.2 L7.8 4.5 L1.2 7.8 Z" />
+        </marker>
+        <marker
+          id={mutedMarker}
+          markerWidth="9"
+          markerHeight="9"
+          refX="7.5"
+          refY="4.5"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M1.2 1.2 L7.8 4.5 L1.2 7.8 Z" />
+        </marker>
+      </defs>
+      <path className="journeyPathShadow" d={path} />
+      <path className="journeyPathTrack" d={path} markerEnd={`url(#${mutedMarker})`} />
+      <path className="journeyPathDraw" d={path} pathLength="1" />
+      <path
+        className={isComplete ? "journeyPathArrow journeyPathArrowActive" : "journeyPathArrow"}
+        d={arrowPath}
+        markerEnd={`url(#${activeMarker})`}
+        pathLength="1"
+      />
+    </svg>
   );
 }
 
@@ -2251,59 +2496,6 @@ function ProcessSection() {
             <p>{step.body}</p>
           </article>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function ArticlePreview({ navigateToPage }) {
-  const previewPosts = [...BLOG_POSTS]
-    .sort((left, right) => {
-      const dateOrder = new Date(right.publishedDate).getTime() - new Date(left.publishedDate).getTime();
-      if (dateOrder !== 0) return dateOrder;
-      return BLOG_POSTS.indexOf(left) - BLOG_POSTS.indexOf(right);
-    })
-    .slice(0, 4);
-
-  return (
-    <section className="articleBand">
-      <div className="contentWrap">
-        <div className="sectionIntro articleIntro" data-reveal>
-          <p className="eyebrow">Training articles</p>
-          <h2>Latest chess articles for students and parents.</h2>
-          <p>
-            Read recent Hudson Chess blog posts on improvement, pressure, parenting, calculation,
-            and the lessons students can carry beyond the board.
-          </p>
-        </div>
-
-        <div className="articleGrid">
-          {previewPosts.map((post, index) => (
-            <article
-              className="articleCard"
-              key={post.slug}
-              data-reveal
-              style={{ "--reveal-delay": `${index * 70}ms` }}
-            >
-              <a
-                href={`#/blog/${post.slug}`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigateToPage(`blog/${post.slug}`);
-                }}
-              >
-                <div className="articleTag">{post.category}</div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <em>Read article</em>
-              </a>
-            </article>
-          ))}
-        </div>
-
-        <button className="articleMoreButton" type="button" onClick={() => navigateToPage("blog")} data-reveal>
-          Open the blog
-        </button>
       </div>
     </section>
   );
