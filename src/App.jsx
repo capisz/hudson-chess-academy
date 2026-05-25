@@ -148,16 +148,24 @@ const METHOD_STEPS = [
 const JOURNEY_CHECKPOINTS = [
   {
     number: "01",
-    title: "Mastering the Basics",
+    title: "Learning the Basics",
     body: "Learn how the pieces move, how to develop, how to notate your games, and how to start thinking like a real chess player.",
     className: "stepOne",
+    gifClassName: "journeyGifOne",
+    gifSrc: "/images/roadmap/move1.gif",
+    posterSrc: "/images/roadmap/move1-poster.png",
+    gifAlt: "Animated chess board showing a player making a basic move.",
     threshold: 0.18,
   },
   {
     number: "02",
-    title: "Mastering the Fundamentals",
+    title: "Building the Fundamentals",
     body: "Learn when to move, what to move, and how to move with purpose so you can start winning games instead of just playing moves.",
     className: "stepTwo",
+    gifClassName: "journeyGifTwo",
+    gifSrc: "/images/roadmap/move3.gif",
+    posterSrc: "/images/roadmap/move2-poster.png",
+    gifAlt: "Animated chess board showing a fork or discovered check tactic.",
     threshold: 0.48,
   },
   {
@@ -165,16 +173,18 @@ const JOURNEY_CHECKPOINTS = [
     title: "Mastering the Tactics",
     body: "Learn how to beat players who know as much as you do by outsmarting them with calculation, pattern recognition, and tactical discipline.",
     className: "stepThree",
+    gifClassName: "journeyGifThree",
+    gifSrc: "/images/roadmap/move2.gif",
+    posterSrc: "/images/roadmap/move3-poster.png",
+    gifAlt: "Animated chess board showing a brilliant move tactic.",
     threshold: 0.76,
   },
 ];
 
 const JOURNEY_DESKTOP_PATH =
-  "M600 45 C520 130 450 210 466 315 C520 550 790 530 736 760 C685 980 390 1010 466 1235 C520 1365 740 1385 880 1450";
-const JOURNEY_DESKTOP_ARROW_PATH = "M466 1235 C520 1365 740 1385 880 1450";
+  "M600 45 C520 150 448 270 474 382 C530 560 792 575 714 759 C650 940 410 955 474 1133 C520 1214 574 1248 600 1288";
 const JOURNEY_MOBILE_PATH =
-  "M28 38 C20 104 26 158 28 210 C36 335 36 390 28 465 C18 575 20 650 28 710 C42 820 128 880 260 922";
-const JOURNEY_MOBILE_ARROW_PATH = "M28 710 C42 820 128 880 260 922";
+  "M28 38 C18 112 22 180 23 231 C34 390 34 520 23 660 C12 820 15 960 23 1089 C48 1218 144 1268 176 1410";
 
 const BLOG_POSTS = [
   {
@@ -2179,7 +2189,7 @@ function Header({ currentPage, navigateToPage }) {
             navigateAndClose("book");
           }}
         >
-          Book
+          Book Your Lesson
         </a>
       </div>
       <button
@@ -2244,6 +2254,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
     activeIndex: prefersReducedMotion() ? JOURNEY_CHECKPOINTS.length - 1 : -1,
     visitedCount: prefersReducedMotion() ? JOURNEY_CHECKPOINTS.length : 0,
     complete: prefersReducedMotion(),
+    activeCycle: 0,
   }));
   const isJourneyComplete = roadmapState.complete;
 
@@ -2257,13 +2268,15 @@ function ChessJourneyRoadmap({ navigateToPage }) {
     if (motionQuery.matches) {
       section.style.setProperty("--journey-progress", "1");
       section.style.setProperty("--journey-path-offset", "0");
-      section.style.setProperty("--journey-arrow-offset", "0");
+      section.style.setProperty("--journey-arrowhead-opacity", "1");
       section.style.setProperty("--journey-scene-y", "0px");
       return undefined;
     }
 
     let frame = 0;
     const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+    const getFocusLevel = (progress, center, radius = 0.16) =>
+      clamp(1 - Math.abs(progress - center) / radius);
 
     const updateProgress = () => {
       const rect = section.getBoundingClientRect();
@@ -2272,7 +2285,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
       const nextProgress = clamp(-rect.top / totalScrollable);
       const sceneTravel = Math.max(scene.offsetHeight - sticky.offsetHeight, 0);
       const sceneY = -sceneTravel * nextProgress;
-      const arrowProgress = nextProgress > 0.84 ? clamp((nextProgress - 0.84) / 0.14) : 0;
+      const arrowheadOpacity = nextProgress > 0.92 ? clamp((nextProgress - 0.92) / 0.08) : 0;
       const nextActiveIndex = JOURNEY_CHECKPOINTS.reduce(
         (active, checkpoint, index) => (nextProgress >= checkpoint.threshold ? index : active),
         -1
@@ -2284,10 +2297,15 @@ function ChessJourneyRoadmap({ navigateToPage }) {
 
       section.style.setProperty("--journey-progress", nextProgress.toFixed(4));
       section.style.setProperty("--journey-path-offset", (1 - nextProgress).toFixed(4));
-      section.style.setProperty("--journey-arrow-offset", (1 - arrowProgress).toFixed(4));
+      section.style.setProperty("--journey-arrowhead-opacity", arrowheadOpacity.toFixed(3));
       section.style.setProperty("--journey-scene-y", `${sceneY.toFixed(2)}px`);
       section.style.setProperty("--journey-drift-y", `${(nextProgress * -42).toFixed(2)}px`);
       section.style.setProperty("--journey-drift-alt", `${(nextProgress * 34).toFixed(2)}px`);
+      section.style.setProperty("--journey-drift-1-focus", getFocusLevel(nextProgress, 0.18).toFixed(3));
+      section.style.setProperty("--journey-drift-2-focus", getFocusLevel(nextProgress, 0.76).toFixed(3));
+      section.style.setProperty("--journey-drift-3-focus", getFocusLevel(nextProgress, 0.48).toFixed(3));
+      section.style.setProperty("--journey-drift-4-focus", getFocusLevel(nextProgress, 0.62).toFixed(3));
+      section.style.setProperty("--journey-drift-5-focus", getFocusLevel(nextProgress, 0.92).toFixed(3));
 
       setRoadmapState((current) => {
         if (
@@ -2302,6 +2320,10 @@ function ChessJourneyRoadmap({ navigateToPage }) {
           activeIndex: nextActiveIndex,
           visitedCount: nextVisitedCount,
           complete,
+          activeCycle:
+            current.activeIndex === nextActiveIndex
+              ? current.activeCycle
+              : current.activeCycle + 1,
         };
       });
     };
@@ -2334,7 +2356,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
       <div className="contentWrap">
         <div className="sectionIntro journeyIntro" data-reveal>
           <p className="eyebrow">Your Chess Journey</p>
-          <h2 id="journey-roadmap-title">A road map, from learning the board, to outplaying your opponents.</h2>
+          <h2 id="journey-roadmap-title">A clear path from learning the board to outplaying your opponents.</h2>
           <p>
             Improvement feels better when students can see where they are, what comes next, and why
             each lesson matters.
@@ -2347,26 +2369,29 @@ function ChessJourneyRoadmap({ navigateToPage }) {
           <div className="journeyScene" ref={sceneRef}>
             <span className="journeyDrift journeyDriftOne" aria-hidden="true">♞</span>
             <span className="journeyDrift journeyDriftTwo" aria-hidden="true">♟</span>
+            <span className="journeyDrift journeyDriftThree" aria-hidden="true">♜</span>
+            <span className="journeyDrift journeyDriftFour" aria-hidden="true">♝</span>
+            <span className="journeyDrift journeyDriftFive" aria-hidden="true">♛</span>
             <JourneyPathSvg
               className="journeyPathDesktop"
-              markerPrefix="journeyDesktop"
               path={JOURNEY_DESKTOP_PATH}
-              arrowPath={JOURNEY_DESKTOP_ARROW_PATH}
-              viewBox="0 0 1200 1600"
+              viewBox="0 0 1200 1420"
               isComplete={isJourneyComplete}
             />
             <JourneyPathSvg
               className="journeyPathMobile"
-              markerPrefix="journeyMobile"
               path={JOURNEY_MOBILE_PATH}
-              arrowPath={JOURNEY_MOBILE_ARROW_PATH}
-              viewBox="0 0 360 980"
+              viewBox="0 0 360 1560"
               isComplete={isJourneyComplete}
             />
 
             {JOURNEY_CHECKPOINTS.map((checkpoint, index) => {
               const isActive = roadmapState.activeIndex === index;
               const isVisited = roadmapState.visitedCount > index;
+              const shouldPlayGif = isActive && !prefersReducedMotion();
+              const gifSource = shouldPlayGif
+                ? `${checkpoint.gifSrc}?play=${roadmapState.activeCycle}`
+                : checkpoint.posterSrc;
               const classes = [
                 "journeyStep",
                 checkpoint.className,
@@ -2377,24 +2402,47 @@ function ChessJourneyRoadmap({ navigateToPage }) {
                 .join(" ");
 
               return (
-                <article className={classes} key={checkpoint.number}>
-                  <span className="journeyMarker" aria-hidden="true">
-                    <span>{checkpoint.number}</span>
-                  </span>
-                  <div className="journeyCard">
-                    <span>{checkpoint.number}</span>
-                    <h3>{checkpoint.title}</h3>
-                    <p>{checkpoint.body}</p>
-                  </div>
-                </article>
+                <div className="journeyPair" key={checkpoint.number}>
+                  <article className={classes}>
+                    <span className="journeyMarker" aria-hidden="true" />
+                    <div className="journeyCard">
+                      <h3>{checkpoint.title}</h3>
+                      <p>{checkpoint.body}</p>
+                    </div>
+                  </article>
+                  <figure
+                    className={[
+                      "journeyGif",
+                      checkpoint.gifClassName,
+                      isActive ? "journeyGifActive" : "",
+                      isVisited ? "journeyGifVisited" : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
+                    {/* GIFs do not pause cleanly in browsers, so inactive states use static posters. MP4/WebM would allow true play/pause later. */}
+                    <img
+                      key={shouldPlayGif ? `${checkpoint.gifSrc}-${roadmapState.activeCycle}` : checkpoint.posterSrc}
+                      src={gifSource}
+                      alt={checkpoint.gifAlt}
+                      loading="lazy"
+                      onError={(event) => {
+                        if (!shouldPlayGif) {
+                          event.currentTarget.onerror = null;
+                          event.currentTarget.src = checkpoint.gifSrc;
+                        }
+                      }}
+                    />
+                  </figure>
+                </div>
               );
             })}
 
             <div className={isJourneyComplete ? "journeyEndCta journeyEndCtaActive" : "journeyEndCta"}>
-              <p>Ready to start your journey?</p>
               <button className="btnPrimary" type="button" onClick={() => navigateToPage("book")}>
                 Book a Lesson
               </button>
+              <p>Ready to start your journey?</p>
             </div>
           </div>
         </div>
@@ -2403,45 +2451,31 @@ function ChessJourneyRoadmap({ navigateToPage }) {
   );
 }
 
-function JourneyPathSvg({ className, markerPrefix, path, arrowPath, viewBox, isComplete }) {
-  const activeMarker = `${markerPrefix}-arrow-active`;
-  const mutedMarker = `${markerPrefix}-arrow-muted`;
+function JourneyPathSvg({ className, path, viewBox, isComplete }) {
+  const arrowMarker = `${className}-cta-arrow`;
 
   return (
     <svg className={`journeyPathSvg ${className}`} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <marker
-          id={activeMarker}
-          markerWidth="9"
-          markerHeight="9"
-          refX="7.5"
-          refY="4.5"
+          id={arrowMarker}
+          viewBox="0 0 10 10"
+          markerWidth="4.8"
+          markerHeight="4.8"
+          refX="8.4"
+          refY="5"
           orient="auto"
           markerUnits="strokeWidth"
         >
-          <path d="M1.2 1.2 L7.8 4.5 L1.2 7.8 Z" />
-        </marker>
-        <marker
-          id={mutedMarker}
-          markerWidth="9"
-          markerHeight="9"
-          refX="7.5"
-          refY="4.5"
-          orient="auto"
-          markerUnits="strokeWidth"
-        >
-          <path d="M1.2 1.2 L7.8 4.5 L1.2 7.8 Z" />
+          <path
+            className={isComplete ? "journeyArrowHead journeyArrowHeadActive" : "journeyArrowHead"}
+            d="M1.4 1.2 L8.8 5 L1.4 8.8 L3.2 5 Z"
+          />
         </marker>
       </defs>
       <path className="journeyPathShadow" d={path} />
-      <path className="journeyPathTrack" d={path} markerEnd={`url(#${mutedMarker})`} />
-      <path className="journeyPathDraw" d={path} pathLength="1" />
-      <path
-        className={isComplete ? "journeyPathArrow journeyPathArrowActive" : "journeyPathArrow"}
-        d={arrowPath}
-        markerEnd={`url(#${activeMarker})`}
-        pathLength="1"
-      />
+      <path className="journeyPathTrack" d={path} />
+      <path className="journeyPathDraw" d={path} markerEnd={`url(#${arrowMarker})`} pathLength="1" />
     </svg>
   );
 }
@@ -3310,7 +3344,7 @@ function SuccessStoriesPage({ navigateToPage }) {
 
       <section className="successStoriesIntro contentWrap" data-reveal>
         <p className="eyebrow">Two paths through chess</p>
-        <h2>These composite student growth stories show two different ways progress can become visible.</h2>
+        <h2>These student stories show two different ways progress can become visible.</h2>
         <p>
           Some students learn to compete, calculate, and handle tournament pressure. Others use the
           same game to build patience, focus, pattern recognition, and stronger problem-solving away

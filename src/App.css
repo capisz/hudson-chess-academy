@@ -681,24 +681,29 @@ h3{
 
 .journeyRoadmap{
   position: relative;
-  min-height: 300vh;
+  min-height: 248vh;
   padding-top: clamp(54px, 7vw, 86px);
-  padding-bottom: clamp(18px, 3vw, 38px);
+  padding-bottom: 0;
   background: linear-gradient(180deg, var(--paper) 0%, rgba(184, 216, 230, 0.12) 48%, var(--paper) 100%);
   overflow: clip;
   --journey-progress: 0;
   --journey-path-offset: 1;
-  --journey-arrow-offset: 1;
+  --journey-arrowhead-opacity: 0;
   --journey-scene-y: 0px;
   --journey-drift-y: 0px;
   --journey-drift-alt: 0px;
+  --journey-drift-1-focus: 0;
+  --journey-drift-2-focus: 0;
+  --journey-drift-3-focus: 0;
+  --journey-drift-4-focus: 0;
+  --journey-drift-5-focus: 0;
 }
 
 .journeySticky{
   position: sticky;
   top: 84px;
   height: calc(100svh - 84px);
-  min-height: 640px;
+  min-height: 600px;
   overflow: hidden;
 }
 
@@ -725,7 +730,7 @@ h3{
   top: 0;
   right: 0;
   left: 0;
-  height: 1680px;
+  height: 1320px;
   transform: translate3d(0, var(--journey-scene-y), 0);
   will-change: transform;
 }
@@ -733,24 +738,63 @@ h3{
 .journeyDrift{
   position: absolute;
   z-index: 0;
-  color: rgba(47, 125, 131, 0.08);
+  color: rgba(47, 125, 131, 0.24);
   font-family: var(--fontDisplay);
   font-size: clamp(72px, 12vw, 150px);
+  opacity: 0.28;
+  filter: blur(1.6px);
   line-height: 1;
   pointer-events: none;
+  transition: opacity 0.22s ease, filter 0.22s ease, transform 0.22s ease;
   user-select: none;
 }
 
 .journeyDriftOne{
   right: min(7vw, 92px);
   top: 190px;
-  transform: translate3d(0, var(--journey-drift-y), 0) rotate(-10deg);
+  color: rgba(24, 63, 59, 0.24);
+  opacity: calc(0.26 + (var(--journey-drift-1-focus) * 0.74));
+  filter: blur(calc(1.6px - (var(--journey-drift-1-focus) * 1.45px)));
+  transform: translate3d(0, var(--journey-drift-y), 0) rotate(-10deg) scale(calc(1 + (var(--journey-drift-1-focus) * 0.035)));
 }
 
 .journeyDriftTwo{
   left: min(4vw, 54px);
-  top: 1280px;
-  transform: translate3d(0, var(--journey-drift-alt), 0) rotate(9deg);
+  top: 1070px;
+  color: rgba(24, 63, 59, 0.24);
+  opacity: calc(0.26 + (var(--journey-drift-2-focus) * 0.74));
+  filter: blur(calc(1.6px - (var(--journey-drift-2-focus) * 1.45px)));
+  transform: translate3d(0, var(--journey-drift-alt), 0) rotate(9deg) scale(calc(1 + (var(--journey-drift-2-focus) * 0.035)));
+}
+
+.journeyDriftThree{
+  left: 45%;
+  top: 470px;
+  color: rgba(139, 76, 42, 0.24);
+  opacity: calc(0.24 + (var(--journey-drift-3-focus) * 0.72));
+  filter: blur(calc(1.6px - (var(--journey-drift-3-focus) * 1.45px)));
+  font-size: clamp(54px, 8vw, 104px);
+  transform: translate3d(0, calc(var(--journey-drift-y) * -0.5), 0) rotate(-6deg) scale(calc(1 + (var(--journey-drift-3-focus) * 0.035)));
+}
+
+.journeyDriftFour{
+  right: 26%;
+  top: 850px;
+  color: rgba(24, 63, 59, 0.22);
+  opacity: calc(0.26 + (var(--journey-drift-4-focus) * 0.68));
+  filter: blur(calc(1.6px - (var(--journey-drift-4-focus) * 1.45px)));
+  font-size: clamp(58px, 9vw, 118px);
+  transform: translate3d(0, calc(var(--journey-drift-alt) * -0.45), 0) rotate(12deg) scale(calc(1 + (var(--journey-drift-4-focus) * 0.035)));
+}
+
+.journeyDriftFive{
+  right: min(8vw, 94px);
+  top: 1180px;
+  color: rgba(24, 63, 59, 0.22);
+  opacity: calc(0.25 + (var(--journey-drift-5-focus) * 0.72));
+  filter: blur(calc(1.6px - (var(--journey-drift-5-focus) * 1.45px)));
+  font-size: clamp(64px, 10vw, 128px);
+  transform: translate3d(0, calc(var(--journey-drift-y) * 0.7), 0) rotate(-14deg) scale(calc(1 + (var(--journey-drift-5-focus) * 0.035)));
 }
 
 .journeyPathSvg{
@@ -769,53 +813,41 @@ h3{
 
 .journeyPathShadow,
 .journeyPathTrack,
-.journeyPathDraw,
-.journeyPathArrow{
+.journeyPathDraw{
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.journeyPathSvg marker[id$="active"] path{
+.journeyArrowHead{
   fill: var(--clay);
+  opacity: var(--journey-arrowhead-opacity);
+  stroke: none;
+  transition: opacity 0.18s ease;
 }
 
-.journeyPathSvg marker[id$="muted"] path{
-  fill: rgba(47, 125, 131, 0.24);
+.journeyArrowHeadActive{
+  opacity: 1;
 }
 
 .journeyPathShadow{
   stroke: rgba(12, 35, 33, 0.1);
-  stroke-width: 20;
-  filter: blur(7px);
+  stroke-width: 15;
+  filter: blur(5px);
 }
 
 .journeyPathTrack{
   stroke: rgba(47, 125, 131, 0.2);
-  stroke-width: 12;
+  stroke-width: 8;
 }
 
 .journeyPathDraw{
   stroke: var(--clay);
-  stroke-width: 6;
+  stroke-width: 4.5;
   stroke-dasharray: 1;
   stroke-dashoffset: var(--journey-path-offset);
   transition: stroke-dashoffset 0.12s linear;
   filter: drop-shadow(0 0 14px rgba(201, 120, 69, 0.3));
-}
-
-.journeyPathArrow{
-  stroke: var(--clay);
-  stroke-width: 6;
-  stroke-dasharray: 1;
-  stroke-dashoffset: var(--journey-arrow-offset);
-  opacity: 0;
-  transition: opacity 0.24s ease, stroke-dashoffset 0.12s linear;
-  filter: drop-shadow(0 0 16px rgba(201, 120, 69, 0.36));
-}
-
-.journeyPathArrowActive{
-  opacity: 1;
 }
 
 .journeyStep{
@@ -835,17 +867,17 @@ h3{
 }
 
 .stepOne{
-  top: 280px;
+  top: 232px;
 }
 
 .stepTwo{
-  top: 720px;
+  top: 582px;
   right: clamp(0px, 4vw, 54px);
   grid-template-columns: 60px minmax(0, 1fr);
 }
 
 .stepThree{
-  top: 1160px;
+  top: 930px;
 }
 
 .stepOne .journeyMarker,
@@ -874,8 +906,8 @@ h3{
   position: relative;
   display: grid;
   place-items: center;
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   border: 3px solid rgba(255, 250, 242, 0.96);
   border-radius: 999px;
   color: var(--paperAlt);
@@ -890,7 +922,7 @@ h3{
 .journeyMarker::before{
   content: "";
   position: absolute;
-  inset: -13px;
+  inset: -10px;
   border: 1px solid rgba(47, 125, 131, 0.18);
   border-radius: inherit;
   background: rgba(255, 250, 242, 0.34);
@@ -901,6 +933,99 @@ h3{
   font-size: 13px;
   font-weight: 900;
   letter-spacing: 0.08em;
+}
+
+.journeyGif{
+  position: absolute;
+  z-index: 2;
+  width: min(29vw, 310px);
+  margin: 0;
+  padding: 10px;
+  border: 1px solid rgba(32, 51, 49, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 250, 242, 0.82);
+  box-shadow: 0 16px 38px rgba(30, 58, 55, 0.12);
+  opacity: 0.64;
+  transform: translateY(16px) scale(0.982);
+  transition:
+    opacity 0.34s ease,
+    transform 0.34s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    background 0.24s ease;
+  backdrop-filter: blur(10px);
+}
+
+.journeyGif img{
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  object-fit: cover;
+  transition: filter 0.28s ease, opacity 0.28s ease, transform 0.28s ease;
+}
+
+.journeyGif:not(.journeyGifActive) img{
+  opacity: 0.76;
+  filter: blur(1.35px) saturate(0.62);
+  transform: scale(0.985);
+}
+
+.journeyGifActive img{
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+}
+
+.journeyGifOne,
+.journeyGifThree{
+  right: clamp(8px, 4vw, 54px);
+}
+
+.journeyGifOne{
+  top: 218px;
+}
+
+.journeyGifTwo{
+  top: 568px;
+  left: clamp(8px, 4vw, 54px);
+}
+
+.journeyGifThree{
+  top: 916px;
+}
+
+.journeyGifVisited{
+  opacity: 0.8;
+  transform: translateY(0) scale(1);
+}
+
+.journeyGifActive{
+  opacity: 1;
+  transform: translateY(0) scale(1.025);
+  border-color: rgba(201, 120, 69, 0.34);
+  background: rgba(255, 250, 242, 0.94);
+  box-shadow:
+    0 22px 44px rgba(30, 58, 55, 0.16),
+    0 0 26px rgba(215, 161, 93, 0.12);
+}
+
+.journeyGifPoster{
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 45% 38%, rgba(201, 120, 69, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(47, 125, 131, 0.18), rgba(255, 250, 242, 0.72));
+  color: rgba(24, 63, 59, 0.34);
+}
+
+.journeyGifPoster span{
+  font-family: var(--fontDisplay);
+  font-size: clamp(54px, 9vw, 92px);
+  line-height: 1;
 }
 
 .journeyCard{
@@ -976,16 +1101,17 @@ h3{
 
 .journeyEndCta{
   position: absolute;
-  right: clamp(0px, 5vw, 62px);
-  top: 1430px;
+  top: 1226px;
+  left: 50%;
   z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  width: max-content;
+  min-width: 270px;
   color: var(--deep);
   opacity: 0.72;
-  transform: translateY(14px);
+  transform: translate(-50%, 14px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -1005,7 +1131,7 @@ h3{
 
 .journeyEndCtaActive{
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
 }
 
 .journeyEndCtaActive .btnPrimary{
@@ -1127,7 +1253,7 @@ h3{
 }
 
 .journeyRoadmap + .coachSection{
-  padding-top: clamp(38px, 5vw, 62px);
+  padding-top: clamp(4px, 1.5vw, 18px);
 }
 
 .coachHeader{
@@ -4778,9 +4904,9 @@ h3{
   }
 
   .journeyRoadmap{
-    min-height: 260vh;
+    min-height: 262vh;
     padding-top: 42px;
-    padding-bottom: 20px;
+    padding-bottom: 0;
   }
 
   .journeySticky{
@@ -4796,7 +4922,7 @@ h3{
   }
 
   .journeyScene{
-    height: 1040px;
+    height: 1600px;
   }
 
   .journeyPathDesktop{
@@ -4808,16 +4934,15 @@ h3{
   }
 
   .journeyPathShadow{
-    stroke-width: 20;
+    stroke-width: 16;
   }
 
   .journeyPathTrack{
-    stroke-width: 12;
+    stroke-width: 9;
   }
 
-  .journeyPathDraw,
-  .journeyPathArrow{
-    stroke-width: 7;
+  .journeyPathDraw{
+    stroke-width: 4.5;
   }
 
   .journeyStep,
@@ -4831,20 +4956,21 @@ h3{
     width: 100%;
     display: grid;
     grid-template-columns: 52px minmax(0, 1fr);
+    align-items: start;
     gap: 14px;
     transform: none;
   }
 
   .stepOne{
-    top: 160px;
+    top: 130px;
   }
 
   .stepTwo{
-    top: 395px;
+    top: 570px;
   }
 
   .stepThree{
-    top: 635px;
+    top: 1010px;
   }
 
   .stepOne .journeyMarker,
@@ -4864,24 +4990,51 @@ h3{
   .journeyMarker{
     width: 52px;
     height: 52px;
+    margin-top: 86px;
   }
 
   .journeyCard{
     padding: 22px;
   }
 
+  .journeyGif{
+    right: auto;
+    left: 66px;
+    width: min(calc(100% - 76px), 280px);
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .journeyGif img,
+  .journeyGifPoster{
+    aspect-ratio: 16 / 10;
+    border-radius: 11px;
+  }
+
+  .journeyGifOne{
+    top: 388px;
+  }
+
+  .journeyGifTwo{
+    top: 828px;
+  }
+
+  .journeyGifThree{
+    top: 1268px;
+  }
+
   .journeyEndCta,
   .journeyEndCtaActive{
     position: absolute;
-    top: 865px;
-    left: 66px;
+    top: 1480px;
+    left: 50%;
     right: auto;
     bottom: auto;
     width: min(100% - 72px, 330px);
     display: grid;
-    justify-items: start;
-    gap: 10px;
-    transform: none;
+    justify-items: center;
+    gap: 16px;
+    transform: translateX(-50%);
   }
 
   .articleIntro{
@@ -5029,7 +5182,7 @@ h3{
   }
 
   .journeySticky{
-    min-height: 580px;
+    min-height: 600px;
   }
 
   .journeyCard{
@@ -5041,7 +5194,8 @@ h3{
   }
 
   .journeyEndCta{
-    left: 64px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .journeyEndCta .btnPrimary{
@@ -5331,6 +5485,12 @@ h3{
   }
 
   .journeyEndCta{
+    left: 50%;
+    width: calc(100% - 42px);
+    transform: translateX(-50%);
+  }
+
+  .journeyGif{
     left: 58px;
     width: calc(100% - 64px);
   }
@@ -5364,7 +5524,7 @@ h3{
     min-height: auto;
     padding-block: clamp(54px, 8vw, 86px);
     --journey-path-offset: 0;
-    --journey-arrow-offset: 0;
+    --journey-arrowhead-opacity: 1;
     --journey-scene-y: 0px;
   }
 
@@ -5404,6 +5564,7 @@ h3{
   .stepOne,
   .stepTwo,
   .stepThree,
+  .journeyGif,
   .journeyEndCta{
     position: relative;
     inset: auto;
@@ -5437,10 +5598,15 @@ h3{
     transform: none !important;
   }
 
+  .journeyGif{
+    opacity: 1;
+    transform: none !important;
+  }
+
   .journeyEndCta{
     display: grid;
-    justify-items: start;
-    gap: 10px;
+    justify-items: center;
+    gap: 14px;
     opacity: 1;
   }
 }
