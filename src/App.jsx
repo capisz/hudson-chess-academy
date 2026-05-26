@@ -3865,7 +3865,7 @@ function BookStrip({ navigateToPage }) {
       <div className="contentWrap bookStripInner" data-reveal>
         <div>
           <p className="eyebrow">Ready for the next step?</p>
-          <h2>First Time Students.</h2>
+          <h2>Book your first lesson and start your chess journey.</h2>
         </div>
         <button className="btnPrimary" type="button" onClick={() => navigateToPage("book")}>
           Open booking page
