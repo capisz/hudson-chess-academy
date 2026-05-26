@@ -200,48 +200,13 @@ textarea:focus-visible{
   display: flex;
   align-items: center;
   justify-self: start;
-  gap: 12px;
   min-width: 0;
-}
-
-.brand:hover .brandMark{
-  transform: scale(1.025);
-  border-color: rgba(255, 250, 242, 0.58);
-  box-shadow:
-    0 0 0 1px rgba(215, 161, 93, 0.16),
-    0 0 22px rgba(215, 161, 93, 0.34),
-    0 14px 28px rgba(12, 35, 33, 0.28);
-}
-
-.brandMark{
-  width: 78px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  border-radius: 12px;
-  background: #2f6f66;
-  border: 1px solid rgba(255, 250, 242, 0.22);
-  padding: 6px;
-  overflow: hidden;
-  box-shadow: 0 10px 20px rgba(12, 35, 33, 0.2);
-  transform-origin: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.brandIcon{
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: 1px solid rgba(255, 250, 242, 0.56);
-  border-radius: 8px;
 }
 
 .brandCopy{
   display: grid;
   gap: 1px;
-  align-self: end;
-  padding-bottom: 5px;
+  align-self: center;
 }
 
 .brandName{
@@ -4774,23 +4739,8 @@ h3{
     min-height: 64px;
   }
 
-  .brand{
-    gap: 9px;
-  }
-
-  .brandMark{
-    width: 60px;
-    height: 44px;
-    border-radius: 10px;
-    padding: 5px;
-  }
-
   .brandName{
     font-size: 18px;
-  }
-
-  .brandCopy{
-    padding-bottom: 3px;
   }
 
   .menuToggle{
@@ -5174,11 +5124,6 @@ h3{
     font-size: 16px;
   }
 
-  .brandMark{
-    width: 54px;
-    height: 40px;
-  }
-
   .headerCta{
     min-width: 58px;
     padding-inline: 12px;
@@ -5480,10 +5425,6 @@ h3{
 @media (max-width: 430px){
   .headerInner{
     gap: 8px;
-  }
-
-  .brand{
-    gap: 7px;
   }
 
   .brandCopy{

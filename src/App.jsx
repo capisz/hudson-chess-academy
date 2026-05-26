@@ -2298,9 +2298,6 @@ function Header({ currentPage, navigateToPage }) {
             navigateAndClose("home");
           }}
         >
-          <span className="brandMark" aria-hidden="true">
-            <HorizonIcon className="brandIcon" />
-          </span>
           <span className="brandCopy">
             <span className="brandName">{BRAND_NAME}</span>
           </span>
