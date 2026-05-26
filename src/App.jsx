@@ -314,7 +314,7 @@ const BLOG_POSTS = [
           "Avgerinos KI, Spyrou N, Bougioukas KI, Kapogiannis D. Effects of creatine supplementation on cognitive function of healthy individuals: A systematic review of randomized controlled trials. Experimental Gerontology. 2018.",
           "Xu C, Bi S, Zhang W, Luo L. Effects of creatine supplementation on cognitive function in adults: a systematic review and meta-analysis. Frontiers in Nutrition. 2024.",
           "UK Nutrition and Health Claims Committee. Scientific opinion on creatine supplementation and improved cognitive function. 2024.",
-          "Conversation transcript provided by user on creatine, brain energy, sleep deprivation, stress, and cognitive function."
+          
       ]
   },
   {
