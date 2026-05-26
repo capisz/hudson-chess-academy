@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { AdSenseLoader, BlogAdSlot } from "./AdSense.jsx";
 import CookieConsent from "./CookieConsent.jsx";
@@ -2137,6 +2137,34 @@ function getPageFromHash() {
   return "home";
 }
 
+function scrollPageToTop() {
+  if (typeof window === "undefined") return;
+
+  try {
+    if (typeof window.scrollTo === "function") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    } else if (typeof window.scroll === "function") {
+      window.scroll(0, 0);
+    }
+  } catch {
+    // Some embedded browser contexts expose partial scroll APIs.
+  }
+
+  try {
+    document.scrollingElement?.scrollTo?.({ top: 0, left: 0, behavior: "auto" });
+  } catch {
+    // Fall through to direct scrollTop assignment below.
+  }
+
+  try {
+    if (document.scrollingElement) document.scrollingElement.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  } catch {
+    // If a browser disallows direct assignment, the window scroll call above is enough.
+  }
+}
+
 function buildMailto(form, lesson, studentStatus) {
   const body = [
     `Student status: ${studentStatus === "returning" ? "Already a student" : "New student"}`,
@@ -3473,19 +3501,14 @@ function SuccessStoriesPage({ navigateToPage }) {
       <PageHero
         eyebrow="Student growth stories"
         title="Success Stories"
-        body="Chess growth does not look the same for every student. For some, it shows up in tournament ratings. For others, it shows up in confidence, academics, focus, and the way they approach challenges."
+        body="Chess growth does not look the same for every student. For some, it shows up in tournament ratings. For others, it shows up in confidence, academics, focus, and the way they approach challenges.
+        
+        
+        "
         backgroundImage="/images/success-stories/trophy-case.jpg?v=20260526-upright"
       />
 
-      <section className="successStoriesIntro contentWrap" data-reveal>
-        <p className="eyebrow">Two paths through chess</p>
-        <h2>These student stories show two different ways progress can become visible.</h2>
-        <p>
-          Some students learn to compete, calculate, and handle tournament pressure. Others use the
-          same game to build patience, focus, pattern recognition, and stronger problem-solving away
-          from the board. Both kinds of growth matter.
-        </p>
-      </section>
+  
 
       <SuccessStorySection
         variant="Ian"
@@ -4268,10 +4291,12 @@ export default function App() {
   function navigateToPage(page) {
     window.history.pushState(null, "", `#/${page}`);
     setCurrentPage(page);
-    window.requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    scrollPageToTop();
   }
+
+  useLayoutEffect(() => {
+    scrollPageToTop();
+  }, [currentPage]);
 
   useEffect(() => {
     const loader = window.setTimeout(() => setPageReady(true), 650);
