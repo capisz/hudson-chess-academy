@@ -64,6 +64,11 @@ const PAGE_META = {
 };
 
 const SLIDES = [
+  "/images/conveyor/conveyor-1.jpg?v=20260526-upright",
+  "/images/conveyor/conveyor-2.jpg?v=20260526-upright",
+  "/images/conveyor/conveyor-3.jpg?v=20260526-upright",
+  "/images/conveyor/conveyor-4.jpg?v=20260526-upright",
+  "/images/conveyor/conveyor-5.jpg?v=20260526-upright",
   "/images/coach-classroom-1.jpg",
   "/images/slide1.jpg",
   "/images/coach-classroom-2.jpg",
@@ -152,7 +157,7 @@ const JOURNEY_CHECKPOINTS = [
     body: "Learn how the pieces move, how to develop, how to notate your games, and how to start thinking like a real chess player.",
     className: "stepOne",
     gifClassName: "journeyGifOne",
-    gifSrc: "/images/roadmap/move1.gif",
+    gifSrc: "/images/roadmap/move1.gif?v=20260526-loop",
     posterSrc: "/images/roadmap/move1-poster.png",
     gifAlt: "Animated chess board showing a player making a basic move.",
     threshold: 0.18,
@@ -185,8 +190,133 @@ const JOURNEY_DESKTOP_PATH =
   "M600 45 C520 150 448 270 474 382 C530 560 792 575 714 759 C650 940 410 955 474 1133 C520 1214 574 1248 600 1288";
 const JOURNEY_MOBILE_PATH =
   "M28 38 C18 112 22 180 23 231 C34 390 34 520 23 660 C12 820 15 960 23 1089 C48 1218 144 1268 176 1410";
+const JOURNEY_KING_PATH =
+  "M31 6 H37 V13 H46 V20 H37 V28 C46 32 52 41 52 51 H57 V59 H7 V51 H12 C12 41 18 32 27 28 V20 H18 V13 H31 Z";
+const JOURNEY_DESKTOP_KING = { x: 600, y: 1288, size: 52 };
+const JOURNEY_MOBILE_KING = { x: 176, y: 1410, size: 46 };
 
 const BLOG_POSTS = [
+  {
+      slug: "creatine-mental-performance-chess",
+      category: "Chess performance",
+      tags: [
+          "creatine",
+          "mental performance",
+          "chess focus",
+          "tournament preparation",
+          "study habits"
+      ],
+      title: "'Steroids' for the Mind: How this bodybuilding supplement helps chess players",
+      metaTitle: "Steroids for the Mind: How this bodybuilding supplement helps chess players | Chess, Focus, and Mental Performance",
+      metaDescription: "A practical Coach Chris look at creatine, brain energy, chess focus, tournament fatigue, and why mental performance still depends on doing the work.",
+      description: "A warm, practical look at creatine as a possible mental performance enhancer for chess players, students, and anyone trying to think clearly under fatigue.",
+      excerpt: "Creatine is usually treated like a gym supplement, but for chess players it raises a more interesting question: can better energy support help the mind stay clear under pressure?",
+      author: "Coach Chris",
+      publishedDate: "2026-05-26",
+      updatedDate: "2026-05-26",
+      canonicalPath: "#/blog/creatine-mental-performance-chess",
+      featuredImage: "/images/blog/creatine-mental-performance-chess.jpg",
+      imageAlt: "A muscular athlete representing creatine and physical energy as a contrast for mental performance in chess.",
+      audience: "Chess students, tournament players, parents, coaches, and students thinking about focus, fatigue, study habits, and mental performance.",
+      sourceNote: "Source video: Creatine and brain energy discussion, YouTube. Research references are included in the article sources section.",
+      source: "Original Coach Chris essay using the user-provided creatine article draft, source video, and cited research references.",
+      videoId: "-x5_3A6LVRM",
+      videoTitle: "Creatine and brain energy discussion",
+      videoUrl: "https://www.youtube.com/watch?v=-x5_3A6LVRM",
+      summaryIntro: "Coach Chris takeaway: creatine is not a chess shortcut or a miracle focus powder. The interesting case is more practical: supporting the energy system behind clear thinking when fatigue, stress, and long tournament days start to matter.",
+      sectionHeadings: [
+          {
+              beforeParagraph: 0,
+              title: "Creatine Beyond the Gym",
+              note: "Why a boring supplement becomes interesting when the game is mental."
+          },
+          {
+              beforeParagraph: 4,
+              title: "Energy Support for a Thinking Game",
+              note: "Creatine is not caffeine. The idea is steadier energy under stress."
+          },
+          {
+              beforeParagraph: 7,
+              title: "Why Fatigue Matters in Chess",
+              note: "Tournament chess is a repeated stress test for attention and emotional control."
+          },
+          {
+              beforeParagraph: 12,
+              title: "What the Research Actually Says",
+              note: "The honest case is promising but not magical."
+          },
+          {
+              beforeParagraph: 13,
+              title: "Small Edge, Not a Cheat Code",
+              note: "Creatine does not replace training; it may help hold the work longer."
+          },
+          {
+              beforeParagraph: 19,
+              title: "The Practical Downsides",
+              note: "Most realistic drawbacks are boring, not dramatic."
+          },
+          {
+              beforeParagraph: 21,
+              title: "Safety, Dosage, and Honest Caveats",
+              note: "Useful conversations about supplements still need common sense."
+          },
+          {
+              beforeParagraph: 26,
+              title: "A Chess Player’s View",
+              note: "Small edges matter most when the position gets hard."
+          },
+          {
+              beforeParagraph: 34,
+              title: "Sources",
+              note: "Research and source material referenced for this article."
+          }
+      ],
+      relatedSlugs: [
+          "how-to-calculate-better-in-chess",
+          "the-art-of-learning-chess",
+          "emotional-intelligence-in-chess-pressure"
+      ],
+      body: [
+          "Creatine has always been treated like a gym supplement. You take it, you lift more, you recover better, your muscles hold more water, and everyone argues online about whether it is “natural” even though your body already makes it. But the more interesting conversation, at least to me, is not just what creatine does for your body. It is what creatine may do for your mind.",
+          "Because chess is not a physical sport in the traditional sense, people underestimate how much energy it takes. They see two people sitting at a board and assume nothing intense is happening. But anyone who has played a long tournament game knows that is not true. Your body is still, but your mind is running. You are calculating, remembering patterns, managing fear, predicting your opponent’s ideas, trying not to blunder, and trying to stay emotionally stable after every move changes the entire position.",
+          "That is not nothing. That is work.",
+          "And that is where creatine becomes interesting.",
+          "Creatine’s basic job is energy support. In the body, creatine helps regenerate ATP, which is the quick-use energy currency cells rely on. In muscle, this is easy to understand: you push hard, your muscles need energy, creatine helps recycle that energy faster. But the brain is also an energy-demanding organ. Creatine plays a role in brain-cell energy metabolism, and research has increasingly looked at whether creatine supplementation can support cognition, memory, attention, and processing speed.",
+          "The simplest way to think about creatine is this: it is not a stimulant. It is not caffeine. It is not going to make you feel like you entered some anime tournament arc where the board suddenly glows and you see twenty moves ahead. It is more boring than that, which is usually where the truth lives. Creatine may help the brain maintain energy availability, especially when the brain is under stress.",
+          "That stress part matters.",
+          "A lot of the conversation around creatine and cognition points toward the same idea: the benefit may show up more clearly when the brain is tired, sleep-deprived, aging, under metabolic strain, or being pushed hard. The conversation transcript I used as a source makes this point well. The speaker explains that creatine crosses the blood-brain barrier, but the muscles are “greedy,” meaning a standard small dose may mostly go to muscle first. The same discussion also connects creatine’s brain benefit to stress states like sleep deprivation and learning, where the brain is working harder than usual.",
+          "That sounds exactly like tournament chess.",
+          "Not because chess is physically exhausting in the same way as sprinting, but because tournament chess is a repeated stress test. You wake up early. You travel. You sit in a room for hours. You calculate. You lose focus. You try to eat enough but not too much. You drink coffee and hope it helps without making you jittery. Then you do it again the next round.",
+          "A chess tournament is not just a test of who knows more tactics. It is a test of who can keep their mind clean when the position gets ugly.",
+          "That is why creatine is worth talking about as a mental performance enhancer. Not as some magical IQ powder, but as a small, practical support for the part of performance nobody wants to admit matters: endurance.",
+          "The science is promising, but it should be described honestly. A 2024 systematic review and meta-analysis looked at randomized controlled trials on creatine and cognition and found evidence that creatine monohydrate may have positive effects on memory, attention time, and processing speed, while not necessarily showing a clear improvement across every broad category of cognition. In plain English, that means creatine is not proven to make you better at every type of thinking, but there is evidence it may help certain mental functions that matter when you are trying to stay sharp.",
+          "That distinction is important because I do not like when people talk about supplements like they are cheat codes. Chess players do this all the time with openings too. They think there is a secret system, a secret line, a secret engine-approved setup that will make them win without understanding the position. Supplements are the same. People want the one thing that replaces the work.",
+          "Creatine does not replace the work.",
+          "It may help you hold the work longer.",
+          "That is the difference.",
+          "If you are studying, calculating, playing multiple tournament rounds, or trying to stay alert after a bad night of sleep, creatine’s possible value is not that it gives you knowledge. It does not teach you endgames. It does not stop you from hanging your queen. It does not make your opponent’s threats disappear.",
+          "But it may help support the energy system behind the thinking. And in chess, that is not a small thing.",
+          "The funny part is that the “bad” side of creatine is honestly pretty small for most healthy adults. The most common real-world downsides are not dramatic. You may gain a little water weight. You may have some stomach discomfort if you take too much at once. You may drink more water and pee more. And yes, in a tournament, that could mean you become more aware of bathroom breaks. But if the tournament allows bathroom breaks, that is not exactly the end of the world. If anything, staying hydrated and mentally fresh is probably better than sitting there dried out, tired, and pretending suffering is discipline.",
+          "The wallet argument is probably the most real downside. You are buying another thing. You have to remember to take it. You have to make sure you are buying basic creatine monohydrate instead of some overpriced nonsense with a lightning bolt label and a fake proprietary blend. Creatine is not glamorous, and that is part of why it works as a topic. It is cheap, simple, and boring.",
+          "The safety conversation is also more favorable than people think. Reviews generally describe creatine monohydrate as safe for healthy individuals when taken at recommended doses, and common concerns about kidney harm are not supported in healthy people using appropriate amounts. The responsible caveat is that anyone with kidney disease, major medical conditions, or medications affecting kidney function should talk to a healthcare professional first. That is not fear-mongering; that is just basic common sense.",
+          "The other honest caveat is dosage. The cognitive research is not perfectly settled, partly because the brain may not respond the same way muscle does. In the transcript, the discussion points out that dose matters and that some cognition studies may have been underdosed because muscle takes its share first. A 2024 UK Nutrition and Health Claims Committee opinion also concluded that a formal cause-and-effect claim was not established for low-dose creatine supplementation and improved cognitive function, even though the same document recognizes creatine’s role in energy metabolism and describes cognitive function as a beneficial physiological target.",
+          "So the honest position is not “creatine definitely makes you smarter.”",
+          "The honest position is: creatine has a strong safety profile in healthy adults, a clear biological function in energy metabolism, and growing evidence that it may help certain cognitive tasks, especially when the brain is under stress.",
+          "That is enough to take it seriously without worshiping it.",
+          "For chess players, that is the mature view anyway. We already understand small edges. A better opening does not win by itself. A slightly better pawn structure does not win by itself. A safer king does not win by itself. But every small edge makes the next decision easier. You build a position where your mistakes are less costly and your opponent’s mistakes are easier to punish.",
+          "Creatine may be that kind of edge.",
+          "Not a knockout punch. Not a forced mate. More like improving your piece placement before the attack starts.",
+          "If you are a student, a tournament player, a coach, or someone who is constantly studying and thinking, creatine is interesting because it supports the boring foundation: energy. The mind cannot calculate if it is exhausted. It cannot focus if it is running on fumes. It cannot make calm decisions if every move feels like mental quicksand.",
+          "And chess is a game where one tired decision can erase four hours of good work.",
+          "That is the real argument for creatine as a mental performance enhancer. Not hype. Not miracle language. Just the possibility that a well-studied, low-risk supplement may help support the brain during the exact kind of pressure where chess players usually fall apart.",
+          "The majority is good. The bad is small. The science is not finished, but it is interesting enough to respect.",
+          "And in a game where the margins are often invisible until the mistake happens, anything that helps you stay clear, steady, and mentally available deserves a closer look.",
+          "Avgerinos KI, Spyrou N, Bougioukas KI, Kapogiannis D. Effects of creatine supplementation on cognitive function of healthy individuals: A systematic review of randomized controlled trials. Experimental Gerontology. 2018.",
+          "Xu C, Bi S, Zhang W, Luo L. Effects of creatine supplementation on cognitive function in adults: a systematic review and meta-analysis. Frontiers in Nutrition. 2024.",
+          "UK Nutrition and Health Claims Committee. Scientific opinion on creatine supplementation and improved cognitive function. 2024.",
+          "Conversation transcript provided by user on creatine, brain energy, sleep deprivation, stress, and cognitive function."
+      ]
+  },
   {
     "slug": "tiger-parents-first-student-turned-prodigy",
     "category": "Coach reflections",
@@ -2254,9 +2384,16 @@ function ChessJourneyRoadmap({ navigateToPage }) {
     activeIndex: prefersReducedMotion() ? JOURNEY_CHECKPOINTS.length - 1 : -1,
     visitedCount: prefersReducedMotion() ? JOURNEY_CHECKPOINTS.length : 0,
     complete: prefersReducedMotion(),
-    activeCycle: 0,
   }));
+  const roadmapStateRef = useRef(roadmapState);
   const isJourneyComplete = roadmapState.complete;
+
+  useEffect(() => {
+    JOURNEY_CHECKPOINTS.forEach(({ gifSrc }) => {
+      const image = new Image();
+      image.src = gifSrc;
+    });
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -2268,7 +2405,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
     if (motionQuery.matches) {
       section.style.setProperty("--journey-progress", "1");
       section.style.setProperty("--journey-path-offset", "0");
-      section.style.setProperty("--journey-arrowhead-opacity", "1");
+      section.style.setProperty("--journey-king-fill", "1");
       section.style.setProperty("--journey-scene-y", "0px");
       return undefined;
     }
@@ -2285,7 +2422,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
       const nextProgress = clamp(-rect.top / totalScrollable);
       const sceneTravel = Math.max(scene.offsetHeight - sticky.offsetHeight, 0);
       const sceneY = -sceneTravel * nextProgress;
-      const arrowheadOpacity = nextProgress > 0.92 ? clamp((nextProgress - 0.92) / 0.08) : 0;
+      const kingFill = nextProgress > 0.84 ? clamp((nextProgress - 0.84) / 0.16) : 0;
       const nextActiveIndex = JOURNEY_CHECKPOINTS.reduce(
         (active, checkpoint, index) => (nextProgress >= checkpoint.threshold ? index : active),
         -1
@@ -2297,7 +2434,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
 
       section.style.setProperty("--journey-progress", nextProgress.toFixed(4));
       section.style.setProperty("--journey-path-offset", (1 - nextProgress).toFixed(4));
-      section.style.setProperty("--journey-arrowhead-opacity", arrowheadOpacity.toFixed(3));
+      section.style.setProperty("--journey-king-fill", kingFill.toFixed(3));
       section.style.setProperty("--journey-scene-y", `${sceneY.toFixed(2)}px`);
       section.style.setProperty("--journey-drift-y", `${(nextProgress * -42).toFixed(2)}px`);
       section.style.setProperty("--journey-drift-alt", `${(nextProgress * 34).toFixed(2)}px`);
@@ -2307,25 +2444,20 @@ function ChessJourneyRoadmap({ navigateToPage }) {
       section.style.setProperty("--journey-drift-4-focus", getFocusLevel(nextProgress, 0.62).toFixed(3));
       section.style.setProperty("--journey-drift-5-focus", getFocusLevel(nextProgress, 0.92).toFixed(3));
 
-      setRoadmapState((current) => {
-        if (
-          current.activeIndex === nextActiveIndex &&
-          current.visitedCount === nextVisitedCount &&
-          current.complete === complete
-        ) {
-          return current;
-        }
-
-        return {
+      const current = roadmapStateRef.current;
+      if (
+        current.activeIndex !== nextActiveIndex ||
+        current.visitedCount !== nextVisitedCount ||
+        current.complete !== complete
+      ) {
+        const nextState = {
           activeIndex: nextActiveIndex,
           visitedCount: nextVisitedCount,
           complete,
-          activeCycle:
-            current.activeIndex === nextActiveIndex
-              ? current.activeCycle
-              : current.activeCycle + 1,
         };
-      });
+        roadmapStateRef.current = nextState;
+        setRoadmapState(nextState);
+      }
     };
 
     const requestUpdate = () => {
@@ -2375,23 +2507,19 @@ function ChessJourneyRoadmap({ navigateToPage }) {
             <JourneyPathSvg
               className="journeyPathDesktop"
               path={JOURNEY_DESKTOP_PATH}
+              king={JOURNEY_DESKTOP_KING}
               viewBox="0 0 1200 1420"
-              isComplete={isJourneyComplete}
             />
             <JourneyPathSvg
               className="journeyPathMobile"
               path={JOURNEY_MOBILE_PATH}
+              king={JOURNEY_MOBILE_KING}
               viewBox="0 0 360 1560"
-              isComplete={isJourneyComplete}
             />
 
             {JOURNEY_CHECKPOINTS.map((checkpoint, index) => {
               const isActive = roadmapState.activeIndex === index;
               const isVisited = roadmapState.visitedCount > index;
-              const shouldPlayGif = isActive && !prefersReducedMotion();
-              const gifSource = shouldPlayGif
-                ? `${checkpoint.gifSrc}?play=${roadmapState.activeCycle}`
-                : checkpoint.posterSrc;
               const classes = [
                 "journeyStep",
                 checkpoint.className,
@@ -2420,17 +2548,15 @@ function ChessJourneyRoadmap({ navigateToPage }) {
                       .filter(Boolean)
                       .join(" ")}
                   >
-                    {/* GIFs do not pause cleanly in browsers, so inactive states use static posters. MP4/WebM would allow true play/pause later. */}
+                    {/* GIFs stay mounted with stable src values to avoid scroll flicker. MP4/WebM would allow true play/pause later. */}
                     <img
-                      key={shouldPlayGif ? `${checkpoint.gifSrc}-${roadmapState.activeCycle}` : checkpoint.posterSrc}
-                      src={gifSource}
+                      src={checkpoint.gifSrc}
                       alt={checkpoint.gifAlt}
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                       onError={(event) => {
-                        if (!shouldPlayGif) {
-                          event.currentTarget.onerror = null;
-                          event.currentTarget.src = checkpoint.gifSrc;
-                        }
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = checkpoint.posterSrc;
                       }}
                     />
                   </figure>
@@ -2451,31 +2577,31 @@ function ChessJourneyRoadmap({ navigateToPage }) {
   );
 }
 
-function JourneyPathSvg({ className, path, viewBox, isComplete }) {
-  const arrowMarker = `${className}-cta-arrow`;
+function JourneyPathSvg({ className, path, king, viewBox }) {
+  const kingClipId = `${className}-king-fill`;
 
   return (
     <svg className={`journeyPathSvg ${className}`} viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <marker
-          id={arrowMarker}
-          viewBox="0 0 10 10"
-          markerWidth="4.8"
-          markerHeight="4.8"
-          refX="8.4"
-          refY="5"
-          orient="auto"
-          markerUnits="strokeWidth"
-        >
-          <path
-            className={isComplete ? "journeyArrowHead journeyArrowHeadActive" : "journeyArrowHead"}
-            d="M1.4 1.2 L8.8 5 L1.4 8.8 L3.2 5 Z"
-          />
-        </marker>
-      </defs>
       <path className="journeyPathShadow" d={path} />
       <path className="journeyPathTrack" d={path} />
-      <path className="journeyPathDraw" d={path} markerEnd={`url(#${arrowMarker})`} pathLength="1" />
+      <path className="journeyPathDraw" d={path} pathLength="1" />
+      <svg
+        className="journeyKingEndpoint"
+        x={king.x - king.size / 2}
+        y={king.y - king.size / 2}
+        width={king.size}
+        height={king.size}
+        viewBox="0 0 64 64"
+      >
+        <defs>
+          <clipPath id={kingClipId}>
+            <rect className="journeyKingFillWindow" x="0" y="0" width="64" height="64" />
+          </clipPath>
+        </defs>
+        <path className="journeyKingBase" d={JOURNEY_KING_PATH} />
+        <path className="journeyKingFill" d={JOURNEY_KING_PATH} clipPath={`url(#${kingClipId})`} />
+        <path className="journeyKingOutline" d={JOURNEY_KING_PATH} />
+      </svg>
     </svg>
   );
 }
@@ -2570,13 +2696,21 @@ function CoachSection({ navigateToPage }) {
   );
 }
 
-function PageHero({ eyebrow, title, body }) {
+function PageHero({ eyebrow, title, body, backgroundImage }) {
+  const hasBackgroundImage = Boolean(backgroundImage);
+  const heroStyle = hasBackgroundImage ? { "--page-hero-bg": `url("${backgroundImage}")` } : undefined;
+
   return (
-    <section className="pageHero pageView">
+    <section
+      className={hasBackgroundImage ? "pageHero pageHeroWithBackground pageView" : "pageHero pageView"}
+      style={heroStyle}
+    >
       <div className="contentWrap pageHeroInner" data-reveal>
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p>{body}</p>
+        <div className="pageHeroCopy">
+          <p className="eyebrow">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p>{body}</p>
+        </div>
       </div>
     </section>
   );
@@ -3340,6 +3474,7 @@ function SuccessStoriesPage({ navigateToPage }) {
         eyebrow="Student growth stories"
         title="Success Stories"
         body="Chess growth does not look the same for every student. For some, it shows up in tournament ratings. For others, it shows up in confidence, academics, focus, and the way they approach challenges."
+        backgroundImage="/images/success-stories/trophy-case.jpg?v=20260526-upright"
       />
 
       <section className="successStoriesIntro contentWrap" data-reveal>
@@ -3710,7 +3845,7 @@ function BookStrip({ navigateToPage }) {
       <div className="contentWrap bookStripInner" data-reveal>
         <div>
           <p className="eyebrow">Ready for the next step?</p>
-          <h2>Send intake details or book your next lesson.</h2>
+          <h2>First Time Students.</h2>
         </div>
         <button className="btnPrimary" type="button" onClick={() => navigateToPage("book")}>
           Open booking page
@@ -3829,8 +3964,8 @@ function BookingSection({ revealOnLoad = false } = {}) {
               aria-pressed={studentStatus === "new"}
               onClick={() => setStudentStatus("new")}
             >
-              <span>New student</span>
-              <strong>Send intake details first</strong>
+              <span>First Time Here?</span>
+              <strong>New Student</strong>
             </button>
             <button
               type="button"
@@ -3839,7 +3974,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               onClick={() => setStudentStatus("returning")}
             >
               <span>Already a student</span>
-              <strong>Show lesson booking options</strong>
+              <strong>Book a Lesson</strong>
             </button>
           </div>
 
@@ -3952,7 +4087,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
             </label>
 
             <button className="btnSecondary" type="submit">
-              Send intake details
+              Lets Get Started
             </button>
           </form>
 
