@@ -69,14 +69,14 @@ const PAGE_META = {
 };
 
 const SLIDES = [
-  "/images/conveyor/conveyor-1.jpg?v=20260526-upright",
-  "/images/conveyor/conveyor-2.jpg?v=20260526-upright",
-  "/images/conveyor/conveyor-3.jpg?v=20260526-upright",
-  "/images/conveyor/conveyor-4.jpg?v=20260526-upright",
-  "/images/conveyor/conveyor-5.jpg?v=20260526-upright",
-  "/images/coach-classroom-1.jpg",
-  "/images/coach-classroom-2.jpg",
-  "/images/students-cafeteria-chess.webp",
+  { src: "/images/optimized/conveyor-1.webp", width: 1350, height: 1800 },
+  { src: "/images/optimized/conveyor-2.webp", width: 1350, height: 1800 },
+  { src: "/images/optimized/conveyor-3.webp", width: 1600, height: 1200 },
+  { src: "/images/optimized/conveyor-4.webp", width: 1350, height: 1800 },
+  { src: "/images/optimized/conveyor-5.webp", width: 1350, height: 1800 },
+  { src: "/images/optimized/coach-classroom-1.webp", width: 1920, height: 1601 },
+  { src: "/images/optimized/coach-classroom-2.webp", width: 945, height: 795 },
+  { src: "/images/optimized/students-cafeteria-chess.webp", width: 1600, height: 1046 },
 ];
 
 const LESSONS = [
@@ -2060,6 +2060,21 @@ const GOALS = [
   "Build confidence",
 ];
 
+const KOALENDAR_WIDGET_SRC = "https://koalendar.com/assets/widget.js";
+let koalendarLoadPromise;
+
+function getVisibleSlideIndexes(activeIndex, totalSlides) {
+  if (totalSlides <= 3) return Array.from({ length: totalSlides }, (_, index) => index);
+
+  return Array.from(
+    new Set([
+      activeIndex,
+      (activeIndex + 1) % totalSlides,
+      (activeIndex - 1 + totalSlides) % totalSlides,
+    ])
+  ).sort((left, right) => left - right);
+}
+
 function getSiteBaseUrl() {
   if (typeof window === "undefined") return "";
   const path = window.location.pathname === "/" ? "" : window.location.pathname.replace(/\/$/, "");
@@ -2193,6 +2208,13 @@ function scrollPageToTop() {
   }
 }
 
+function getSpeedInsightsRoute(page) {
+  if (!page || page === "home") return "/home";
+  if (page === "blog") return "/blog";
+  if (page.startsWith("blog/")) return "/blog/[slug]";
+  return `/${page}`;
+}
+
 function themeKoalendarFloatingButton() {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
@@ -2216,13 +2238,69 @@ function themeKoalendarFloatingButton() {
   });
 }
 
-function openKoalendarPopup(url) {
+function ensureKoalendarStub() {
   if (typeof window === "undefined") return;
 
-  const koalendarReady =
-    typeof window.Koalendar === "function" && window.__koalendarLoaded === true;
+  window.Koalendar =
+    window.Koalendar ||
+    function koalendarQueue() {
+      (window.Koalendar.props = window.Koalendar.props || []).push(arguments);
+    };
+}
 
-  if (koalendarReady) {
+function loadKoalendarWidget() {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return Promise.reject(new Error("Koalendar is only available in the browser."));
+  }
+
+  if (typeof window.Koalendar === "function" && window.__koalendarLoaded === true) {
+    return Promise.resolve();
+  }
+
+  if (koalendarLoadPromise) return koalendarLoadPromise;
+
+  ensureKoalendarStub();
+
+  koalendarLoadPromise = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    const timeout = window.setTimeout(() => {
+      script.remove();
+      window.__koalendarLoaded = false;
+      koalendarLoadPromise = undefined;
+      reject(new Error("Koalendar widget load timed out."));
+    }, 8000);
+
+    script.async = true;
+    script.src = KOALENDAR_WIDGET_SRC;
+    script.dataset.koalendarWidget = "true";
+    script.onload = () => {
+      window.clearTimeout(timeout);
+      window.__koalendarLoaded = true;
+      try {
+        window.Koalendar("init");
+        window.__koalendarInitialized = true;
+      } catch {
+        window.__koalendarInitialized = false;
+      }
+      resolve();
+    };
+    script.onerror = () => {
+      window.clearTimeout(timeout);
+      window.__koalendarLoaded = false;
+      koalendarLoadPromise = undefined;
+      reject(new Error("Koalendar widget failed to load."));
+    };
+    document.head.appendChild(script);
+  });
+
+  return koalendarLoadPromise;
+}
+
+async function openKoalendarPopup(url) {
+  if (typeof window === "undefined") return;
+
+  try {
+    await loadKoalendarWidget();
     try {
       window.Koalendar("widget", {
         url,
@@ -2240,13 +2318,15 @@ function openKoalendarPopup(url) {
     } catch {
       // Fallback to direct navigation below.
     }
+  } catch {
+    // Fallback to direct navigation below.
   }
 
   window.location.href = url;
 }
 
 function HorizonIcon({ className = "horizonIcon" }) {
-  return <img className={className} src="/horizon-logo.png" alt="" aria-hidden="true" />;
+  return <img className={className} src="/horizon-icon.svg" alt="" aria-hidden="true" />;
 }
 
 function SocialIcon({ type }) {
@@ -2361,20 +2441,34 @@ function Header({ currentPage, navigateToPage }) {
 }
 
 function HomePage({ slideIdx, navigateToPage }) {
+  const visibleSlideIndexes = useMemo(
+    () => getVisibleSlideIndexes(slideIdx, SLIDES.length),
+    [slideIdx]
+  );
+
   return (
     <>
       <section className="heroStage pageView">
         <div className="heroMedia" aria-hidden="true">
-          {SLIDES.map((src, index) => (
-            <img
-              key={src}
-              className={index === slideIdx ? "heroImage heroImageActive" : "heroImage"}
-              src={src}
-              alt=""
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : "auto"}
-            />
-          ))}
+          {visibleSlideIndexes.map((index) => {
+            const slide = SLIDES[index];
+            const isActive = index === slideIdx;
+            const isFirstHeroImage = index === 0;
+
+            return (
+              <img
+                key={slide.src}
+                className={isActive ? "heroImage heroImageActive" : "heroImage"}
+                src={slide.src}
+                width={slide.width}
+                height={slide.height}
+                alt=""
+                loading={isFirstHeroImage ? "eager" : "lazy"}
+                fetchPriority={isFirstHeroImage ? "high" : "low"}
+                decoding={isFirstHeroImage ? "sync" : "async"}
+              />
+            );
+          })}
         </div>
 
         <div className="heroShade" aria-hidden="true" />
@@ -2415,13 +2509,6 @@ function ChessJourneyRoadmap({ navigateToPage }) {
   }));
   const roadmapStateRef = useRef(roadmapState);
   const isJourneyComplete = roadmapState.complete;
-
-  useEffect(() => {
-    JOURNEY_CHECKPOINTS.forEach(({ gifSrc }) => {
-      const image = new Image();
-      image.src = gifSrc;
-    });
-  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -2580,7 +2667,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
                     <img
                       src={checkpoint.gifSrc}
                       alt={checkpoint.gifAlt}
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                       onError={(event) => {
                         event.currentTarget.onerror = null;
@@ -2693,7 +2780,14 @@ function CoachSection({ navigateToPage }) {
   return (
     <section className="contentWrap sectionBlock coachSection">
       <div className="coachHeader" data-reveal>
-        <img className="coachProfile" src="/images/coach-profile.jpg" alt="Coach Chris profile" loading="lazy" />
+        <img
+          className="coachProfile"
+          src="/images/coach-profile.jpg"
+          alt="Coach Chris profile"
+          width="320"
+          height="320"
+          loading="lazy"
+        />
         <div>
           <p className="eyebrow">Meet Coach Chris</p>
           <h2>A roadmap to follow, the perfect coach to lead you</h2>
@@ -2710,13 +2804,31 @@ function CoachSection({ navigateToPage }) {
 
       <div className="coachGallery">
         <figure data-reveal>
-          <img src="/images/coach-classroom-1.jpg" alt="Students practicing chess in a classroom" loading="lazy" />
+          <img
+            src="/images/optimized/coach-classroom-1.webp"
+            alt="Students practicing chess in a classroom"
+            width="1920"
+            height="1601"
+            loading="lazy"
+          />
         </figure>
         <figure data-reveal style={{ "--reveal-delay": "80ms" }}>
-          <img src="/images/coach-classroom-2.jpg" alt="Coach Chris teaching chess in a classroom" loading="lazy" />
+          <img
+            src="/images/optimized/coach-classroom-2.webp"
+            alt="Coach Chris teaching chess in a classroom"
+            width="945"
+            height="795"
+            loading="lazy"
+          />
         </figure>
         <figure data-reveal style={{ "--reveal-delay": "160ms" }}>
-          <img src="/images/coach-chris-youth-champions.jpeg" alt="Young Coach Chris standing with Grandmaster Hikaru Nakamura" loading="lazy" />
+          <img
+            src="/images/coach-chris-youth-champions.jpeg"
+            alt="Young Coach Chris standing with Grandmaster Hikaru Nakamura"
+            width="1562"
+            height="1169"
+            loading="lazy"
+          />
         </figure>
       </div>
 
@@ -4396,7 +4508,6 @@ function ConsultationModal({ isOpen, onClose }) {
 
 export default function App() {
   const [slideIdx, setSlideIdx] = useState(0);
-  const [pageReady, setPageReady] = useState(false);
   const [currentPage, setCurrentPage] = useState(getPageFromHash);
   const [consultationOpen, setConsultationOpen] = useState(false);
 
@@ -4410,11 +4521,6 @@ export default function App() {
     replaceLatestBlogHash(currentPage);
     scrollPageToTop();
   }, [currentPage]);
-
-  useEffect(() => {
-    const loader = window.setTimeout(() => setPageReady(true), 650);
-    return () => window.clearTimeout(loader);
-  }, []);
 
   useEffect(() => {
     const id = window.setInterval(() => {
@@ -4559,7 +4665,7 @@ export default function App() {
   }, [currentPage]);
 
   useEffect(() => {
-    if (!pageReady || currentPage !== "home") return undefined;
+    if (currentPage !== "home") return undefined;
 
     let hasSeenConsultation = false;
     try {
@@ -4575,7 +4681,7 @@ export default function App() {
     }, 700);
 
     return () => window.clearTimeout(timer);
-  }, [currentPage, pageReady]);
+  }, [currentPage]);
 
   useEffect(() => {
     if (!consultationOpen) return undefined;
@@ -4585,19 +4691,6 @@ export default function App() {
       document.body.style.overflow = originalOverflow;
     };
   }, [consultationOpen]);
-
-  useEffect(() => {
-    themeKoalendarFloatingButton();
-    const observer = new MutationObserver(() => {
-      themeKoalendarFloatingButton();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    const timer = window.setInterval(themeKoalendarFloatingButton, 1200);
-    return () => {
-      observer.disconnect();
-      window.clearInterval(timer);
-    };
-  }, []);
 
   useEffect(() => {
     const items = Array.from(document.querySelectorAll("[data-reveal]"));
@@ -4627,11 +4720,6 @@ export default function App() {
 
   return (
     <div className="page">
-      <div className={pageReady ? "introLoader introLoaderHidden" : "introLoader"} aria-hidden="true">
-        <div className="loaderGlyph"><HorizonIcon className="loaderIcon" /></div>
-        <div className="loaderText">Setting the board...</div>
-      </div>
-
       <Header currentPage={currentPage} navigateToPage={navigateToPage} />
 
       <main>
@@ -4653,7 +4741,7 @@ export default function App() {
       <CookieConsent />
       <AdSenseLoader />
       <Analytics />
-      <SpeedInsights />
+      <SpeedInsights route={getSpeedInsightsRoute(currentPage)} />
     </div>
   );
 }
