@@ -7,8 +7,12 @@ import "./App.css";
 
 const BRAND_NAME = "Hudson Chess";
 const ZELLE_EMAIL = "hudsonchess@yahoo.com";
-const DEFAULT_SUBJECT = "Hudson Chess Academy lesson request";
 const CONSULTATION_STORAGE_KEY = "horizon-consultation-email-captured";
+const FORM_ERROR_MESSAGE = "Something went wrong. Please try again or email hello@hudsonchess.com.";
+const NEWSLETTER_SUCCESS_MESSAGE = "You’re in — I’ll send you new Hudson Chess articles when they’re posted.";
+const LESSON_INQUIRY_SUCCESS_MESSAGE =
+  "Thanks — I’ll send you the next steps for setting up a lesson and building a chess growth path.";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const PAGES = [
   { key: "home", label: "Home" },
@@ -70,11 +74,8 @@ const SLIDES = [
   "/images/conveyor/conveyor-4.jpg?v=20260526-upright",
   "/images/conveyor/conveyor-5.jpg?v=20260526-upright",
   "/images/coach-classroom-1.jpg",
-  "/images/slide1.jpg",
   "/images/coach-classroom-2.jpg",
-  "/images/slide2.jpg",
   "/images/students-cafeteria-chess.webp",
-  "/images/student-smiling-chess-board.jpg",
 ];
 
 const LESSONS = [
@@ -2165,31 +2166,6 @@ function scrollPageToTop() {
   }
 }
 
-function buildMailto(form, lesson, studentStatus) {
-  const body = [
-    `Student status: ${studentStatus === "returning" ? "Already a student" : "New student"}`,
-    `Parent / guardian: ${form.parentName.trim()}`,
-    `Student: ${form.studentName.trim() || "Not provided"}`,
-    `Email: ${form.email.trim()}`,
-    `Phone: ${form.phone.trim() || "Not provided"}`,
-    `City: ${form.city.trim() || "Not provided"}`,
-    `Student age: ${form.age || "Not provided"}`,
-    `Experience: ${form.experience || "Not provided"}`,
-    `Preferred lesson: ${lesson.title} (${lesson.price})`,
-    `Goals: ${form.goals.length ? form.goals.join(", ") : "Not provided"}`,
-    "",
-    "Notes:",
-    form.notes.trim() || "Not provided",
-    "",
-    "-",
-    `Requested via ${BRAND_NAME} website`,
-  ].join("\n");
-
-  return `mailto:${encodeURIComponent(ZELLE_EMAIL)}?subject=${encodeURIComponent(
-    DEFAULT_SUBJECT
-  )}&body=${encodeURIComponent(body)}`;
-}
-
 function themeKoalendarFloatingButton() {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
@@ -3926,6 +3902,9 @@ function Footer({ navigateToPage }) {
 function BookingSection({ revealOnLoad = false } = {}) {
   const [studentStatus, setStudentStatus] = useState("new");
   const [selectedKey, setSelectedKey] = useState(LESSONS[0].key);
+  const [honeypot, setHoneypot] = useState("");
+  const [isSubmittingInquiry, setIsSubmittingInquiry] = useState(false);
+  const [inquiryStatus, setInquiryStatus] = useState({ type: "", message: "" });
   const [form, setForm] = useState({
     parentName: "",
     studentName: "",
@@ -3954,13 +3933,64 @@ function BookingSection({ revealOnLoad = false } = {}) {
     });
   }
 
-  function submitInquiry(event) {
+  async function submitInquiry(event) {
     event.preventDefault();
-    if (!form.parentName.trim() || !form.email.trim()) {
-      alert("Please enter a parent name and email.");
+    const parentName = form.parentName.trim();
+    const email = form.email.trim();
+    const notes = form.notes.trim();
+    const studentGoals = form.goals.join(", ");
+
+    setInquiryStatus({ type: "", message: "" });
+
+    if (!parentName) {
+      setInquiryStatus({ type: "error", message: "Please enter a parent name." });
       return;
     }
-    window.location.href = buildMailto(form, selectedLesson, studentStatus);
+
+    if (!email || !EMAIL_PATTERN.test(email)) {
+      setInquiryStatus({ type: "error", message: "Please enter a valid email address." });
+      return;
+    }
+
+    if (!studentGoals && !notes) {
+      setInquiryStatus({ type: "error", message: "Please choose at least one goal or add a note." });
+      return;
+    }
+
+    setIsSubmittingInquiry(true);
+
+    try {
+      const response = await fetch("/api/lesson-inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          parent_name: parentName,
+          student_name: form.studentName.trim(),
+          email,
+          phone: form.phone.trim(),
+          city: form.city.trim(),
+          student_age: form.age,
+          student_experience: form.experience,
+          student_goals: studentGoals,
+          notes,
+          company: honeypot,
+        }),
+      });
+      const isJsonResponse = response.headers.get("content-type")?.includes("application/json");
+      const data = isJsonResponse ? await response.json().catch(() => ({})) : {};
+
+      if (!response.ok || !isJsonResponse) {
+        throw new Error(data.message || FORM_ERROR_MESSAGE);
+      }
+
+      setInquiryStatus({ type: "success", message: data.message || LESSON_INQUIRY_SUCCESS_MESSAGE });
+    } catch {
+      setInquiryStatus({ type: "error", message: FORM_ERROR_MESSAGE });
+    } finally {
+      setIsSubmittingInquiry(false);
+    }
   }
 
   return (
@@ -4010,10 +4040,22 @@ function BookingSection({ revealOnLoad = false } = {}) {
 
         <div className="bookingLayout" data-reveal style={{ "--reveal-delay": "120ms" }}>
           <form className="bookingForm" onSubmit={submitInquiry} data-reveal style={{ "--reveal-delay": "70ms" }}>
+            <label className="formHoneypot" htmlFor="lesson-company">
+              Company
+              <input
+                id="lesson-company"
+                name="company"
+                value={honeypot}
+                onChange={(event) => setHoneypot(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
             <div className="fieldGrid">
               <label>
                 Parent name *
                 <input
+                  name="parent_name"
                   value={form.parentName}
                   onChange={(event) => updateForm("parentName", event.target.value)}
                   placeholder="Parent or guardian"
@@ -4022,6 +4064,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               <label>
                 Student name
                 <input
+                  name="student_name"
                   value={form.studentName}
                   onChange={(event) => updateForm("studentName", event.target.value)}
                   placeholder="Student name"
@@ -4030,6 +4073,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               <label>
                 Email *
                 <input
+                  name="email"
                   value={form.email}
                   onChange={(event) => updateForm("email", event.target.value)}
                   placeholder="you@example.com"
@@ -4039,6 +4083,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               <label>
                 Phone
                 <input
+                  name="phone"
                   value={form.phone}
                   onChange={(event) => updateForm("phone", event.target.value)}
                   placeholder="+1"
@@ -4047,6 +4092,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               <label>
                 City
                 <input
+                  name="city"
                   value={form.city}
                   onChange={(event) => updateForm("city", event.target.value)}
                   placeholder="City or online"
@@ -4054,7 +4100,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               </label>
               <label>
                 Student age
-                <select value={form.age} onChange={(event) => updateForm("age", event.target.value)}>
+                <select name="student_age" value={form.age} onChange={(event) => updateForm("age", event.target.value)}>
                   <option value="">Select age</option>
                   {Array.from({ length: 17 }, (_, index) => index + 5).map((age) => (
                     <option value={`${age}`} key={age}>
@@ -4066,6 +4112,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
               <label className="wideField">
                 Experience
                 <select
+                  name="student_experience"
                   value={form.experience}
                   onChange={(event) => updateForm("experience", event.target.value)}
                 >
@@ -4086,6 +4133,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
                 {GOALS.map((goal) => (
                   <label key={goal} className={form.goals.includes(goal) ? "goalChip goalChipActive" : "goalChip"}>
                     <input
+                      name="student_goals"
                       type="checkbox"
                       checked={form.goals.includes(goal)}
                       onChange={() => toggleGoal(goal)}
@@ -4099,6 +4147,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
             <label className="notesField">
               Notes
               <textarea
+                name="notes"
                 value={form.notes}
                 onChange={(event) => updateForm("notes", event.target.value)}
                 placeholder="Current rating, goals, recent tournament plans, preferred schedule, or anything Coach Chris should know."
@@ -4106,9 +4155,14 @@ function BookingSection({ revealOnLoad = false } = {}) {
               />
             </label>
 
-            <button className="btnSecondary" type="submit">
-              Lets Get Started
+            <button className="btnSecondary" type="submit" disabled={isSubmittingInquiry}>
+              {isSubmittingInquiry ? "Sending..." : "Lets Get Started"}
             </button>
+            {inquiryStatus.message && (
+              <p className={inquiryStatus.type === "success" ? "formStatus formStatusSuccess" : "formStatus formStatusError"} role="status">
+                {inquiryStatus.message}
+              </p>
+            )}
           </form>
 
           {studentStatus === "returning" ? (
@@ -4180,30 +4234,56 @@ function LessonPanel({ selectedLesson, selectedKey, setSelectedKey }) {
 
 function ConsultationModal({ isOpen, onClose }) {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
 
-  function submitConsultation(event) {
+  async function submitConsultation(event) {
     event.preventDefault();
     const trimmedEmail = email.trim();
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
 
-    if (!isValidEmail) {
+    if (!EMAIL_PATTERN.test(trimmedEmail)) {
       setError("Please enter a valid email address.");
       return;
     }
 
-    try {
-      window.localStorage.setItem("horizon-consultation-email", trimmedEmail);
-      window.sessionStorage.setItem(CONSULTATION_STORAGE_KEY, "true");
-    } catch {
-      // Storage can fail in private browsing; the confirmation should still work.
-    }
-
     setError("");
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/newsletter-signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: trimmedEmail,
+          company: honeypot,
+        }),
+      });
+      const isJsonResponse = response.headers.get("content-type")?.includes("application/json");
+      const data = isJsonResponse ? await response.json().catch(() => ({})) : {};
+
+      if (!response.ok || !isJsonResponse) {
+        throw new Error(data.message || FORM_ERROR_MESSAGE);
+      }
+
+      try {
+        window.localStorage.setItem("hudson-newsletter-email", trimmedEmail);
+        window.sessionStorage.setItem(CONSULTATION_STORAGE_KEY, "true");
+      } catch {
+        // Storage can fail in private browsing; the confirmation should still work.
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError(FORM_ERROR_MESSAGE);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function closeModal() {
@@ -4229,24 +4309,32 @@ function ConsultationModal({ isOpen, onClose }) {
 
         {submitted ? (
           <div className="consultationSuccess">
-            <p className="eyebrow">Consultation request received</p>
-            <h2 id="consultation-title">Check your inbox soon.</h2>
-            <p>
-              Thanks for sharing your email. Coach Chris will follow up with consultation details
-              and next steps for getting started.
-            </p>
+            <p className="eyebrow">Hudson Chess articles</p>
+            <h2 id="consultation-title">You’re in.</h2>
+            <p>{NEWSLETTER_SUCCESS_MESSAGE}</p>
             <button className="btnPrimary" type="button" onClick={closeModal}>
               Continue to site
             </button>
           </div>
         ) : (
           <form className="consultationForm" onSubmit={submitConsultation}>
-            <p className="eyebrow">Free consultation</p>
-            <h2 id="consultation-title">Get a consultation email from Coach Chris.</h2>
+            <p className="eyebrow">Hudson Chess articles</p>
+            <h2 id="consultation-title">Get Hudson Chess articles from Coach Chris.</h2>
             <p>
-              Enter your email and receive a short note about lesson options, student fit, and how
-              to choose the right next step.
+              Enter your email to receive new chess improvement articles, training ideas, and lesson updates from Hudson Chess.
             </p>
+
+            <label className="formHoneypot" htmlFor="newsletter-company">
+              Company
+              <input
+                id="newsletter-company"
+                name="company"
+                value={honeypot}
+                onChange={(event) => setHoneypot(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
 
             <label>
               Email address
@@ -4262,13 +4350,13 @@ function ConsultationModal({ isOpen, onClose }) {
               />
             </label>
 
-            {error && <span className="consultationError">{error}</span>}
+            {error && <span className="consultationError" role="alert">{error}</span>}
 
             <div className="consultationActions">
-              <button className="btnPrimary" type="submit">
-                Send consultation email
+              <button className="btnPrimary" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Me Chess Articles"}
               </button>
-              <button className="consultationSkip" type="button" onClick={closeModal}>
+              <button className="consultationSkip" type="button" onClick={closeModal} disabled={isSubmitting}>
                 Not now
               </button>
             </div>

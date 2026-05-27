@@ -81,6 +81,11 @@ button{
   cursor: pointer;
 }
 
+button:disabled{
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -1595,6 +1600,35 @@ h3{
 
 .bookingForm .btnSecondary{
   margin-top: 22px;
+}
+
+.formHoneypot{
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formStatus{
+  margin: 14px 0 0;
+  padding: 13px 15px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.formStatusSuccess{
+  color: #143b35;
+  background: rgba(220, 235, 221, 0.92);
+  border: 1px solid rgba(47, 125, 131, 0.26);
+}
+
+.formStatusError{
+  color: #68311d;
+  background: rgba(255, 217, 194, 0.7);
+  border: 1px solid rgba(201, 120, 69, 0.28);
 }
 
 .lessonPanel{
