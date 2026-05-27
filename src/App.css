@@ -1304,6 +1304,8 @@ h3{
 }
 
 .coachGallery figure{
+  position: relative;
+  isolation: isolate;
   min-height: 260px;
   margin: 0;
   border-radius: var(--radius);
@@ -1314,10 +1316,28 @@ h3{
   transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
 }
 
+.coachGallery figure::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(13, 32, 30, 0.18), rgba(13, 32, 30, 0.18)),
+    rgba(67, 105, 80, 0.08);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  transition: opacity 0.24s ease;
+}
+
 .coachGallery figure:hover{
   transform: translateY(-5px);
   border-color: rgba(47, 125, 131, 0.34);
   box-shadow: 0 20px 38px rgba(30, 58, 55, 0.16);
+}
+
+.coachGallery figure:hover::after{
+  opacity: 0.76;
 }
 
 .coachGallery img{
