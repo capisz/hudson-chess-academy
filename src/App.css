@@ -3819,6 +3819,13 @@ h3{
   mix-blend-mode: multiply;
 }
 
+.coachBioHeroPhoto .coachBioImageTint::after{
+  background:
+    linear-gradient(0deg, rgba(13, 32, 30, 0.24), rgba(13, 32, 30, 0.24)),
+    rgba(67, 105, 80, 0.1);
+  mix-blend-mode: multiply;
+}
+
 .coachBioImageTint img{
   display: block;
   width: 100%;
