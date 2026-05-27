@@ -163,6 +163,7 @@ const JOURNEY_CHECKPOINTS = [
     posterSrc: "/images/roadmap/move1-poster.png",
     gifAlt: "Animated chess board showing a player making a basic move.",
     threshold: 0.18,
+    mobileThreshold: 0.04,
   },
   {
     number: "02",
@@ -174,6 +175,7 @@ const JOURNEY_CHECKPOINTS = [
     posterSrc: "/images/roadmap/move3-poster.png",
     gifAlt: "Animated chess board showing a fork or discovered check tactic.",
     threshold: 0.48,
+    mobileThreshold: 0.38,
   },
   {
     number: "03",
@@ -185,6 +187,7 @@ const JOURNEY_CHECKPOINTS = [
     posterSrc: "/images/roadmap/move2-poster.png",
     gifAlt: "Animated chess board showing a brilliant move tactic.",
     threshold: 0.76,
+    mobileThreshold: 0.66,
   },
 ];
 
@@ -2529,6 +2532,8 @@ function ChessJourneyRoadmap({ navigateToPage }) {
     const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
     const getFocusLevel = (progress, center, radius = 0.16) =>
       clamp(1 - Math.abs(progress - center) / radius);
+    const getCheckpointThreshold = (checkpoint) =>
+      window.innerWidth <= 760 ? (checkpoint.mobileThreshold ?? checkpoint.threshold) : checkpoint.threshold;
 
     const updateProgress = () => {
       const rect = section.getBoundingClientRect();
@@ -2539,11 +2544,11 @@ function ChessJourneyRoadmap({ navigateToPage }) {
       const sceneY = -sceneTravel * nextProgress;
       const kingFill = nextProgress > 0.84 ? clamp((nextProgress - 0.84) / 0.16) : 0;
       const nextActiveIndex = JOURNEY_CHECKPOINTS.reduce(
-        (active, checkpoint, index) => (nextProgress >= checkpoint.threshold ? index : active),
+        (active, checkpoint, index) => (nextProgress >= getCheckpointThreshold(checkpoint) ? index : active),
         -1
       );
       const nextVisitedCount = JOURNEY_CHECKPOINTS.filter(
-        (checkpoint) => nextProgress >= checkpoint.threshold
+        (checkpoint) => nextProgress >= getCheckpointThreshold(checkpoint)
       ).length;
       const complete = nextProgress >= 0.92;
 

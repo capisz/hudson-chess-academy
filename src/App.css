@@ -5155,6 +5155,16 @@ h3{
 
   .journeyCard{
     padding: 22px;
+    opacity: 0.82;
+    transform: translateY(8px) scale(0.992);
+  }
+
+  .journeyStepVisited .journeyCard{
+    opacity: 0.92;
+  }
+
+  .journeyStepActive .journeyCard{
+    transform: translateY(0) scale(1.012);
   }
 
   .journeyGif{
@@ -5163,6 +5173,16 @@ h3{
     width: min(calc(100% - 76px), 246px);
     padding: 8px;
     border-radius: 16px;
+    opacity: 0.72;
+  }
+
+  .journeyGifVisited{
+    opacity: 0.84;
+  }
+
+  .journeyGifActive{
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.01);
   }
 
   .journeyGif img,
