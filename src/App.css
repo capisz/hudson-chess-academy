@@ -5164,8 +5164,13 @@ h3{
 
   .journeyGif img,
   .journeyGifPoster{
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 1;
     border-radius: 11px;
+  }
+
+  .journeyGif img{
+    object-fit: contain;
+    background: rgba(255, 250, 242, 0.7);
   }
 
   .journeyGifOne{
