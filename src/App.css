@@ -1289,8 +1289,11 @@ h3{
 }
 
 .coachProfile{
-  width: clamp(112px, 12vw, 164px);
+  --coach-profile-size: clamp(112px, 12vw, 164px);
+  width: var(--coach-profile-size);
+  height: var(--coach-profile-size);
   aspect-ratio: 1;
+  display: block;
   border-radius: 999px;
   object-fit: cover;
   border: 5px solid var(--paperAlt);
