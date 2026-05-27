@@ -191,11 +191,11 @@ const JOURNEY_CHECKPOINTS = [
 const JOURNEY_DESKTOP_PATH =
   "M600 45 C520 150 448 270 474 382 C530 560 792 575 714 759 C650 940 410 955 474 1133 C520 1214 574 1248 600 1288";
 const JOURNEY_MOBILE_PATH =
-  "M28 38 C18 112 22 180 23 231 C34 390 34 520 23 660 C12 820 15 960 23 1089 C52 1228 138 1360 176 1530";
+  "M28 38 C18 112 22 180 23 227 C34 420 34 580 23 797 C12 1010 15 1230 23 1367 C52 1535 138 1705 176 1870";
 const JOURNEY_KING_PATH =
   "M31 6 H37 V13 H46 V20 H37 V28 C46 32 52 41 52 51 H57 V59 H7 V51 H12 C12 41 18 32 27 28 V20 H18 V13 H31 Z";
 const JOURNEY_DESKTOP_KING = { x: 600, y: 1288, size: 52 };
-const JOURNEY_MOBILE_KING = { x: 176, y: 1530, size: 46 };
+const JOURNEY_MOBILE_KING = { x: 176, y: 1870, size: 46 };
 
 const BLOG_POSTS = [
   {
@@ -2542,7 +2542,7 @@ function ChessJourneyRoadmap({ navigateToPage }) {
               className="journeyPathMobile"
               path={JOURNEY_MOBILE_PATH}
               king={JOURNEY_MOBILE_KING}
-              viewBox="0 0 360 1700"
+              viewBox="0 0 360 2050"
             />
 
             {JOURNEY_CHECKPOINTS.map((checkpoint, index) => {
