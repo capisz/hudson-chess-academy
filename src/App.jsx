@@ -2081,6 +2081,20 @@ function getBlogPostFromRoute(route) {
   return BLOG_POSTS.find((post) => post.slug === slug);
 }
 
+function getLatestBlogPost() {
+  return BLOG_POSTS.map((post, index) => ({ post, index }))
+    .sort((left, right) => {
+      const leftDate = new Date(left.post.publishedDate).getTime();
+      const rightDate = new Date(right.post.publishedDate).getTime();
+      return rightDate - leftDate || right.index - left.index;
+    })[0]?.post;
+}
+
+function getLatestBlogRoute() {
+  const latestPost = getLatestBlogPost();
+  return latestPost ? `blog/${latestPost.slug}` : "blog";
+}
+
 function getRelatedPosts(post) {
   return (post.relatedSlugs || [])
     .map((slug) => BLOG_POSTS.find((candidate) => candidate.slug === slug))
@@ -2129,13 +2143,25 @@ function formatDisplayDate(dateString) {
   }).format(new Date(`${dateString}T00:00:00`));
 }
 
-function getPageFromHash() {
+function getRawPageFromHash() {
   if (typeof window === "undefined") return "home";
-  const page = window.location.hash.replace(/^#\/?/, "") || "home";
+  return window.location.hash.replace(/^#\/?/, "") || "home";
+}
+
+function getPageFromHash() {
+  const page = getRawPageFromHash();
   if (page === "why-horizon") return "success-stories";
+  if (page === "blog/latest") return getLatestBlogRoute();
   if (ROUTABLE_PAGES.some((item) => item.key === page)) return page;
   if (page.startsWith("blog/") && getBlogPostFromRoute(page)) return page;
   return "home";
+}
+
+function replaceLatestBlogHash(page = getPageFromHash()) {
+  if (typeof window === "undefined") return;
+  if (getRawPageFromHash() === "blog/latest") {
+    window.history.replaceState(null, "", `#/${page}`);
+  }
 }
 
 function scrollPageToTop() {
@@ -4380,6 +4406,7 @@ export default function App() {
   }
 
   useLayoutEffect(() => {
+    replaceLatestBlogHash(currentPage);
     scrollPageToTop();
   }, [currentPage]);
 
@@ -4396,7 +4423,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const syncPage = () => setCurrentPage(getPageFromHash());
+    const syncPage = () => {
+      const nextPage = getPageFromHash();
+      replaceLatestBlogHash(nextPage);
+      setCurrentPage(nextPage);
+    };
     window.addEventListener("popstate", syncPage);
     window.addEventListener("hashchange", syncPage);
     return () => {
@@ -4605,7 +4636,7 @@ export default function App() {
       <main>
         {currentPage === "home" && <HomePage slideIdx={slideIdx} navigateToPage={navigateToPage} />}
         {currentPage === "blog" && <BlogPage navigateToPage={navigateToPage} />}
-        {currentPage.startsWith("blog/") && (
+        {currentPage.startsWith("blog/") && currentPage !== "blog/latest" && (
           <BlogPostPage post={getBlogPostFromRoute(currentPage)} navigateToPage={navigateToPage} />
         )}
         {currentPage === "success-stories" && <SuccessStoriesPage navigateToPage={navigateToPage} />}

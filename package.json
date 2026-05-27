@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run rss && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "rss": "node scripts/generate-rss.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
