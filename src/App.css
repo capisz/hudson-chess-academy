@@ -1965,7 +1965,7 @@ h3{
 .successClosingBand{
   padding: clamp(64px, 8vw, 104px) 0;
   color: var(--paperAlt);
-  background: var(--deep);
+  background: var(--teal);
 }
 
 .successClosingPanel{
@@ -1992,6 +1992,12 @@ h3{
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
+}
+
+.successClosingActions .btnPrimary{
+  color: var(--deep);
+  background: var(--gold);
+  box-shadow: 0 10px 20px rgba(12, 35, 33, 0.2);
 }
 
 @media (max-width: 920px){
@@ -4910,6 +4916,19 @@ h3{
 
   .coachHeader{
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .coachHeader > div{
+    display: grid;
+    justify-items: center;
+  }
+
+  .coachHeader p:not(.eyebrow),
+  .coachPageButton{
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .coachGallery{
@@ -4926,6 +4945,77 @@ h3{
   .blogIndexBand,
   .coachBioSection.pageTopSection{
     padding-top: 24px;
+  }
+
+  .coachChrisPageSection.contentWrap{
+    width: 100%;
+  }
+
+  .coachChrisPageSection.pageTopSection{
+    padding-top: 0;
+  }
+
+  .coachChrisPageSection .coachBioWrapArticle{
+    max-width: none;
+    text-align: center;
+  }
+
+  .coachChrisPageSection .coachBioWrapArticle[data-reveal]{
+    transform: none;
+  }
+
+  .coachChrisPageSection .coachBioWrapArticle > :not(.coachBioHeroPhoto):not(.coachBioInlinePhotoRight),
+  .coachChrisPageSection .coachBioCards{
+    width: min(var(--container), calc(100% - 30px));
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .coachChrisPageSection .coachBioHeroPhoto{
+    left: 50%;
+    width: 100vw;
+    max-width: none;
+    margin: 0 0 28px;
+    filter: none;
+    transform: translateX(-50%);
+  }
+
+  .coachChrisPageSection .coachBioHeroPhoto .coachBioImageTint{
+    border-radius: 0;
+    aspect-ratio: 1.08;
+  }
+
+  .coachChrisPageSection .coachBioHeroPhoto .coachBioImageTint img{
+    height: 100%;
+    object-fit: cover;
+    object-position: center 16%;
+  }
+
+  .coachChrisPageSection .coachBioHeroPhoto:hover{
+    transform: translateX(-50%);
+  }
+
+  .coachChrisPageSection .coachBioTitleRow,
+  .coachChrisPageSection .coachBioCards{
+    justify-items: center;
+    text-align: center;
+  }
+
+  .coachChrisPageSection .coachBioTitleProfile{
+    margin-inline: auto;
+  }
+
+  .coachChrisPageSection .coachBioInlinePhotoRight{
+    width: min(420px, calc(100% - 30px));
+    margin: 24px auto;
+  }
+
+  .coachChrisPageSection .processCard{
+    text-align: center;
+  }
+
+  .coachChrisPageSection .processCard span{
+    margin-inline: auto;
   }
 
   .journeyRoadmap{
@@ -5195,6 +5285,14 @@ h3{
 
   .sectionBlock{
     padding-block: 48px;
+  }
+
+  .coachChrisPageSection.contentWrap{
+    width: 100%;
+  }
+
+  .coachChrisPageSection.pageTopSection{
+    padding-top: 0;
   }
 
   .articleBand{

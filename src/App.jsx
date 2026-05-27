@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { AdSenseLoader, BlogAdSlot } from "./AdSense.jsx";
 import CookieConsent from "./CookieConsent.jsx";
 import { openCookieSettings } from "./consent.js";
@@ -3608,9 +3609,9 @@ function SuccessStoriesPage({ navigateToPage }) {
 function CoachChrisPage({ navigateToPage }) {
   return (
     <>
-      <section className="contentWrap sectionBlock coachBioSection pageTopSection">
+      <section className="contentWrap sectionBlock coachBioSection pageTopSection coachChrisPageSection">
         <article className="coachBioCopy coachBioWrapArticle" data-reveal>
-          <figure className="coachBioPhoto coachBioInlinePhoto coachBioInlinePhotoLeft">
+          <figure className="coachBioPhoto coachBioInlinePhoto coachBioInlinePhotoLeft coachBioHeroPhoto">
             <span className="coachBioImageTint">
               <img src="/images/coach-chris-trophy-lesson.jpeg" alt="Coach Chris with a young chess student holding a tournament trophy" />
             </span>
@@ -4345,7 +4346,7 @@ function ConsultationModal({ isOpen, onClose }) {
         ) : (
           <form className="consultationForm" onSubmit={submitConsultation}>
             <p className="eyebrow">Hudson Chess articles</p>
-            <h2 id="consultation-title">Get Hudson Chess articles from Coach Chris.</h2>
+            <h2 id="consultation-title">Get blogs & articles from Coach Chris.</h2>
             <p>
               Enter your email to receive new chess improvement articles, training ideas, and lesson updates from Hudson Chess.
             </p>
@@ -4652,6 +4653,7 @@ export default function App() {
       <CookieConsent />
       <AdSenseLoader />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
