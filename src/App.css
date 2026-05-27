@@ -5064,7 +5064,7 @@ h3{
   }
 
   .journeyScene{
-    height: 1600px;
+    height: 1700px;
   }
 
   .journeyPathDesktop{
@@ -5168,7 +5168,7 @@ h3{
   .journeyEndCta,
   .journeyEndCtaActive{
     position: absolute;
-    top: 1480px;
+    top: 1590px;
     left: 50%;
     right: auto;
     bottom: auto;
