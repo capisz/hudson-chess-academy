@@ -4989,13 +4989,13 @@ h3{
 
   .coachChrisPageSection .coachBioHeroPhoto .coachBioImageTint{
     border-radius: 0;
-    aspect-ratio: 1.08;
+    aspect-ratio: 1.54;
   }
 
   .coachChrisPageSection .coachBioHeroPhoto .coachBioImageTint img{
     height: 100%;
     object-fit: cover;
-    object-position: center 16%;
+    object-position: center 42%;
   }
 
   .coachChrisPageSection .coachBioHeroPhoto:hover{
