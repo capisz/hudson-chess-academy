@@ -3760,8 +3760,8 @@ const IAN_RATING_MILESTONES = [
 ];
 
 const ELIZABETH_GROWTH = [
-  { subject: "Math", from: "2nd grade level", to: "6th grade level", progress: 68 },
-  { subject: "Reading", from: "4th grade level", to: "8th grade level", progress: 82 },
+  { subject: "Math", from: "2nd grade level", to: "6th grade level", start: 25, end: 75 },
+  { subject: "Reading", from: "4th grade level", to: "8th grade level", start: 50, end: 100 },
 ];
 
 function StoryImage({ src, alt, label, align = "", caption = "" }) {
@@ -3795,7 +3795,9 @@ function RatingTimeline() {
           <strong>{milestone.value}</strong>
           <p>{milestone.note}</p>
           <i aria-hidden="true" />
-          {index < IAN_RATING_MILESTONES.length - 1 && <b aria-hidden="true" />}
+          {index < IAN_RATING_MILESTONES.length - 1 && (
+            <b className={`ratingConnector ratingConnector${index + 1}`} aria-hidden="true" />
+          )}
         </article>
       ))}
     </div>
@@ -3806,10 +3808,23 @@ function AcademicGrowthVisual() {
   return (
     <div className="successVisual academicGrowth" aria-label="Elizabeth academic growth reported over two years.">
       {ELIZABETH_GROWTH.map((item) => (
-        <article className="academicGrowthCard" key={item.subject} style={{ "--growth": `${item.progress}%` }}>
+        <article
+          className="academicGrowthCard"
+          key={item.subject}
+          style={{
+            "--growth-start": `${item.start}%`,
+            "--growth-end": `${item.end}%`,
+            "--growth-gain": `${item.end - item.start}%`,
+          }}
+        >
           <span>{item.subject}</span>
           <div className="academicGrowthLabels">
             <strong>{item.from}</strong>
+            <span className="academicGrowthArrow" aria-hidden="true">
+              <svg viewBox="0 0 42 18" focusable="false">
+                <path d="M2 9h34m0 0-7-6m7 6-7 6" />
+              </svg>
+            </span>
             <strong>{item.to}</strong>
           </div>
           <div className="academicGrowthTrack" aria-hidden="true">
