@@ -1804,7 +1804,7 @@ h3{
   background: var(--paper);
 }
 
-.successStoryBandKylee{
+.successStoryBandElizabeth{
   background: #f4efe4;
 }
 
@@ -1881,6 +1881,16 @@ h3{
   height: clamp(260px, 31vw, 388px);
   object-fit: cover;
   filter: saturate(0.9) sepia(0.08);
+}
+
+.storyImageElizabethPortrait{
+  width: min(34vw, 320px);
+}
+
+.storyImageElizabethPortrait img{
+  height: clamp(430px, 48vw, 530px);
+  min-height: clamp(430px, 48vw, 530px);
+  object-position: 52% 45%;
 }
 
 .storyImageFallback{
@@ -2027,6 +2037,38 @@ h3{
   min-height: clamp(280px, 38vw, 440px);
 }
 
+.storyImageElizabethPlayingInline{
+  width: min(34vw, 310px);
+  border: 0;
+  background: transparent;
+  box-shadow: 0 18px 38px rgba(7, 22, 21, 0.13);
+}
+
+.storyImageElizabethPlayingInline img{
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.storyVideo{
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(32, 51, 49, 0.14);
+  border-radius: 30px;
+  background: var(--deep);
+  box-shadow: 0 22px 48px rgba(7, 22, 21, 0.16);
+}
+
+.storyVideo iframe{
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(260px, 36vw, 430px);
+  border: 0;
+}
+
 .successClosingBand{
   padding: clamp(64px, 8vw, 104px) 0;
   color: var(--paperAlt);
@@ -2100,10 +2142,30 @@ h3{
     min-height: 260px;
   }
 
+  .storyImageElizabethPortrait img,
+  .storyImageElizabethPortrait .storyImageFallback{
+    height: min(132vw, 560px);
+    min-height: min(132vw, 560px);
+    object-position: 52% 42%;
+  }
+
   .storyImageWide img,
   .storyImageWide .storyImageFallback{
     height: 250px;
     min-height: 250px;
+  }
+
+  .storyImageElizabethPlayingInline{
+    width: min(100%, 310px);
+    margin: 0 auto 22px;
+  }
+
+  .storyImageElizabethPlayingInline img,
+  .storyImageElizabethPlayingInline .storyImageFallback{
+    height: auto;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center top;
   }
 
   .ratingTimeline{
@@ -4062,6 +4124,33 @@ h3{
   color: var(--inkSoft);
   font-size: 16px;
   line-height: 1.52;
+}
+
+.coachBioGroupPhoto{
+  overflow: hidden;
+  margin: clamp(4px, 1.5vw, 12px) auto clamp(8px, 1.8vw, 16px);
+  width: min(100%, 980px);
+  border-radius: calc(var(--radius) + 16px);
+  filter: drop-shadow(0 18px 34px rgba(30, 58, 55, 0.14));
+}
+
+.coachBioGroupPhoto .coachBioImageTint{
+  border-radius: inherit;
+}
+
+.coachBioGroupPhoto .coachBioImageTint::after{
+  background:
+    linear-gradient(0deg, rgba(13, 32, 30, 0.14), rgba(13, 32, 30, 0.14)),
+    rgba(67, 105, 80, 0.08);
+  mix-blend-mode: multiply;
+}
+
+.coachBioGroupPhoto img{
+  display: block;
+  width: 100%;
+  aspect-ratio: 2;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .coachBioCards{

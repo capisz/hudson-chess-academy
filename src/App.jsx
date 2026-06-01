@@ -3759,7 +3759,7 @@ const IAN_RATING_MILESTONES = [
   { label: "Year 3", value: "1200", note: "Competing with purpose", progress: 100 },
 ];
 
-const KYLEE_GROWTH = [
+const ELIZABETH_GROWTH = [
   { subject: "Math", from: "2nd grade level", to: "6th grade level", progress: 68 },
   { subject: "Reading", from: "4th grade level", to: "8th grade level", progress: 82 },
 ];
@@ -3804,8 +3804,8 @@ function RatingTimeline() {
 
 function AcademicGrowthVisual() {
   return (
-    <div className="successVisual academicGrowth" aria-label="Kylee academic growth reported over two years.">
-      {KYLEE_GROWTH.map((item) => (
+    <div className="successVisual academicGrowth" aria-label="Elizabeth academic growth reported over two years.">
+      {ELIZABETH_GROWTH.map((item) => (
         <article className="academicGrowthCard" key={item.subject} style={{ "--growth": `${item.progress}%` }}>
           <span>{item.subject}</span>
           <div className="academicGrowthLabels">
@@ -3822,6 +3822,20 @@ function AcademicGrowthVisual() {
   );
 }
 
+function StoryVideo({ src, title }) {
+  return (
+    <figure className="storyVideo storyImageWide">
+      <iframe
+        src={src}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </figure>
+  );
+}
+
 function SuccessStorySection({
   variant,
   eyebrow,
@@ -3831,8 +3845,21 @@ function SuccessStorySection({
   bodyBeforeVisual,
   visual,
   bodyAfterVisual,
+  bodyAfterImage,
   closingImage,
+  closingVideo,
 }) {
+  const portraitAlign = [imageSide === "right" ? "storyImageRight" : "storyImageLeft", portrait.align]
+    .filter(Boolean)
+    .join(" ");
+  const bodyAfterImageAlign = [
+    bodyAfterImage?.side === "right" ? "storyImageRight" : "storyImageLeft",
+    bodyAfterImage?.align,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const closingImageAlign = ["storyImageWide", closingImage?.align].filter(Boolean).join(" ");
+
   return (
     <section className={`successStoryBand successStoryBand${variant}`} data-reveal>
       <article className="contentWrap successStoryArticle">
@@ -3842,7 +3869,7 @@ function SuccessStorySection({
         </header>
 
         <div className="successStoryText">
-          <StoryImage {...portrait} align={imageSide === "right" ? "storyImageRight" : "storyImageLeft"} />
+          <StoryImage {...portrait} align={portraitAlign} />
           {bodyBeforeVisual.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
@@ -3851,14 +3878,17 @@ function SuccessStorySection({
         {visual}
 
         <div className="successStoryText successStoryTextAfter">
+          {bodyAfterImage && <StoryImage {...bodyAfterImage} align={bodyAfterImageAlign} />}
           {bodyAfterVisual.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
 
-        <div className="successStoryClosingImage" data-reveal>
-          <StoryImage {...closingImage} align="storyImageWide" />
-        </div>
+        {(closingImage || closingVideo) && (
+          <div className="successStoryClosingImage" data-reveal>
+            {closingVideo ? <StoryVideo {...closingVideo} /> : <StoryImage {...closingImage} align={closingImageAlign} />}
+          </div>
+        )}
       </article>
     </section>
   );
@@ -3881,12 +3911,12 @@ function SuccessStoriesPage({ navigateToPage }) {
 
       <SuccessStorySection
         variant="Ian"
-        eyebrow="Composite tournament growth story"
+        eyebrow="Tournament growth story"
         title="Ian: From Absolute Beginner to Tournament Competitor"
         imageSide="left"
         portrait={{
-          src: "/images/success-stories/ian-portrait.jpg",
-          alt: "Ian portrait placeholder for a composite tournament growth story.",
+          src: "/images/success-stories/ian-portrait.webp",
+          alt: "Ian studying a chess position during class.",
           label: "Ian portrait",
         }}
         bodyBeforeVisual={[
@@ -3906,54 +3936,57 @@ function SuccessStoriesPage({ navigateToPage }) {
           "By the end of his third year, Ian reached around a 1200 rating.",
           "From zero to 1200 in three years is not just a rating story. It is a story about discipline, patience, confidence, and learning how to compete with purpose.",
         ]}
-        closingImage={{
-          src: "/images/success-stories/ian-playing.jpg",
-          alt: "Ian playing chess placeholder for a composite tournament growth story.",
-          label: "Ian playing chess",
+        closingVideo={{
+          src: "https://www.youtube.com/embed/dASG5CE0bpo",
+          title: "Ian playing chess",
         }}
       />
 
       <SuccessStorySection
-        variant="Kylee"
-        eyebrow="Composite academic growth story"
-        title="Kylee: Growth Beyond the Rating"
+        variant="Elizabeth"
+        eyebrow="Academic growth story"
+        title="Elizabeth: Growth Beyond the Rating"
         imageSide="right"
         portrait={{
-          src: "/images/success-stories/kylee-portrait.jpg",
-          alt: "Kylee portrait placeholder for a composite academic growth story.",
-          label: "Kylee portrait",
+          src: "/images/success-stories/elizabeth-portrait.webp",
+          alt: "Elizabeth standing in the chess classroom.",
+          label: "Elizabeth portrait",
+          align: "storyImageElizabethPortrait",
         }}
         bodyBeforeVisual={[
-          "Kylee’s growth looked different.",
+          "Elizabeth’s growth looked different.",
           "She was not chasing a tournament rating. She was not playing every weekend or measuring herself by trophies. Her progress was quieter, but just as meaningful.",
-          "When Kylee joined the program, chess became a tool for how she approached thinking itself. She learned how to slow down, recognize patterns, follow steps, and look for consequences before making a decision.",
+          "When Elizabeth joined the program, chess became a tool for how she approached thinking itself. She learned how to slow down, recognize patterns, follow steps, and look for consequences before making a decision.",
           "That matters because chess is not only a game of memory. It is a game of structure.",
           "A student has to read the board. They have to understand what changed. They have to compare options, eliminate bad choices, and make a decision with limited information. Those are the same skills students need when reading a difficult passage, solving a multi-step math problem, or trying to stay focused when school feels overwhelming.",
-          "Over two years, Kylee’s teachers reported major academic growth.",
+          "Over two years, Elizabeth’s teachers reported major academic growth.",
         ]}
         visual={<AcademicGrowthVisual />}
+        bodyAfterImage={{
+          src: "/images/success-stories/elizabeth-playing-chess.webp",
+          alt: "Elizabeth thinking through a chess position at the board.",
+          label: "Elizabeth playing chess",
+          align: "storyImageElizabethPlayingInline",
+          side: "left",
+        }}
         bodyAfterVisual={[
           "Her math level grew from about a 2nd grade level to a 6th grade level. Her reading level grew from about a 4th grade level to an 8th grade level.",
-          "That kind of growth cannot be reduced to chess alone, and it should not be exaggerated. But chess gave Kylee a consistent space to practice the habits that strong students need: focus, patience, pattern recognition, problem-solving, and confidence.",
-          "Kylee learned that she could sit with a hard problem.",
+          "That kind of growth cannot be reduced to chess alone, and it should not be exaggerated. But chess gave Elizabeth a consistent space to practice the habits that strong students need: focus, patience, pattern recognition, problem-solving, and confidence.",
+          "Elizabeth learned that she could sit with a hard problem.",
           "She learned that the first answer is not always the best answer. She learned that mistakes can be studied. She learned that improvement is not magic. It is built through repetition, reflection, and the courage to keep trying.",
-          "Kylee may not have had a tournament rating, but her growth was real.",
+          "Elizabeth may not have had a tournament rating, but her growth was real.",
+          "She also talks about wanting to become a lawyer one day, and that goal makes sense when you watch how chess has trained her to slow down, study evidence, compare options, and trust her own reasoning.",
           "Her story is a reminder that success in chess is not only measured by trophies or numbers. Sometimes success looks like a student becoming more confident in school, more willing to think, and more capable of handling challenges away from the board.",
         ]}
-        closingImage={{
-          src: "/images/success-stories/kylee-playing.jpg",
-          alt: "Kylee playing chess placeholder for a composite academic growth story.",
-          label: "Kylee playing chess",
-        }}
       />
 
       <section className="successClosingBand">
         <div className="contentWrap successClosingPanel" data-reveal>
           <p className="eyebrow">Different paths, same lesson</p>
-          <h2>Ian and Kylee grew in different ways.</h2>
+          <h2>Ian and Elizabeth grew in different ways.</h2>
           <p>
             Ian’s progress showed up in tournaments, rating milestones, and competitive confidence.
-            Kylee’s progress showed up in the classroom, in her academic growth, and in the way she
+            Elizabeth’s progress showed up in the classroom, in her academic growth, and in the way she
             learned to approach difficult problems.
           </p>
           <p>
@@ -4032,6 +4065,12 @@ function CoachChrisPage({ navigateToPage }) {
             started.
           </p>
         </article>
+
+        <figure className="coachBioGroupPhoto" data-reveal>
+          <span className="coachBioImageTint">
+            <img src="/images/coach/group-photo.webp" alt="Coach Chris standing with students in the chess classroom." loading="lazy" />
+          </span>
+        </figure>
 
         <div className="coachBioCards">
           <article className="processCard" data-reveal>
