@@ -201,6 +201,177 @@ const JOURNEY_DESKTOP_KING = { x: 600, y: 1288, size: 52 };
 const JOURNEY_MOBILE_KING = { x: 176, y: 1870, size: 46 };
 
 const BLOG_POSTS = [
+{
+  "slug": "what-magnus-carlsen-teaches-us-about-chess-improvement",
+  "category": "Chess improvement",
+  "tags": [
+    "Magnus Carlsen",
+    "Chess Improvement",
+    "Chess Strategy",
+    "Endgames",
+    "Tournament Chess",
+    "Student Training",
+    "GothamChess",
+    "Lex Fridman"
+  ],
+  "title": "What Magnus Carlsen Teaches Us About Real Chess Improvement",
+  "metaTitle": "What Magnus Carlsen Teaches Us About Real Chess Improvement",
+  "metaDescription": "Magnus Carlsen is not great because he solves random tactics faster than everyone else. He is great because he understands chess as a full game: memory, pressure, stamina, endgames, and practical decision-making.",
+  "description": "A practical Coach Chris article on Magnus Carlsen, real chess improvement, practical pressure, endgames, and why students need to learn the whole game.",
+  "excerpt": "Magnus Carlsen shows that real chess improvement is not just memorizing more moves. It is learning how to handle pressure, understand structures, and keep asking questions until the game is truly over.",
+  "author": "Coach Chris",
+  "publishedDate": "2026-06-01",
+  "updatedDate": "2026-06-01",
+  "canonicalPath": "#/blog/what-magnus-carlsen-teaches-us-about-chess-improvement",
+  "featuredImage": "/images/blog/magnus-carlsen-chess-improvement.jpg",
+  "imageAlt": "Magnus Carlsen sitting at a chessboard during a competitive game, used as the cover image for an article on chess improvement.",
+  "audience": "Chess students, tournament players, parents, and improving players learning how to study beyond memorized openings.",
+  "sourceNote": "Inspired by the video: “What makes Magnus Carlsen so good at chess | GothamChess and Lex Fridman” and the larger GothamChess / Lex Fridman conversation.",
+  "source": "Original Coach Chris article draft supplied in magnus_carlsen_chess_improvement_blog_codex.docx.",
+  "summaryIntro": "Coach Chris takeaway: Magnus is not great because he has one secret trick. He is great because when the game stops being memorized, he is still comfortable.",
+  "sectionHeadings": [
+    {
+      "beforeParagraph": 0,
+      "title": "When the Game Actually Begins",
+      "note": "Why Magnus feels different once memorization ends."
+    },
+    {
+      "beforeParagraph": 10,
+      "title": "Magnus Does Not Just Memorize Moves",
+      "note": "Leaving theory can be a practical weapon."
+    },
+    {
+      "beforeParagraph": 22,
+      "title": "Memory Is Not Just Opening Theory",
+      "note": "Strong players remember structures, plans, and pressure."
+    },
+    {
+      "beforeParagraph": 35,
+      "title": "The Engine Can Say Equal, but the Human Still Has to Play",
+      "note": "Equal positions can still be miserable to defend."
+    },
+    {
+      "beforeParagraph": 52,
+      "title": "Endgames Are Where Chess Players Are Revealed",
+      "note": "Small advantages become serious when patience matters."
+    },
+    {
+      "beforeParagraph": 62,
+      "title": "The Real Lesson: Make Your Opponent Think",
+      "note": "Practical chess means creating problems, not randomness."
+    },
+    {
+      "beforeParagraph": 79,
+      "title": "Chess Is Not a Worksheet",
+      "note": "Real improvement means playing the whole game."
+    }
+  ],
+  "inlineMedia": [
+    {
+      "afterParagraph": 34,
+      "src": "/images/blog/looking-at-the-future.gif",
+      "alt": "A cinematic character looking ahead into a glowing future, used as a visual divider between chess improvement chapters."
+    }
+  ],
+  "relatedSlugs": [
+    "how-to-calculate-better-in-chess",
+    "the-art-of-learning-chess",
+    "myth-of-3d-chess"
+  ],
+  "body": [
+    "There is a reason Magnus Carlsen feels different from almost every other chess player.",
+    "It is not just that he calculates well. Every super grandmaster calculates well. It is not just that he knows openings. Every top player has opening preparation. It is not even just that he has a great memory, although his memory is obviously ridiculous.",
+    "What makes Magnus different is that he plays chess like the game is never fully over.",
+    "A lot of players are comfortable when the position is familiar. They know their opening. They know the first ten moves. They know the common traps. They know the engine line. They know what the book says.",
+    "Magnus is great at taking that away.",
+    "He will play something slightly unusual, not because it is bad, and not because he is trying to be flashy, but because he wants the game to begin. He wants both players to leave the comfort of memorization and enter the part of chess where someone has to actually understand what is happening.",
+    "That is a huge difference.",
+    "A lot of students think chess improvement means learning more moves. They want the perfect opening. They want the trick. They want the trap. They want the easy answer.",
+    "But real chess improvement is not just knowing what to play when everything goes according to plan. Real chess improvement is knowing what to do when the game becomes yours.",
+    "That is where Magnus lives.",
+    "One of the most interesting ideas from the GothamChess and Lex Fridman conversation is that Magnus often avoids ultra-theoretical positions. Against young, heavily prepared players, he may leave the database early and force them to think.",
+    "This matters because younger players today are extremely booked up. They grow up with engines, databases, courses, Chessable files, opening repertoires, and endless online games. They can know twenty moves of theory in a sharp line before they fully understand why the moves are being played.",
+    "That can be powerful, but it can also become a weakness.",
+    "If your strength is memorization, then the opponent’s job is simple: make you play chess.",
+    "That sounds funny, but it is true.",
+    "If I know you are comfortable in your preparation, why would I let you stay there? If I know you want a clean theoretical battle, why would I give you that? Chess is not a worksheet. Your opponent is allowed to make your life uncomfortable.",
+    "Magnus understands this better than almost anyone. He does not need every game to be the sharpest engine-approved war. He is happy to enter a position where the objective evaluation is equal, but the practical problems are real.",
+    "And that is the lesson for improving players.",
+    "Do not only ask, “Is this move the best?”",
+    "Also ask:",
+    "Does this move create a problem my opponent knows how to solve?",
+    "That is practical chess.",
+    "When people talk about Magnus’s memory, they usually imagine him remembering exact games, exact openings, exact move orders. That is part of it, but I think the deeper skill is structural memory.",
+    "Strong players do not only remember moves. They remember patterns.",
+    "They remember pawn structures. They remember which pieces belong on which squares. They remember when a bishop is better than a knight. They remember when an endgame is technically equal but practically miserable. They remember how pressure builds.",
+    "This is the difference between a student who memorizes an opening and a student who understands an opening.",
+    "A memorized player says:",
+    "I know I play this move here.",
+    "A developing chess player says:",
+    "I know why this move belongs here, what square I am fighting for, what trade helps me, and what endgame I might be heading toward.",
+    "That is a completely different relationship with the game.",
+    "This is why I always care more about creating chess players than creating puzzle solvers. Puzzle solving is useful. Tactics matter. You need calculation. You need pattern recognition.",
+    "But chess is not just a set of isolated puzzles.",
+    "Chess is a living position where every piece has a job, every pawn move creates a long-term weakness, and every trade changes the responsibilities left on the board.",
+    "Magnus is great because he sees the whole game.",
+    "One of the best lessons from Magnus’s career is that 0.00 does not always mean the game is easy.",
+    "An engine can say a position is equal because, with perfect play, neither side should win. But humans do not play perfect chess. Humans get tired. Humans get nervous. Humans defend one move too casually. Humans miss the moment where the structure changes.",
+    "Magnus is famous for winning games that other elite players would draw.",
+    "That does not mean he is magically beating the engine. It means he understands the practical difference between a dead draw and a position where the opponent still has to prove the draw.",
+    "That is a tournament skill.",
+    "There are positions where the computer says everything is fine, but over the board, one side is suffering. One player has all the easy moves. The other player has to find only moves for the next hour. One player can improve slowly. The other player has to sit there defending, calculating, and hoping the pressure ends.",
+    "Magnus wins those games because he keeps the pressure alive.",
+    "That is something students can learn from immediately.",
+    "Do not rush to agree to a draw in your own mind just because material is equal.",
+    "Ask:",
+    "Who has the easier plan?",
+    "Whose king is safer?",
+    "Whose pieces are more active?",
+    "Who has the better pawn structure?",
+    "Who has targets?",
+    "Who has to be more careful?",
+    "Equal material does not mean equal comfort.",
+    "A lot of beginner and intermediate players want to win in the opening. They want the quick tactic. They want the trap that wins a queen. They want the checkmate pattern.",
+    "That is understandable. It feels good to win quickly.",
+    "But tournament chess does not always give you that. Sometimes you win a slightly better pawn structure. Sometimes you win a better bishop. Sometimes you win space. Sometimes you trade into an endgame where your advantage is real, but not automatic.",
+    "That is where Magnus is terrifying.",
+    "He can take a small advantage and make it feel like a life sentence.",
+    "This is why endgames matter so much. Endgames teach patience. They teach piece activity. They teach king activity. They teach pawn structure. They teach opposition, outside passers, conversion, and defense.",
+    "More importantly, endgames teach responsibility.",
+    "When there are fewer pieces on the board, every move becomes more honest. You cannot hide behind complications forever. If your king is passive, it shows. If your pawn structure is weak, it shows. If you do not understand which pieces to trade, it shows.",
+    "That is why I want students to stop thinking of endgames as “the boring part.”",
+    "The endgame is often where the better chess player finally separates himself.",
+    "The biggest lesson from Magnus is not “play weird moves.”",
+    "That would be the wrong takeaway.",
+    "The lesson is to make your opponent think.",
+    "There is a big difference between playing random moves and playing practical moves. Magnus is not just throwing pieces around and hoping someone gets confused. He is choosing positions where his understanding is deeper than his opponent’s comfort.",
+    "That is what every improving player should aim for.",
+    "You do not need to play like Magnus. Nobody does. But you can learn from the principle.",
+    "Stop trying to win every game by memorizing more than your opponent. Start trying to understand more than your opponent.",
+    "That means:",
+    "Learn openings by plans, not just moves.",
+    "Study pawn structures, not just traps.",
+    "Review your own games and ask where the position became uncomfortable.",
+    "Practice endgames until you stop fearing simplified positions.",
+    "Play tournament games where you must manage nerves, time, and pressure.",
+    "Do not quit mentally when the position is equal.",
+    "Do not relax when you are slightly better.",
+    "Do not panic when the opponent makes a move you did not expect.",
+    "That is chess.",
+    "This is the point I keep coming back to.",
+    "Chess is not about becoming a worksheet puzzle solver. Puzzles are part of training, but they are not the whole game. A puzzle tells you there is a tactic. A real game does not. A puzzle tells you the moment is important. A real game makes you decide that yourself.",
+    "Magnus is great because he plays the whole game.",
+    "Opening, middlegame, endgame.",
+    "Memory, calculation, structure, pressure.",
+    "Patience, stamina, confidence, practical decision-making.",
+    "That is the model students should learn from.",
+    "The goal is not to turn a student into someone who can solve ten random tactics and then collapse in a tournament game. The goal is to build a chess player who can sit across from another person, handle pressure, make decisions, recover from mistakes, and keep asking questions until the game is truly over.",
+    "That is how real improvement happens.",
+    "Magnus Carlsen is not great because he has one secret trick.",
+    "He is great because when the game stops being memorized, he is still comfortable.",
+    "And for any student trying to improve, that is the real lesson: do not just learn moves. Learn how to play chess when the position becomes yours."
+  ]
+},
   {
       slug: "creatine-mental-performance-chess",
       category: "Chess performance",
@@ -2782,17 +2953,71 @@ function ProcessSection() {
 }
 
 function CoachSection({ navigateToPage }) {
+  const profileWrapRef = useRef(null);
+
+  useEffect(() => {
+    const profileWrap = profileWrapRef.current;
+    if (!profileWrap || typeof window === "undefined") return undefined;
+
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionQuery.matches) {
+      profileWrap.style.setProperty("--coach-ring-progress", "360deg");
+      profileWrap.classList.add("coachProfileRingComplete");
+      return undefined;
+    }
+
+    let frame = 0;
+    let maxProgress = 0;
+    const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+
+    const updateRing = () => {
+      const rect = profileWrap.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const profileCenter = rect.top + rect.height / 2;
+      const start = viewportHeight * 1.08;
+      const end = viewportHeight * 0.34;
+      const progress = clamp((start - profileCenter) / (start - end));
+      maxProgress = Math.max(maxProgress, progress);
+
+      profileWrap.style.setProperty("--coach-ring-progress", `${(maxProgress * 360).toFixed(1)}deg`);
+      profileWrap.classList.toggle("coachProfileRingComplete", maxProgress >= 0.98);
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        updateRing();
+      });
+    };
+
+    updateRing();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <section className="contentWrap sectionBlock coachSection">
       <div className="coachHeader" data-reveal>
-        <img
-          className="coachProfile"
-          src="/images/coach-profile.jpg"
-          alt="Coach Chris profile"
-          width="320"
-          height="320"
-          loading="lazy"
-        />
+        <span
+          className="coachProfileRing"
+          ref={profileWrapRef}
+        >
+          <img
+            className="coachProfile"
+            src="/images/coach-profile.jpg"
+            alt="Coach Chris profile"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </span>
         <div>
           <p className="eyebrow">Meet Coach Chris</p>
           <h2>A roadmap to follow, the perfect coach to lead you</h2>
@@ -3394,11 +3619,17 @@ function BlogPostPage({ post, navigateToPage }) {
               <p className="blogCoachTakeaway">{post.summaryIntro}</p>
               {post.body.map((paragraph, index) => {
                 const heading = getSectionHeading(post, index);
+                const mediaBlocks = (post.inlineMedia || []).filter((media) => media.afterParagraph === index);
 
                 return (
                   <div className="blogParagraphBlock" key={`${post.slug}-${index}`}>
                     {heading && <h2 id={getSectionAnchor(post, heading)}>{heading.title}</h2>}
                     <p>{paragraph}</p>
+                    {mediaBlocks.map((media) => (
+                      <figure className="blogInlineMediaDivider" key={`${post.slug}-${media.src}-${index}`}>
+                        <img src={media.src} alt={media.alt} loading="lazy" />
+                      </figure>
+                    ))}
                   </div>
                 );
               })}

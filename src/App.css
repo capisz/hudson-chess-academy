@@ -1288,16 +1288,58 @@ h3{
   transform: translateY(-2px);
 }
 
-.coachProfile{
+.coachProfileRing{
   --coach-profile-size: clamp(112px, 12vw, 164px);
+  --coach-ring-progress: 0deg;
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-items: center;
   width: var(--coach-profile-size);
   height: var(--coach-profile-size);
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255, 250, 242, 0.84);
+  box-shadow: var(--shadow);
+  transition: transform 0.38s ease, filter 0.38s ease;
+}
+
+.coachProfileRing::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: conic-gradient(var(--clay) var(--coach-ring-progress), rgba(201, 120, 69, 0.18) 0);
+  pointer-events: none;
+}
+
+.coachProfileRing::after{
+  content: "";
+  position: absolute;
+  inset: 4px;
+  z-index: 1;
+  border-radius: inherit;
+  background: var(--paperAlt);
+  pointer-events: none;
+}
+
+.coachProfileRingComplete{
+  filter: brightness(1.02);
+  transform: scale(1.05);
+}
+
+.coachProfile{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
   aspect-ratio: 1;
   display: block;
   border-radius: 999px;
   object-fit: cover;
-  border: 5px solid var(--paperAlt);
-  box-shadow: var(--shadow);
+  border: 3px solid var(--paperAlt);
+  box-shadow: 0 0 0 1px rgba(32, 51, 49, 0.08);
 }
 
 .coachGallery{
@@ -2706,6 +2748,24 @@ h3{
 .blogParagraphBlock{
   display: grid;
   gap: 14px;
+}
+
+.blogInlineMediaDivider{
+  margin: clamp(16px, 3vw, 26px) 0;
+  padding: clamp(10px, 1.8vw, 14px);
+  border: 1px solid rgba(32, 51, 49, 0.12);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(232, 241, 236, 0.96), rgba(255, 248, 237, 0.94));
+  box-shadow: 0 16px 30px rgba(30, 58, 55, 0.12);
+}
+
+.blogInlineMediaDivider img{
+  display: block;
+  width: 100%;
+  aspect-ratio: 640 / 268;
+  border-radius: calc(var(--radius) - 3px);
+  object-fit: cover;
+  border: 1px solid rgba(32, 51, 49, 0.1);
 }
 
 .blogPostBody h2,
