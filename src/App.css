@@ -2768,6 +2768,30 @@ h3{
   border: 1px solid rgba(32, 51, 49, 0.1);
 }
 
+.blogAd{
+  display: grid;
+  gap: 12px;
+  margin: clamp(22px, 4vw, 36px) 0;
+  padding: clamp(16px, 2.4vw, 22px);
+  border-block: 1px solid rgba(32, 51, 49, 0.12);
+  color: var(--inkSoft);
+  background: linear-gradient(180deg, rgba(255, 250, 242, 0.72), rgba(232, 241, 236, 0.52));
+}
+
+.blogAdLabel{
+  color: rgba(72, 96, 93, 0.72);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.blogInlineAd{
+  min-height: 150px;
+}
+
 .blogPostBody h2,
 .blogInternalLinks h2{
   scroll-margin-top: 120px;

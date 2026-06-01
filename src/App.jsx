@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { AdSenseLoader, BlogAdSlot } from "./AdSense.jsx";
 import CookieConsent from "./CookieConsent.jsx";
+import BlogAd from "./components/BlogAd.jsx";
 import { openCookieSettings } from "./consent.js";
 import "./App.css";
 
@@ -3405,6 +3405,26 @@ const BLOG_SORT_OPTIONS = [
   { value: "oldest", label: "Oldest first" },
 ];
 
+const BLOG_AD_SECTION_INTERVAL = 2;
+
+function getBlogAdPlacements(post) {
+  const sections = [...(post.sectionHeadings || [])].sort((left, right) => left.beforeParagraph - right.beforeParagraph);
+  const placements = new Set();
+
+  sections.forEach((section, sectionIndex) => {
+    const nextSection = sections[sectionIndex + 1];
+    if (!nextSection) return;
+
+    const shouldPlaceAd = sectionIndex === 0 || sectionIndex % BLOG_AD_SECTION_INTERVAL === 0;
+    if (!shouldPlaceAd) return;
+
+    const afterParagraph = nextSection.beforeParagraph - 1;
+    if (afterParagraph >= section.beforeParagraph) placements.add(afterParagraph);
+  });
+
+  return placements;
+}
+
 function BlogSortControl({ order, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const controlRef = useRef(null);
@@ -3582,6 +3602,7 @@ function BlogPostPage({ post, navigateToPage }) {
   const relatedPosts = getRelatedPosts(post);
   const blogVideos = getBlogVideos(post);
   const primaryVideo = blogVideos[0];
+  const blogAdPlacements = getBlogAdPlacements(post);
 
   return (
     <>
@@ -3630,6 +3651,7 @@ function BlogPostPage({ post, navigateToPage }) {
                         <img src={media.src} alt={media.alt} loading="lazy" />
                       </figure>
                     ))}
+                    {blogAdPlacements.has(index) && <BlogAd className="blogInlineAd" />}
                   </div>
                 );
               })}
@@ -3723,7 +3745,6 @@ function BlogPostPage({ post, navigateToPage }) {
               </div>
             </section>
           )}
-          <BlogAdSlot className="blogArticleAd" />
         </div>
       </article>
       <BookStrip navigateToPage={navigateToPage} />
@@ -4975,7 +4996,6 @@ export default function App() {
 
       <ConsultationModal isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} />
       <CookieConsent />
-      <AdSenseLoader />
       <Analytics />
       <SpeedInsights route={getSpeedInsightsRoute(currentPage)} />
     </div>
