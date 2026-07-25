@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run rss && vite build",
+    "build": "npm run rss && npm run sitemap && vite build && npm run prerender",
     "lint": "eslint .",
     "preview": "vite preview",
     "rss": "node scripts/generate-rss.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "prerender": "node scripts/prerender.mjs",
     "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {

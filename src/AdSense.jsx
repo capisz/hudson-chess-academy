@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { COOKIE_CONSENT_EVENT, hasAdvertisingConsent } from "./consent";
 
-// After Google approves AdSense, set this in Vercel as ca-pub-xxxxxxxxxxxxxxxx.
-const ADSENSE_CLIENT_ID = import.meta.env.VITE_GOOGLE_ADSENSE_CLIENT_ID || "";
-const ADSENSE_BLOG_SLOT_ID = import.meta.env.VITE_GOOGLE_ADSENSE_BLOG_SLOT_ID || "";
+const ADSENSE_CLIENT_ID =
+  import.meta.env.VITE_GOOGLE_ADSENSE_CLIENT_ID || "ca-pub-7765754071910029";
+const ADSENSE_BLOG_SLOT_ID =
+  import.meta.env.VITE_GOOGLE_ADSENSE_BLOG_SLOT_ID || "7388867598";
 
 function hasRealAdSenseClientId() {
   return /^ca-pub-\d{16}$/.test(ADSENSE_CLIENT_ID);
@@ -26,12 +27,17 @@ export function AdSenseLoader() {
   }, []);
 
   useEffect(() => {
-    if (!canLoad || document.querySelector("script[data-horizon-adsense]")) return;
+    if (
+      !canLoad ||
+      document.querySelector('script[data-hudson-adsense], script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')
+    ) {
+      return;
+    }
 
     const script = document.createElement("script");
     script.async = true;
     script.crossOrigin = "anonymous";
-    script.dataset.horizonAdsense = "true";
+    script.dataset.hudsonAdsense = "true";
     script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
     document.head.appendChild(script);
   }, [canLoad]);
@@ -72,14 +78,14 @@ export function AdSlot({ slot, label = "Advertisement", className = "" }) {
 
   return (
     <aside className={`adSlot ${className}`.trim()} aria-label={label}>
-      <span>{label}</span>
+      <span className="blogAdLabel">{label}</span>
       <ins
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "block", textAlign: "center" }}
+        data-ad-layout="in-article"
         data-ad-client={ADSENSE_CLIENT_ID}
         data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
+        data-ad-format="fluid"
       />
     </aside>
   );
