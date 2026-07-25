@@ -99,6 +99,28 @@ textarea:focus-visible{
   background: var(--paper);
 }
 
+.skipLink{
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  left: max(10px, env(safe-area-inset-left));
+  z-index: 10000;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: var(--paperAlt);
+  background: var(--deep);
+  box-shadow: 0 10px 24px rgba(7, 22, 21, 0.24);
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skipLink:focus{
+  transform: translateY(0);
+}
+
+#main-content:focus{
+  outline: none;
+}
+
 .contentWrap{
   width: min(var(--container), calc(100% - 44px));
   margin-inline: auto;
@@ -1434,6 +1456,12 @@ h3{
 
 .bookingHeader .eyebrow{
   color: var(--deep);
+}
+
+.bookingHeader h1{
+  max-width: 820px;
+  font-size: clamp(34px, 5vw, 64px);
+  font-weight: 650;
 }
 
 .bookingHeader p{
@@ -2965,6 +2993,11 @@ h3{
   min-width: 0;
   max-width: 100%;
   overflow: hidden;
+}
+
+.adSlot.blogAd{
+  border-inline: 0;
+  border-radius: 0;
 }
 
 .blogAdLabel{

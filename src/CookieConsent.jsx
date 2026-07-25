@@ -73,7 +73,8 @@ export default function CookieConsent() {
             <p className="eyebrow">Privacy choices</p>
             <h2>Cookies and ads preferences</h2>
             <p>
-              Hudson Chess uses essential site storage, discloses privacy-friendly Vercel Analytics, and may later use Google AdSense advertising cookies only when enabled.
+              Hudson Chess uses essential site storage and privacy-friendly Vercel Analytics. Google
+              AdSense loads on blog articles only when you enable advertising.
             </p>
           </div>
           <div className="cookieBannerActions">
@@ -133,7 +134,7 @@ export default function CookieConsent() {
               />
               <CookieToggle
                 title="Advertising"
-                description="Allows Google AdSense and third-party advertising cookies if AdSense is configured later."
+                description="Allows Google AdSense and third-party advertising technologies on blog article pages."
                 checked={preferences.advertising}
                 onChange={(checked) => updatePreference("advertising", checked)}
               />

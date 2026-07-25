@@ -15,16 +15,39 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-## Horizon Chess privacy, cookies, and ads setup
+## Hudson Chess routing, SEO, accessibility, privacy, and ads
 
-This app is a Vite React single-page app that uses hash routes such as `#/home`, `#/blog`, `#/privacy-policy`, and `#/cookie-policy`.
+This app is a Vite React site that uses browser-history routes such as `/blog`,
+`/blog/:slug`, `/coach-chris`, `/book`, and `/accessibility`. Vercel rewrites direct
+requests to prerendered route HTML or the React fallback. Legacy `#/...` URLs are
+converted to their real-path equivalents in the browser.
+
+### Search indexing
+
+The production build performs four steps:
+
+1. Generate `public/rss.xml`.
+2. Generate `public/sitemap.xml`.
+3. Build the Vite app.
+4. Prerender static HTML for every blog article and core route.
+
+Each article HTML file includes its title, meta description, canonical URL, Open Graph
+and Twitter metadata, BlogPosting JSON-LD, featured image alt text, headings, and article
+paragraphs before JavaScript runs.
+
+After deployment, submit this sitemap in Google Search Console:
+
+```text
+https://hudsonchess.com/sitemap.xml
+```
 
 ### Legal pages
 
-- Privacy Policy: `#/privacy-policy`
-- Cookie Policy: `#/cookie-policy`
+- Privacy Policy: `/privacy-policy`
+- Cookie Policy: `/cookie-policy`
+- Accessibility Statement: `/accessibility`
 
-Both pages are rendered from `src/App.jsx` and use the same visual system as the rest of the Horizon Chess site.
+These pages are rendered from `src/App.jsx` and use the same visual system as the rest of the Hudson Chess site.
 
 ### Cookie consent banner
 
@@ -38,43 +61,34 @@ To update the banner or preference text, edit `src/CookieConsent.jsx`. The foote
 
 Vercel Analytics remains installed and rendered in `src/App.jsx`. The Privacy Policy and Cookie Policy disclose that Vercel Web Analytics is privacy-friendly, does not use third-party cookies, and stores anonymized analytics data.
 
-### Google AdSense preparation
+### Google AdSense
 
-AdSense loading is prepared in `src/AdSense.jsx`, but the script will only load when all of these are true:
+AdSense loading is implemented in `src/AdSense.jsx`. The script and in-article ad units
+only load when all of these are true:
 
 - The app is running in production.
 - Advertising consent has been accepted.
-- A real AdSense client ID is configured.
+- A valid AdSense client and blog slot ID are available.
 
-After Google gives you your AdSense client ID, add this environment variable in Vercel:
-
-```bash
-VITE_GOOGLE_ADSENSE_CLIENT_ID=ca-pub-xxxxxxxxxxxxxxxx
-```
-
-If you create a blog ad unit, add the slot ID as:
+The approved Hudson Chess IDs are the code defaults. They can be overridden in Vercel:
 
 ```bash
-VITE_GOOGLE_ADSENSE_BLOG_SLOT_ID=1234567890
+VITE_GOOGLE_ADSENSE_CLIENT_ID=ca-pub-7765754071910029
+VITE_GOOGLE_ADSENSE_BLOG_SLOT_ID=7388867598
 ```
 
-The reusable ad slot component is in `src/AdSense.jsx`. The blog article page includes a careful, non-intrusive placement below the article/video companion area that stays hidden until a real AdSense client ID, ad slot ID, production environment, and advertising consent are all present.
+The reusable ad slot component is in `src/AdSense.jsx`. Ads are placed between article
+sections only, not on the blog index or non-blog pages.
 
 ### ads.txt
 
-The placeholder file lives at `public/ads.txt` and should deploy to:
+The publisher file lives at `public/ads.txt` and deploys to:
 
 ```text
 /ads.txt
 ```
 
-Replace this placeholder publisher ID:
-
-```text
-pub-0000000000000000
-```
-
-with your real AdSense publisher ID from Google.
+It contains the active publisher ID `pub-7765754071910029`.
 
 ### EEA, UK, and Switzerland consent note
 

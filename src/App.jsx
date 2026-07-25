@@ -1,13 +1,15 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { AdSenseLoader, BlogAdSlot } from "./AdSense.jsx";
 import CookieConsent from "./CookieConsent.jsx";
-import BlogAd from "./components/BlogAd.jsx";
 import { openCookieSettings } from "./consent.js";
 import "./App.css";
 
 const BRAND_NAME = "Hudson Chess";
+const SITE_URL = "https://hudsonchess.com";
 const ZELLE_EMAIL = "hudsonchess@yahoo.com";
+const ACCESSIBILITY_EMAIL = "hello@hudsonchess.com";
 const CONSULTATION_STORAGE_KEY = "horizon-consultation-email-captured";
 const FORM_ERROR_MESSAGE = "Something went wrong. Please try again or email hello@hudsonchess.com.";
 const NEWSLETTER_SUCCESS_MESSAGE = "You’re in — I’ll send you new Hudson Chess articles when they’re posted.";
@@ -30,6 +32,7 @@ const SOCIAL_LINKS = [
 const LEGAL_PAGES = [
   { key: "privacy-policy", label: "Privacy Policy" },
   { key: "cookie-policy", label: "Cookie Policy" },
+  { key: "accessibility", label: "Accessibility" },
 ];
 
 const ROUTABLE_PAGES = [...PAGES, { key: "book" }, ...LEGAL_PAGES];
@@ -39,9 +42,24 @@ function prefersReducedMotion() {
 }
 
 const PAGE_META = {
+  home: {
+    title: `${BRAND_NAME} | Private Online and In-Person Chess Lessons`,
+    description:
+      "Private online and in-person chess coaching with Coach Chris for beginners, tournament players, and students building stronger thinking habits.",
+  },
   blog: {
     title: `Hudson Chess Blog | ${BRAND_NAME}`,
     description: "Chess articles from Hudson Chess on decision-making, resilience, calculation, and practical student improvement.",
+  },
+  "coach-chris": {
+    title: `Meet Coach Chris | ${BRAND_NAME}`,
+    description:
+      "Meet Coach Chris and learn about the teaching approach behind Hudson Chess lessons, student development, and practical chess improvement.",
+  },
+  book: {
+    title: `Book a Chess Lesson | ${BRAND_NAME}`,
+    description:
+      "Book an online or in-person Hudson Chess lesson with Coach Chris for beginner instruction, tournament training, or focused game review.",
   },
   "success-stories": {
     title: "Chess Success Stories | Student Growth Through Chess",
@@ -65,6 +83,11 @@ const PAGE_META = {
   "cookie-policy": {
     title: `Cookie Policy | ${BRAND_NAME}`,
     description: "Learn how Hudson Chess uses essential storage, analytics technologies, advertising cookies, and cookie preference controls.",
+  },
+  accessibility: {
+    title: `Accessibility Statement | ${BRAND_NAME}`,
+    description:
+      "Read the Hudson Chess accessibility statement and learn how to request help or report an accessibility barrier.",
   },
 };
 
@@ -222,7 +245,7 @@ const BLOG_POSTS = [
   "author": "Coach Chris",
   "publishedDate": "2026-06-01",
   "updatedDate": "2026-06-01",
-  "canonicalPath": "#/blog/what-magnus-carlsen-teaches-us-about-chess-improvement",
+  "canonicalPath": "/blog/what-magnus-carlsen-teaches-us-about-chess-improvement",
   "featuredImage": "/images/blog/magnus-carlsen-chess-improvement.jpg",
   "imageAlt": "Magnus Carlsen sitting at a chessboard during a competitive game, used as the cover image for an article on chess improvement.",
   "audience": "Chess students, tournament players, parents, and improving players learning how to study beyond memorized openings.",
@@ -390,7 +413,7 @@ const BLOG_POSTS = [
       author: "Coach Chris",
       publishedDate: "2026-05-26",
       updatedDate: "2026-05-26",
-      canonicalPath: "#/blog/creatine-mental-performance-chess",
+      canonicalPath: "/blog/creatine-mental-performance-chess",
       featuredImage: "/images/blog/creatine-mental-performance-chess.jpg",
       imageAlt: "A muscular athlete representing creatine and physical energy as a contrast for mental performance in chess.",
       audience: "Chess students, tournament players, parents, coaches, and students thinking about focus, fatigue, study habits, and mental performance.",
@@ -504,7 +527,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-23",
     "updatedDate": "2026-05-23",
-    "canonicalPath": "#/blog/tiger-parents-first-student-turned-prodigy",
+    "canonicalPath": "/blog/tiger-parents-first-student-turned-prodigy",
     "featuredImage": "/images/tiger-parent-cartoon.avif",
     "imageAlt": "Illustration of a strict tiger parent watching two young tigers study calculus and piano.",
     "audience": "Parents, chess students, tournament families, coaches, and anyone thinking about pressure, achievement, and healthy improvement.",
@@ -629,7 +652,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-19",
     "updatedDate": "2026-05-19",
-    "canonicalPath": "#/blog/chess-lessons-for-life-rasheme-ellington",
+    "canonicalPath": "/blog/chess-lessons-for-life-rasheme-ellington",
     "featuredImage": "https://i.ytimg.com/vi/EZJu25x9MWw/hqdefault.jpg",
     "imageAlt": "Rasheme Ellington TEDx thumbnail for a talk about chess lessons for life and student resilience.",
     "audience": "Parents, school leaders, chess teachers, enrichment coordinators, and educators interested in social-emotional learning.",
@@ -685,7 +708,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-19",
     "updatedDate": "2026-05-19",
-    "canonicalPath": "#/blog/chess-revolutionize-learning-cody-pomeranz",
+    "canonicalPath": "/blog/chess-revolutionize-learning-cody-pomeranz",
     "featuredImage": "https://i.ytimg.com/vi/A3yDvM8aplY/hqdefault.jpg",
     "imageAlt": "Cody Pomeranz TEDxYale thumbnail for a talk about how chess can revolutionize learning.",
     "audience": "Parents, school leaders, chess teachers, enrichment coordinators, and educators interested in social-emotional learning.",
@@ -741,7 +764,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-19",
     "updatedDate": "2026-05-19",
-    "canonicalPath": "#/blog/chess-emotional-intelligence-ash-reddy",
+    "canonicalPath": "/blog/chess-emotional-intelligence-ash-reddy",
     "featuredImage": "https://i.ytimg.com/vi/kMTga50-j3g/hqdefault.jpg",
     "imageAlt": "Ash Reddy TEDxUQ thumbnail for a talk about chess as an educational tool for emotional intelligence.",
     "audience": "Parents, school leaders, chess teachers, enrichment coordinators, and educators interested in social-emotional learning.",
@@ -796,7 +819,7 @@ const BLOG_POSTS = [
       "author": "Coach Chris",
       "publishedDate": "2026-05-19",
       "updatedDate": "2026-05-19",
-      "canonicalPath": "#/blog/emotional-intelligence-in-chess-pressure",
+      "canonicalPath": "/blog/emotional-intelligence-in-chess-pressure",
       "featuredImage": "https://i.ytimg.com/vi/CqgmozFr_GM/hqdefault.jpg",
       "imageAlt": "TED-Ed video thumbnail for a lesson on staying calm under pressure, connected to emotional intelligence in chess.",
       "audience": "Students, competitors, coaches, parents, and tournament players who want to handle chess pressure with more composure.",
@@ -1085,7 +1108,7 @@ const BLOG_POSTS = [
       "author": "Coach Chris",
       "publishedDate": "2026-05-20",
       "updatedDate": "2026-05-20",
-      "canonicalPath": "#/blog/pokemon-tcg-and-chess",
+      "canonicalPath": "/blog/pokemon-tcg-and-chess",
       "featuredImage": "/images/pokemon-tcg-pokemon-cards.jpg",
       "imageAlt": "Hands holding Pokemon TCG cards during a game, representing strategic planning and resource management.",
       "audience": "Chess students, Pokemon TCG players, parents, coaches, and competitive beginners who want to understand how strategic games reward study and preparation.",
@@ -1258,7 +1281,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-22",
     "updatedDate": "2026-05-22",
-    "canonicalPath": "#/blog/clearance-sacrifices-piece-activity",
+    "canonicalPath": "/blog/clearance-sacrifices-piece-activity",
     "featuredImage": "https://i.ytimg.com/vi/FeTUa8GvTU8/hqdefault.jpg",
     "imageAlt": "Sunil Weeramantry chess lecture thumbnail for an article on clearance sacrifices and piece activity.",
     "audience": "Beginner and intermediate chess students, parents, and players learning to value piece activity beyond material counts.",
@@ -1367,7 +1390,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-22",
     "updatedDate": "2026-05-22",
-    "canonicalPath": "#/blog/napoleon-chess-best-move",
+    "canonicalPath": "/blog/napoleon-chess-best-move",
     "featuredImage": "https://i.ytimg.com/vi/tYZw5PSV6yA/hqdefault.jpg",
     "imageAlt": "Penguin Supreme video thumbnail for the mystery of Napoleon's chess set and the best move he never found.",
     "audience": "Chess students, parents, history-minded players, and improving competitors learning to search for hidden resources.",
@@ -1513,7 +1536,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-22",
     "updatedDate": "2026-05-22",
-    "canonicalPath": "#/blog/the-art-of-learning-chess",
+    "canonicalPath": "/blog/the-art-of-learning-chess",
     "featuredImage": "https://i.ytimg.com/vi/wAnDWfEIwoE/hqdefault.jpg",
     "imageAlt": "Andrew Huberman conversation thumbnail with Josh Waitzkin for a Horizon Chess article on the art of learning chess.",
     "audience": "Chess students, parents, developing competitors, and coaches who want a healthier training process around pressure, losses, and long-term improvement.",
@@ -1703,7 +1726,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-23",
     "updatedDate": "2026-05-23",
-    "canonicalPath": "#/blog/myth-of-3d-chess",
+    "canonicalPath": "/blog/myth-of-3d-chess",
     "featuredImage": "/images/blog/myth-of-3d-chess.jpg",
     "imageAlt": "Spock playing three-dimensional chess in Star Trek, representing the myth of 3D chess as advanced strategy.",
     "audience": "Chess students, parents, competitive players, and readers interested in strategy, creativity, and why chess is already mentally complex.",
@@ -1814,7 +1837,7 @@ const BLOG_POSTS = [
     "author": "Coach Chris",
     "publishedDate": "2026-05-19",
     "updatedDate": "2026-05-19",
-    "canonicalPath": "#/blog/how-to-calculate-better-in-chess",
+    "canonicalPath": "/blog/how-to-calculate-better-in-chess",
     "featuredImage": "https://i.ytimg.com/vi/9Ga9dP3bvN8/hqdefault.jpg",
     "imageAlt": "GothamChess video thumbnail for a lesson on how to calculate better in chess.",
     "audience": "Beginner and intermediate chess students, parents, coaches, and players who want a clearer calculation routine.",
@@ -2250,20 +2273,22 @@ function getVisibleSlideIndexes(activeIndex, totalSlides) {
 }
 
 function getSiteBaseUrl() {
-  if (typeof window === "undefined") return "";
-  const path = window.location.pathname === "/" ? "" : window.location.pathname.replace(/\/$/, "");
-  return `${window.location.origin}${path}`;
+  return SITE_URL;
+}
+
+function getPathForPage(page) {
+  if (!page || page === "home") return "/";
+  return `/${page.replace(/^\/+|\/+$/g, "")}`;
 }
 
 function getCanonicalUrl(page, blogPost) {
-  const baseUrl = getSiteBaseUrl();
-  if (blogPost?.canonicalPath) return `${baseUrl}/${blogPost.canonicalPath}`;
-  return `${baseUrl}/#/${page || "home"}`;
+  const path = blogPost?.canonicalPath || getPathForPage(page);
+  return new URL(path, `${getSiteBaseUrl()}/`).href;
 }
 
 function getAbsoluteImageUrl(imageUrl) {
   if (!imageUrl || /^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${getSiteBaseUrl()}${imageUrl.startsWith("/") ? imageUrl : `/${imageUrl}`}`;
+  return new URL(imageUrl.startsWith("/") ? imageUrl : `/${imageUrl}`, `${getSiteBaseUrl()}/`).href;
 }
 
 function getBlogPostFromRoute(route) {
@@ -2333,13 +2358,11 @@ function formatDisplayDate(dateString) {
   }).format(new Date(`${dateString}T00:00:00`));
 }
 
-function getRawPageFromHash() {
-  if (typeof window === "undefined") return "home";
-  return window.location.hash.replace(/^#\/?/, "") || "home";
-}
+function normalizeRoutePage(route) {
+  const page = String(route || "")
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/[?#].*$/, "") || "home";
 
-function getPageFromHash() {
-  const page = getRawPageFromHash();
   if (page === "why-horizon") return "success-stories";
   if (page === "blog/latest") return getLatestBlogRoute();
   if (ROUTABLE_PAGES.some((item) => item.key === page)) return page;
@@ -2347,10 +2370,29 @@ function getPageFromHash() {
   return "home";
 }
 
-function replaceLatestBlogHash(page = getPageFromHash()) {
+function getLegacyHashRoute() {
+  if (typeof window === "undefined" || !window.location.hash.startsWith("#/")) return "";
+  return window.location.hash.slice(2);
+}
+
+function getPageFromLocation() {
+  if (typeof window === "undefined") return "home";
+  const legacyRoute = getLegacyHashRoute();
+  if (legacyRoute) return normalizeRoutePage(legacyRoute);
+  return normalizeRoutePage(window.location.pathname);
+}
+
+function normalizeBrowserLocation(page = getPageFromLocation()) {
   if (typeof window === "undefined") return;
-  if (getRawPageFromHash() === "blog/latest") {
-    window.history.replaceState(null, "", `#/${page}`);
+
+  const legacyRoute = getLegacyHashRoute();
+  const normalizedPath = window.location.pathname.replace(/^\/+|\/+$/g, "");
+  const needsLegacyMigration = Boolean(legacyRoute);
+  const needsLatestRedirect = legacyRoute === "blog/latest" || normalizedPath === "blog/latest";
+  const needsHomeCleanup = normalizedPath === "home";
+
+  if (needsLegacyMigration || needsLatestRedirect || needsHomeCleanup) {
+    window.history.replaceState(null, "", `${getPathForPage(page)}${window.location.search}`);
   }
 }
 
@@ -2383,7 +2425,7 @@ function scrollPageToTop() {
 }
 
 function getSpeedInsightsRoute(page) {
-  if (!page || page === "home") return "/home";
+  if (!page || page === "home") return "/";
   if (page === "blog") return "/blog";
   if (page.startsWith("blog/")) return "/blog/[slug]";
   return `/${page}`;
@@ -2549,7 +2591,7 @@ function Header({ currentPage, navigateToPage }) {
       <div className="headerInner">
         <a
           className="brand"
-          href="#/home"
+          href="/"
           onClick={(event) => {
             event.preventDefault();
             navigateAndClose("home");
@@ -2580,8 +2622,9 @@ function Header({ currentPage, navigateToPage }) {
             return (
               <a
                 key={page.key}
-                href={`#/${page.key}`}
+                href={getPathForPage(page.key)}
                 className={isActive ? "navLinkActive" : undefined}
+                aria-current={isActive ? "page" : undefined}
                 onClick={(event) => {
                   event.preventDefault();
                   navigateAndClose(page.key);
@@ -2595,7 +2638,7 @@ function Header({ currentPage, navigateToPage }) {
 
         <a
           className="headerCta"
-          href="#/book"
+          href="/book"
           onClick={(event) => {
             event.preventDefault();
             navigateAndClose("book");
@@ -3568,7 +3611,7 @@ function BlogPage({ navigateToPage }) {
             {visiblePosts.map((post) => (
               <article className="blogPostCard" key={post.slug}>
                 <a
-                  href={`#/blog/${post.slug}`}
+                  href={`/blog/${post.slug}`}
                   onClick={(event) => {
                     event.preventDefault();
                     navigateToPage(`blog/${post.slug}`);
@@ -3651,7 +3694,7 @@ function BlogPostPage({ post, navigateToPage }) {
                         <img src={media.src} alt={media.alt} loading="lazy" />
                       </figure>
                     ))}
-                    {blogAdPlacements.has(index) && <BlogAd className="blogInlineAd" />}
+                    {blogAdPlacements.has(index) && <BlogAdSlot className="blogAd blogInlineAd" />}
                   </div>
                 );
               })}
@@ -3660,7 +3703,7 @@ function BlogPostPage({ post, navigateToPage }) {
                 <p>
                   If this topic connects with your student's goals, explore the{" "}
                   <a
-                    href="#/success-stories"
+                    href="/success-stories"
                     onClick={(event) => {
                       event.preventDefault();
                       navigateToPage("success-stories");
@@ -3670,7 +3713,7 @@ function BlogPostPage({ post, navigateToPage }) {
                   </a>{" "}
                   page or{" "}
                   <a
-                    href="#/book"
+                    href="/book"
                     onClick={(event) => {
                       event.preventDefault();
                       navigateToPage("book");
@@ -3684,7 +3727,7 @@ function BlogPostPage({ post, navigateToPage }) {
                   <div className="relatedPostLinks">
                     {relatedPosts.map((relatedPost) => (
                       <a
-                        href={`#/blog/${relatedPost.slug}`}
+                        href={`/blog/${relatedPost.slug}`}
                         key={relatedPost.slug}
                         onClick={(event) => {
                           event.preventDefault();
@@ -4112,7 +4155,7 @@ function CoachChrisPage({ navigateToPage }) {
 
 function PrivacyPolicyPage({ navigateToPage }) {
   return (
-    <LegalPage title="Privacy Policy" eyebrow="Legal" updated="May 23, 2026">
+    <LegalPage title="Privacy Policy" eyebrow="Legal" updated="July 25, 2026">
       <section>
         <h2>Who operates this site</h2>
         <p>
@@ -4156,10 +4199,10 @@ function PrivacyPolicyPage({ navigateToPage }) {
       <section>
         <h2>Google AdSense and advertising cookies</h2>
         <p>
-          This site is prepared for Google AdSense. If AdSense is enabled in the future, Google and
-          third-party vendors may use cookies or similar technologies to serve ads, measure ad
-          performance, and help prevent fraud. Ads may be personalized based on your visits to this
-          and other websites when allowed by your settings and applicable law.
+          Hudson Chess uses Google AdSense on blog article pages when advertising consent has been
+          accepted. Google and third-party vendors may use cookies or similar technologies to serve
+          ads, measure ad performance, and help prevent fraud. Ads may be personalized based on your
+          visits to this and other websites when allowed by your settings and applicable law.
         </p>
       </section>
 
@@ -4192,7 +4235,7 @@ function PrivacyPolicyPage({ navigateToPage }) {
           For privacy questions or lesson-related data requests, contact Hudson Chess at{" "}
           <a href={`mailto:${ZELLE_EMAIL}`}>{ZELLE_EMAIL}</a>. You can also visit the{" "}
           <a
-            href="#/book"
+            href="/book"
             onClick={(event) => {
               event.preventDefault();
               navigateToPage("book");
@@ -4209,7 +4252,7 @@ function PrivacyPolicyPage({ navigateToPage }) {
 
 function CookiePolicyPage() {
   return (
-    <LegalPage title="Cookie Policy" eyebrow="Cookie choices" updated="May 23, 2026">
+    <LegalPage title="Cookie Policy" eyebrow="Cookie choices" updated="July 25, 2026">
       <section>
         <h2>What cookies are</h2>
         <p>
@@ -4239,9 +4282,9 @@ function CookiePolicyPage() {
       <section>
         <h2>Advertising cookies</h2>
         <p>
-          This site is prepared for Google AdSense. If AdSense is enabled later and advertising
-          consent is accepted, Google and third-party vendors may use cookies or similar technologies
-          to serve and measure ads, including personalized ads where permitted.
+          Hudson Chess uses Google AdSense on blog article pages when advertising consent is
+          accepted. Google and third-party vendors may use cookies or similar technologies to serve
+          and measure ads, including personalized ads where permitted.
         </p>
       </section>
 
@@ -4262,6 +4305,53 @@ function CookiePolicyPage() {
           Your browser also provides controls for deleting or blocking cookies and other site data.
           These controls are usually inside your browser&apos;s privacy, security, or site settings.
           Blocking all cookies may affect some website features.
+        </p>
+      </section>
+    </LegalPage>
+  );
+}
+
+function AccessibilityStatementPage() {
+  return (
+    <LegalPage title="Accessibility Statement" eyebrow="Accessibility" updated="July 25, 2026">
+      <section>
+        <h2>Our commitment</h2>
+        <p>
+          Hudson Chess wants students, parents, and visitors with disabilities to be able to use this
+          website and access information about lessons, articles, and coaching services.
+        </p>
+      </section>
+
+      <section>
+        <h2>Accessibility approach</h2>
+        <p>
+          The site uses semantic headings and landmarks, keyboard-accessible navigation and controls,
+          visible focus indicators, descriptive image text, responsive layouts, and reduced-motion
+          support. We aim to follow the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA
+          where reasonably possible.
+        </p>
+        <p>
+          Accessibility is an ongoing process. This statement does not claim that every page or
+          third-party service is free of barriers.
+        </p>
+      </section>
+
+      <section>
+        <h2>Third-party services</h2>
+        <p>
+          Some features, including YouTube videos, Koalendar booking tools, Google advertising, and
+          other linked services, are provided by third parties. Their accessibility is controlled by
+          those providers, but Hudson Chess will offer a reasonable alternative when possible.
+        </p>
+      </section>
+
+      <section>
+        <h2>Request help or report a barrier</h2>
+        <p>
+          If you have difficulty using this website or need information in another format, email{" "}
+          <a href={`mailto:${ACCESSIBILITY_EMAIL}`}>{ACCESSIBILITY_EMAIL}</a>. Please include the page
+          or feature involved and the type of help you need so we can work toward a practical
+          solution.
         </p>
       </section>
     </LegalPage>
@@ -4316,7 +4406,7 @@ function Footer({ navigateToPage }) {
         <nav className="footerLegalLinks" aria-label="Legal and contact links">
           {LEGAL_PAGES.map((page) => (
             <a
-              href={`#/${page.key}`}
+              href={getPathForPage(page.key)}
               key={page.key}
               onClick={(event) => {
                 event.preventDefault();
@@ -4330,7 +4420,7 @@ function Footer({ navigateToPage }) {
             Cookie Settings
           </button>
           <a
-            href="#/book"
+            href="/book"
             onClick={(event) => {
               event.preventDefault();
               navigateToPage("book");
@@ -4349,7 +4439,7 @@ function Footer({ navigateToPage }) {
   );
 }
 
-function BookingSection({ revealOnLoad = false } = {}) {
+function BookingSection({ revealOnLoad = false, isPageHeading = false } = {}) {
   const [studentStatus, setStudentStatus] = useState("new");
   const [selectedKey, setSelectedKey] = useState(LESSONS[0].key);
   const [honeypot, setHoneypot] = useState("");
@@ -4448,7 +4538,7 @@ function BookingSection({ revealOnLoad = false } = {}) {
       <div className="contentWrap">
         <div className="bookingHeader" data-reveal>
           <p className="eyebrow">Book a lesson</p>
-          <h2>Ready to start your journey?</h2>
+          {isPageHeading ? <h1>Ready to start your journey?</h1> : <h2>Ready to start your journey?</h2>}
           <p>
             New students can fill out the form below. Returning students can unlock the lesson
             buttons and use the calendar to book their next lesson. Email coach for bundle lesson discounts! 
@@ -4819,18 +4909,20 @@ function ConsultationModal({ isOpen, onClose }) {
 
 export default function App() {
   const [slideIdx, setSlideIdx] = useState(0);
-  const [currentPage, setCurrentPage] = useState(getPageFromHash);
+  const [currentPage, setCurrentPage] = useState(getPageFromLocation);
   const [consultationOpen, setConsultationOpen] = useState(false);
 
   function navigateToPage(page) {
-    window.history.pushState(null, "", `#/${page}`);
-    setCurrentPage(page);
+    const nextPage = normalizeRoutePage(page);
+    window.history.pushState(null, "", getPathForPage(nextPage));
+    setCurrentPage(nextPage);
     scrollPageToTop();
   }
 
   useLayoutEffect(() => {
-    replaceLatestBlogHash(currentPage);
+    normalizeBrowserLocation(currentPage);
     scrollPageToTop();
+    document.getElementById("main-content")?.focus({ preventScroll: true });
   }, [currentPage]);
 
   useEffect(() => {
@@ -4842,8 +4934,8 @@ export default function App() {
 
   useEffect(() => {
     const syncPage = () => {
-      const nextPage = getPageFromHash();
-      replaceLatestBlogHash(nextPage);
+      const nextPage = getPageFromLocation();
+      normalizeBrowserLocation(nextPage);
       setCurrentPage(nextPage);
     };
     window.addEventListener("popstate", syncPage);
@@ -5031,9 +5123,12 @@ export default function App() {
 
   return (
     <div className="page">
+      <a className="skipLink" href="#main-content">
+        Skip to main content
+      </a>
       <Header currentPage={currentPage} navigateToPage={navigateToPage} />
 
-      <main>
+      <main id="main-content" tabIndex="-1">
         {currentPage === "home" && <HomePage slideIdx={slideIdx} navigateToPage={navigateToPage} />}
         {currentPage === "blog" && <BlogPage navigateToPage={navigateToPage} />}
         {currentPage.startsWith("blog/") && currentPage !== "blog/latest" && (
@@ -5041,15 +5136,17 @@ export default function App() {
         )}
         {currentPage === "success-stories" && <SuccessStoriesPage navigateToPage={navigateToPage} />}
         {currentPage === "coach-chris" && <CoachChrisPage navigateToPage={navigateToPage} />}
-        {currentPage === "book" && <BookingSection revealOnLoad />}
+        {currentPage === "book" && <BookingSection revealOnLoad isPageHeading />}
         {currentPage === "privacy-policy" && <PrivacyPolicyPage navigateToPage={navigateToPage} />}
         {currentPage === "cookie-policy" && <CookiePolicyPage />}
+        {currentPage === "accessibility" && <AccessibilityStatementPage />}
       </main>
 
       <Footer navigateToPage={navigateToPage} />
 
       <ConsultationModal isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} />
       <CookieConsent />
+      <AdSenseLoader />
       <Analytics />
       <SpeedInsights route={getSpeedInsightsRoute(currentPage)} />
     </div>
